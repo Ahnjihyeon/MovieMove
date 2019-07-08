@@ -12,6 +12,6 @@
   
   <context-param>
   	<param-name>fileName</param-name>
-  	<param-value>chobong/listener/ActionMapping</param-value>
+  	<param-value>chobong/listener/ActionMapping</param-value> 
   </context-param>
 </web-app>
