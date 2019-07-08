@@ -1,138 +1,67 @@
 package chobong.movie.dto;
 
-public class MovieMoveDTO {
-	private String memberid;
-	private String memberPwd;
-	private String email;
-	private String name;
-	private String nickname;
-	private int age;
-	private String enrollday;
+public class reviewDTO {
 	
-	private String reviewid;
-	private String subject;
-	private String content;
-	private String writeday;
-	private String starPoint;
-	private String readnum;
+	private String reviewId;
+	private String reviewSubject;
+	private String reviewContent;
+	private String reviewWriteday;
+	private String reviewStarPoint;
+	private String reviewCount;
 	private String reviewPwd;
 	
 	
-	public MovieMoveDTO() {}
 	
-	//리뷰 등록할 때
-	public MovieMoveDTO(String nickname, String reviewid, String subject, String content, String writeday,
-			String starPoint, String readnum, String reviewPwd) {
+	//Constructor
+	
+	public reviewDTO(String reviewId, String reviewSubject, String reviewContent, String reviewWriteday,
+			String reviewStarPoint, String reviewCount, String reviewPwd) {
 		super();
-		this.nickname = nickname;
-		this.reviewid = reviewid;
-		this.subject = subject;
-		this.content = content;
-		this.writeday = writeday;
-		this.starPoint = starPoint;
-		this.readnum = readnum;
+		this.reviewId = reviewId;
+		this.reviewSubject = reviewSubject;
+		this.reviewContent = reviewContent;
+		this.reviewWriteday = reviewWriteday;
+		this.reviewStarPoint = reviewStarPoint;
+		this.reviewCount = reviewCount;
 		this.reviewPwd = reviewPwd;
 	}
 	
-	
-	//리뷰 수정할 때
-	public MovieMoveDTO(String reviewid, String subject, String content, String starPoint, String reviewPwd) {
-		super();
-		this.reviewid = reviewid;
-		this.subject = subject;
-		this.content = content;
-		this.starPoint = starPoint;
-		this.reviewPwd = reviewPwd;
+	//getXxx, setXxx
+	public String getReviewId() {
+		return reviewId;
 	}
-	
-	
-	//리뷰 삭제할때..
-	public MovieMoveDTO(String reviewid,String reviewPwd ) {
-		this.reviewid = reviewid;
-		this.reviewPwd = reviewPwd;
+	public void setReviewId(String reviewId) {
+		this.reviewId = reviewId;
 	}
-	
-		
-
-	///SetXxx, GetXxx
-	
-	public String getMemberid() {
-		return memberid;
+	public String getReviewSubject() {
+		return reviewSubject;
 	}
-	public void setMemberid(String memberid) {
-		this.memberid = memberid;
+	public void setReviewSubject(String reviewSubject) {
+		this.reviewSubject = reviewSubject;
 	}
-	public String getMemberPwd() {
-		return memberPwd;
+	public String getReviewContent() {
+		return reviewContent;
 	}
-	public void setMemberPwd(String memberPwd) {
-		this.memberPwd = memberPwd;
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
-	public String getEmail() {
-		return email;
+	public String getReviewWriteday() {
+		return reviewWriteday;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setReviewWriteday(String reviewWriteday) {
+		this.reviewWriteday = reviewWriteday;
 	}
-	public String getName() {
-		return name;
+	public String getReviewStarPoint() {
+		return reviewStarPoint;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setReviewStarPoint(String reviewStarPoint) {
+		this.reviewStarPoint = reviewStarPoint;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getReviewCount() {
+		return reviewCount;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public String getEnrollday() {
-		return enrollday;
-	}
-	public void setEnrollday(String enrollday) {
-		this.enrollday = enrollday;
-	}
-	public String getReviewid() {
-		return reviewid;
-	}
-	public void setReviewid(String reviewid) {
-		this.reviewid = reviewid;
-	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getWriteday() {
-		return writeday;
-	}
-	public void setWriteday(String writeday) {
-		this.writeday = writeday;
-	}
-	public String getStarPoint() {
-		return starPoint;
-	}
-	public void setStarPoint(String starPoint) {
-		this.starPoint = starPoint;
-	}
-	public String getReadnum() {
-		return readnum;
-	}
-	public void setReadnum(String readnum) {
-		this.readnum = readnum;
+	public void setReviewCount(String reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 	public String getReviewPwd() {
 		return reviewPwd;
@@ -140,7 +69,7 @@ public class MovieMoveDTO {
 	public void setReviewPwd(String reviewPwd) {
 		this.reviewPwd = reviewPwd;
 	}
-
+	
 	
 	
 	

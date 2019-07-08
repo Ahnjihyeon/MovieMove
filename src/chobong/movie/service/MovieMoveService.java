@@ -4,14 +4,14 @@ import java.sql.SQLException;
 
 import chobong.movie.dao.MovieMoveDAO;
 import chobong.movie.dao.MovieMoveDAOImpl;
-import chobong.movie.dto.MovieMoveDTO;
+import chobong.movie.dto.reviewDTO;
 
 public class MovieMoveService {
 		private static MovieMoveDAO movieDAO = new MovieMoveDAOImpl();
 	  /**
 	   * MovieMoveDAO 의 리뷰를 삽입하는 메소드 호출
 	   * */
-	public static int insert(MovieMoveDTO movieMove) throws SQLException {
+	public static int insert(reviewDTO movieMove) throws SQLException {
 		int result = movieDAO.insert(movieMove);
 		if(result==0)throw new SQLException("등록되지 않았습니다.");
 		
@@ -37,7 +37,7 @@ public class MovieMoveService {
 	  /**
 	   * ElectronicsDAOImpl의 모델번호에 해당하는 레코드 수정  메소드 호출
 	   * */
-	  public static int update(MovieMoveDTO movieMove) throws SQLException {
+	  public static int update(reviewDTO movieMove) throws SQLException {
 		  
 		 /*  MovieMove dbMovie = movieDAO.selectByreviewid(reviewid); // 모델번호로 검색하는 기능 연결
 		 	  if(!dbMovie.getReviewPwd().equals(reviewPwd)) {
