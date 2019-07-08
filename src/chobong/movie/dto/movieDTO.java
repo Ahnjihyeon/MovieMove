@@ -59,6 +59,6 @@ public class movieDTO {
 		this.movieSummary = movieSummary;
 	}
 	
-	
+	  
 	
 }
