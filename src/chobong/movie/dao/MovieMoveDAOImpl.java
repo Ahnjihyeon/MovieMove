@@ -3,12 +3,12 @@ package chobong.movie.dao;
 import java.sql.SQLException;
 
 import chobong.movie.dao.MovieMoveDAO;
-import chobong.movie.dto.reviewDTO;
+import chobong.movie.dto.ReviewDTO;
 
 public class MovieMoveDAOImpl implements MovieMoveDAO {
 
 	@Override
-	public int insert(reviewDTO movie) throws SQLException {
+	public int insert(ReviewDTO movie) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -20,7 +20,7 @@ public class MovieMoveDAOImpl implements MovieMoveDAO {
 	}
 
 	@Override
-	public int update(reviewDTO movie) throws SQLException {
+	public int update(ReviewDTO movie) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

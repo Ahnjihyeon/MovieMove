@@ -1,6 +1,6 @@
 package chobong.movie.dto;
 
-public class memberDTO {
+public class MemberDTO {
 	private String memberId;
 	private String memberPwd;
 	private String memberEmail;
@@ -14,7 +14,7 @@ public class memberDTO {
 	
 	//Constructor	
 	
-	public memberDTO(String memberId, String memberPwd, String memberEmail, String memberName, String memberNickname,
+	public MemberDTO(String memberId, String memberPwd, String memberEmail, String memberName, String memberNickname,
 			int memberAge, String memberDate) {
 		super();
 		this.memberId = memberId;
