@@ -1,6 +1,6 @@
 package chobong.movie.dto;
 
-public class movieDTO {
+public class MovieDTO {
 	private String movieCode;
 	private String movieTitle;
 	private int movieYear;
@@ -8,7 +8,7 @@ public class movieDTO {
 	private String movieSummary;
 	
 	//Constructor
-	public movieDTO(String movieCode, String movieTitle, int movieYear, int starPoint, String movieSummary) {
+	public MovieDTO(String movieCode, String movieTitle, int movieYear, int starPoint, String movieSummary) {
 		super();
 		this.movieCode = movieCode;
 		this.movieTitle = movieTitle;

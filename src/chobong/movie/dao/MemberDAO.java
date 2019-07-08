@@ -2,7 +2,7 @@ package chobong.movie.dao;
 
 import java.util.List;
 
-import kosta.dto.CustomerDTO;
+import chobong.movie.dto.MemberDTO;
 
 public interface MemberDAO {
 
@@ -10,7 +10,7 @@ public interface MemberDAO {
 	/**
 	 * 전체 Member 검색하기
 	 * */
-	List<MemberDTO memberDTO> selectAll();
+	List<MemberDTO> selectAll();
 	
 	/** id에 해당하는 정보검색( 상세페이지 ) 
 	  select * from member where id=?    */

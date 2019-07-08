@@ -1,6 +1,6 @@
 package chobong.movie.dto;
 
-public class reviewDTO {
+public class ReviewDTO {
 	
 	private String reviewId;
 	private String reviewSubject;
@@ -14,7 +14,7 @@ public class reviewDTO {
 	
 	//Constructor
 	
-	public reviewDTO(String reviewId, String reviewSubject, String reviewContent, String reviewWriteday,
+	public ReviewDTO(String reviewId, String reviewSubject, String reviewContent, String reviewWriteday,
 			String reviewStarPoint, String reviewCount, String reviewPwd) {
 		super();
 		this.reviewId = reviewId;
