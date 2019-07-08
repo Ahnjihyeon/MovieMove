@@ -8,17 +8,15 @@ public class ReviewDTO {
 	private String reviewSubject;
 	private String reviewContent;
 	private String reviewWriteday;
-	private String reviewStarPoint;
-	private String reviewCount;
+	private int reviewStarPoint;
+	private int reviewCount;
 	private String reviewPwd;
 	
-	
-
-	
 	//Constructor
-	
+	public ReviewDTO() { }
+
 	public ReviewDTO(String reviewId, String reviewSubject, String reviewContent, String reviewWriteday,
-			String reviewStarPoint, String reviewCount, String reviewPwd) {
+			int reviewStarPoint, int reviewCount, String reviewPwd) {
 		super();
 		this.reviewId = reviewId;
 		this.reviewSubject = reviewSubject;
@@ -54,16 +52,16 @@ public class ReviewDTO {
 	public void setReviewWriteday(String reviewWriteday) {
 		this.reviewWriteday  = reviewWriteday;
 	}
-	public String getReviewStarPoint() {
+	public int getReviewStarPoint() {
 		return reviewStarPoint;
 	}
-	public void setReviewStarPoint(String reviewStarPoint) {
+	public void setReviewStarPoint(int reviewStarPoint) {
 		this.reviewStarPoint = reviewStarPoint;
 	}
-	public String getReviewCount() {
+	public int getReviewCount() {
 		return reviewCount;
 	}
-	public void setReviewCount(String reviewCount) {
+	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
 	}
 	public String getReviewPwd() {
@@ -72,9 +70,6 @@ public class ReviewDTO {
 	public void setReviewPwd(String reviewPwd) {
 		this.reviewPwd = reviewPwd;
 	}
-	
-	
-	
 	
 	
 }
