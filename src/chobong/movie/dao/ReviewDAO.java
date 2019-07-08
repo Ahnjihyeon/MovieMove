@@ -3,8 +3,8 @@ package chobong.movie.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import chobong.movie.dtoo.MovieDTO;
-import chobong.movie.dtoo.ReviewDTO;
+import chobong.movie.dto.MovieDTO;
+import chobong.movie.dto.ReviewDTO;
 
 public interface ReviewDAO {
 	

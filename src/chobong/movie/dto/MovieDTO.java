@@ -1,4 +1,4 @@
-package chobong.movie.dtoo;
+package chobong.movie.dto;
 
 public class MovieDTO {
 	private String movieCode;

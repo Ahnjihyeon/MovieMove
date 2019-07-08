@@ -1,4 +1,4 @@
-package chobong.movie.dtoo;
+package chobong.movie.dto;
 
 public class CommentDTO {
 	private int commentNum; //´ñ±Û¹øÈ£
