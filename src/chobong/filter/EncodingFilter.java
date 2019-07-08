@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebInitParam;
 public class EncodingFilter implements Filter {
 	String encoding;
 	public void destroy() {
-
+		
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
