@@ -3,6 +3,8 @@ package chobong.movie.dto;
 public class ReviewDTO {
 	
 	private String reviewId;
+	private String memberId;
+	private String movieCode;
 	private String reviewSubject;
 	private String reviewContent;
 	private String reviewWriteday;
