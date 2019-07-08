@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
 
-public class ReadElecController implements Controller {
+public class ReadController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
