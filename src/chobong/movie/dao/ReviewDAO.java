@@ -7,7 +7,7 @@ public interface ReviewDAO {
 	
 	 // 영화
 	 /** 영화 전체 검색 */
-	List<MovieDTO> selectAll() throws SQLException;
+	List<MovieDTO> selectAll() throws SQLException; 
 	  
 	  /** 영화 제목검색 
 		select * from Movie where movie_Title like ?	   */
@@ -31,7 +31,6 @@ public interface ReviewDAO {
 	List<ReviewDTO> selectBykeyBest( String keyField );
 		  
 		  
-	  
 	/**
 	 * 레코드 삽입
 	 * @return : 1-삽입성공 , 0 - 삽입실패
