@@ -2,7 +2,7 @@ package chobong.movie.dao;
 
 import java.util.List;
 
-import chobong.movie.dto.MemberDTO;
+import chobong.movie.dtoo.MemberDTO;
 
 public interface MemberDAO {
 

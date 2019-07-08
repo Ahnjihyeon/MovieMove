@@ -1,4 +1,4 @@
-package chobong.movie.dto;
+package chobong.movie.dtoo;
 
 public class ReviewDTO {
 	

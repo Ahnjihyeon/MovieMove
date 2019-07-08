@@ -3,7 +3,7 @@ package chobong.movie.dao;
 import java.sql.SQLException;
 
 import chobong.movie.dao.MovieMoveDAO;
-import chobong.movie.dto.ReviewDTO;
+import chobong.movie.dtoo.ReviewDTO;
 
 public class MovieMoveDAOImpl implements MovieMoveDAO {
 

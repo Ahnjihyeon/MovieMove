@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import chobong.movie.dao.MovieMoveDAO;
 import chobong.movie.dao.MovieMoveDAOImpl;
-import chobong.movie.dto.ReviewDTO;
+import chobong.movie.dtoo.ReviewDTO;
 
 public class MovieMoveService {
 		private static MovieMoveDAO movieDAO = new MovieMoveDAOImpl();

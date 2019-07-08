@@ -2,7 +2,7 @@ package chobong.movie.dao;
 
 import java.sql.SQLException;
 
-import chobong.movie.dto.ReviewDTO;
+import chobong.movie.dtoo.ReviewDTO;
 
 public interface MovieMoveDAO {
 
