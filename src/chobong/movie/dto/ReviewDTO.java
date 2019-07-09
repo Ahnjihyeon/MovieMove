@@ -27,46 +27,76 @@ public class ReviewDTO {
 		this.reviewPwd = reviewPwd;
 	}
 	
+	
 	//getXxx, setXxx
 	public String getReviewId() {
 		return reviewId;
 	}
+
 	public void setReviewId(String reviewId) {
 		this.reviewId = reviewId;
 	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getMovieCode() {
+		return movieCode;
+	}
+
+	public void setMovieCode(String movieCode) {
+		this.movieCode = movieCode;
+	}
+
 	public String getReviewSubject() {
 		return reviewSubject;
 	}
+
 	public void setReviewSubject(String reviewSubject) {
 		this.reviewSubject = reviewSubject;
 	}
+
 	public String getReviewContent() {
 		return reviewContent;
 	}
+
 	public void setReviewContent(String reviewContent) {
 		this.reviewContent = reviewContent;
 	}
+
 	public String getReviewWriteday() {
 		return reviewWriteday;
 	}
+
 	public void setReviewWriteday(String reviewWriteday) {
-		this.reviewWriteday  = reviewWriteday;
+		this.reviewWriteday = reviewWriteday;
 	}
+
 	public int getReviewStarPoint() {
 		return reviewStarPoint;
 	}
+
 	public void setReviewStarPoint(int reviewStarPoint) {
 		this.reviewStarPoint = reviewStarPoint;
 	}
+
 	public int getReviewCount() {
 		return reviewCount;
 	}
+
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
 	}
+
 	public String getReviewPwd() {
 		return reviewPwd;
 	}
+
 	public void setReviewPwd(String reviewPwd) {
 		this.reviewPwd = reviewPwd;
 	}
