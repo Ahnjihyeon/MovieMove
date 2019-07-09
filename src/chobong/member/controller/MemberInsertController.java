@@ -25,5 +25,4 @@ public class MemberInsertController implements Controller {
 		String memberId = request.getParameter("memberId");
 		return null;
 	}
-
 }
