@@ -169,7 +169,33 @@ ul{
     padding: 8px 15px;
     text-transform: uppercase;
 }
+.loginbtn{
+    background: #ff4157 none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding: 8px 15px;
+    text-transform: uppercase;
+}
+.logoutbtn{
+    background: #ff4157 none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding: 8px 15px;
+    text-transform: uppercase;
+}
 .book-now-btn:hover, .vacation-offer-details .btn.btn-default:hover{
+    background: #162541;
+}
+.loginbtn:hover, .vacation-offer-details .btn.btn-default:hover{
+    background: #162541;
+}
+.logoutbtn:hover, .vacation-offer-details .btn.btn-default:hover{
     background: #162541;
 }
 
@@ -701,7 +727,7 @@ footer a{
 }
 
 .about-right li:before{
-    content: '';
+    content: '�꼨';
     position: absolute;
     left: 0;
     top: 0;

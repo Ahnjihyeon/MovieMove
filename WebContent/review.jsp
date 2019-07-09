@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,13 +18,13 @@
         <link href="fonts/antonio-exotic/stylesheet.css" rel="stylesheet">
         <link rel="stylesheet" href="css/lightbox.min.css">
         <link href="css/responsive.css" rel="stylesheet">
-        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
         <script src="js/instafeed.min.js" type="text/javascript"></script>
         <script src="js/custom.js" type="text/javascript"></script>
         
-        <style type="text/css">
+        <style type="text/css">        
           div.review_top {border-bottom: 1px solid #ff9faa;
 			   font-size: 13px;
 			   font-weight: 600;
@@ -36,6 +36,14 @@
 		span.review_left{}
 		span.review_right{float:right;}
         </style>
+        <script>
+        $(function(){
+        	$(".loginbtn").click(function(){
+        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+        	})
+        })
+        
+        </script>
     </head>
     <body>
         <div id="page">
@@ -60,12 +68,25 @@
                                     <!--<a href="index.html"><img src="images/logo.png" alt="logo"></a>-->
                                     <a href="index.html"><span>뮤비</span>무비</a>
                                 </div>                       
-                            </div>             
+                            </div>
                             <div class="col-sm-6 visible-sm">
-                                <div class="text-right">
-                                <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
-                                <button type="button" class="book-now-btn">로그인</button>
-                                </div>
+                            		<c:choose>
+                            			<c:when test="${sessionScope.memberId!=null}">
+                            				<div class="text-right">
+			                               		 <h4>${memberId}님 로그인중...</h4>
+			                                	 <a href="#">마이페이지</a>
+			                                	 <form action="movie?command=logout" method="post">
+			                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
+			                                	 </form>
+		                                	 </div>
+	                            		</c:when>
+	                            		<c:otherwise>
+	                            			<div class="text-right">
+		                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
+		                                     <button type="button" class="loginbtn">로그인</button>
+		                                     </div>
+                            			</c:otherwise>
+                           			</c:choose>                                 	    
                             </div>
                             <div class="col-md-8 col-sm-12 col-xs-12 remove-padd">
                                 <nav class="navbar navbar-default">
@@ -92,7 +113,23 @@
                                 </nav>
                             </div>
                             <div class="col-md-2  col-sm-4 col-xs-12 hidden-sm">
-                                <div class="text-right"><button type="button" class="book-now-btn">로그인</button></div>
+                               <c:choose>
+                           			<c:when test="${sessionScope.memberId!=null}">
+                           				<div class="text-right">
+		                               		 <h4>${memberId}님 로그인중...</h4>
+		                                	 <a href="#">마이페이지</a>
+		                                	 <form action="movie?command=logout" method="post">
+		                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
+		                                	 </form>
+	                                	 </div>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<div style="width: 300px; margin-right: 400px" class="text-right">
+	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
+	                                     <button type="button" class="loginbtn">로그인</button>
+	                                     </div>
+                           			</c:otherwise>
+                      			</c:choose>           
                             </div>
                         </div>
                     </div>

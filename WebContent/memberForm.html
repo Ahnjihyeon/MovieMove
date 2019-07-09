@@ -11,34 +11,72 @@
   
 </style>
 </head>
+<script>
+function checkValid() {
+    var f = window.document.writeForm;
+		
+	if ( f.id.value == "") {
+	    alert( "아이디를 입력해 주세요." );
+	    f.id.focus();
+		return false;
+    }
+	if ( f.pwd.value == "" ) {
+		alert( "비밀번호를 입력해 주세요." );
+		f.pwd.focus();
+		return false;
+	}
+	if ( f.name.value == "" ) {
+		alert( "이름을 입력해 주세요." );
+		f.name.focus();
+		return false;
+	}
+	if ( f.nickname.value == "" ) {
+        alert( "별명을 입력해 주세요." );
+        f.nickname.focus();
+        return false;
+    }
+	if ( f.age.value == "" ) {
+        alert( "나이를 입력해 주세요" );
+        f.age.focus();
+        return false;
+    }
+	if ( f.email.value == "" ) {
+        alert( "이메일을 입력해 주세요" );
+        f.email.focus();
+        return false;
+    }
+	
+    return true;
+}
+</script>
 <body>
 
-<form method="post" action="movie?command=memberinsert">
+<form name="writeForm" method="post" action="movie?command=memberinsert" onSubmit='return checkValid()'>
 <table cellspacing="0" align="center">
    <caption><h2> 회원가입 Form</h2></caption>
   <tr>
 	<td width="100px">아이디</td>
-	<td width="400px"><input type="text" name="id" /></td>
+	<td width="400px"><input type="text" name="memberId" /></td>
   </tr>
   <tr>
 	<td>비밀번호</td>
-	<td><input type="password" name="pwd" /></td>
+	<td><input type="password" name="memberPwd" /></td>
   </tr>
   <tr>
 	<td>이름</td>
-	<td><input type="text" name="name" /></td>
+	<td><input type="text" name="memberName" /></td>
   </tr>
   <tr>
 	<td>별명</td>
-	<td><input type="text" name="nickname" /></td>
+	<td><input type="text" name="memberNickname" /></td>
   </tr>
   <tr>
 	<td>나이</td>
-	<td><input type="text" name="age" /></td>
+	<td><input type="text" name="memberAge" /></td>
   </tr>
   <tr>
 	<td>이메일</td>
-	<td><input type="text" name="email" /></td>
+	<td><input type="text" name="memberEmail" /></td>
   </tr>
   <tr>
 	<td colspan="2" style="text-align: center;background-color: pink">
