@@ -28,47 +28,47 @@
 				<tr>
 					<td id="title">아이디</td>
 					<td>
-						<span></span>
+						<span>${sessionScope.memberId}</span>
 					</td>
 				</tr>
 						
 				<tr>
 					<td id="title">비밀번호</td>
 					<td>
-						<span></span>
+						<span>${sessionScope.memberPwd}</span>
 					</td>
 				</tr>
 				
 				<tr>
 					<td id="title">이메일</td>
 					<td>
-						<span></span>
+						<span>${memberEmail}</span>
 					</td>
 				</tr>
 					<tr>
 					<td id="title">이름</td>
 					<td>
-						<span></span>
+						<span>${sessionScope.memberName}</span>
 					</td>
 				</tr>
 						<tr>
 					<td id="title">닉네임</td>
 					<td>
-						<span></span>
+						<span>${sessionScope.memberNickname}</span>
 					</td>
 				</tr>
 					
 				<tr>
 					<td id="title">연령대</td>
 					<td>
-					  <span></span>
+					  <span>${sessionScope.memberAge}</span>
 					</td>
 				</tr>
 				
 						<tr>
 					<td id="title">가입일</td>
 					<td>
-						<span></span>
+						<span>${sessionScope.memberDate}</span>
 					</td>
 				</tr>
 			</table>

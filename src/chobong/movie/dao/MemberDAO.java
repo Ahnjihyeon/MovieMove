@@ -11,6 +11,8 @@ public interface MemberDAO {
 	             false이면 중복아님   */
 	boolean idCheck(String id);
 	
+	MemberDTO memberInfo(String memberId);
+	
 	int login(String memberId, String memberPwd);
 	/**
 	 * Member 등록하기

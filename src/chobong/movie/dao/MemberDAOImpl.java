@@ -32,15 +32,6 @@ public class MemberDAOImpl implements MemberDAO {
 			DbUtil.dbClose(ps, con);
 		}
 		return result;
-	public List<MemberDTO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public MemberDTO selectById(String id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -83,7 +74,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int login(String memberId, String memberPwd) {
-		System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ implÈ£ï¿½ï¿½");
 		int result = 0;
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -101,13 +91,36 @@ public class MemberDAOImpl implements MemberDAO {
 					result = 0;					
 				}
 			}			
-			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ impl ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return result;
+	}
+
+	@Override
+	public MemberDTO memberInfo(String memberId) {
+		System.out.println("memberinfoµé¾î¿È");
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		MemberDTO dto = null;
+		try {
+			con = DbUtil.getConnection();		
+			String sql = "select * from member where member_Id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, memberId);	
+			rs = ps.executeQuery();
+			if(rs.next())
+			dto = new MemberDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+			System.out.println("dtoÀúÀå");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return dto;
 	}
 
 }

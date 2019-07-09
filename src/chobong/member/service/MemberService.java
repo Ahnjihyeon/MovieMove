@@ -9,6 +9,12 @@ import chobong.movie.dto.MemberDTO;
 public class MemberService {
 	private static MemberDAO memberDAO = new MemberDAOImpl();
 	
+	public static MemberDTO memberInfo(String memberId) {
+		System.out.println(memberId);
+		MemberDTO dto = memberDAO.memberInfo(memberId);
+		return dto;
+	}
+	
 	public static boolean idCheck(String memberId) {
 		boolean result = memberDAO.idCheck(memberId);
 		return result;
@@ -16,13 +22,12 @@ public class MemberService {
 	
 	public static int insert(MemberDTO dto) throws SQLException{		
 		int result = memberDAO.insert(dto);
-		if(result == 0) throw new SQLException("등록되지 않았습니다");
+		if(result == 0) throw new SQLException("�벑濡앸릺吏� �븡�븯�뒿�땲�떎");
 		return result;			
 	}
 	public static int login(String memberId, String memberPwd) throws SQLException{
-		System.out.println("로그인 service 호출");
 		int result = memberDAO.login(memberId, memberPwd);
-		if(result ==0) throw new SQLException("로그인 실패");
+		if(result ==0) throw new SQLException("로그인오류");
 		return result;
 	}
 }
