@@ -16,13 +16,13 @@ public class MemberService {
 	
 	public static int insert(MemberDTO dto) throws SQLException{		
 		int result = memberDAO.insert(dto);
-		if(result == 0) throw new SQLException("µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù");
-		return result;				
+		if(result == 0) throw new SQLException("ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+		return result;			
 	}
 	public static int login(String memberId, String memberPwd) throws SQLException{
-		System.out.println("·Î±×ÀÎ service È£Ãâ");
+		System.out.println("ë¡œê·¸ì¸ service í˜¸ì¶œ");
 		int result = memberDAO.login(memberId, memberPwd);
-		if(result ==0) throw new SQLException("·Î±×ÀÎ ½ÇÆĞ");
+		if(result ==0) throw new SQLException("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 		return result;
 	}
 }

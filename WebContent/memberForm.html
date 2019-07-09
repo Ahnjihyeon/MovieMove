@@ -10,7 +10,7 @@
   input{border:solid 1px gray}  
 </style>
 </head>
-<<<<<<< HEAD
+
 <script src="js/jquery-3.4.1.min.js"></script>
 <script>
 $(function(){
@@ -39,6 +39,7 @@ $(function(){
 	})
 	
 })
+
 function checkValid() {
     var f = window.document.writeForm;
 		
@@ -76,48 +77,47 @@ function checkValid() {
     return true;
 }
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/Ahnjihyeon/MovieMove.git
+
 <body>
 
-<form method="post" action="insert">
+<form name="writeForm" method="post" action="movie?command=memberinsert" onSubmit='return checkValid()'>
 <table cellspacing="0" align="center">
    <caption><h2> 회원가입 Form</h2></caption>
   <tr>
 	<td width="100px">아이디</td>
-<<<<<<< HEAD
+
 	<td width="400px"><input type="text" name="memberId" id="memberId" />    <input type="button" id="idCheck" value="중복확인"></td>
-=======
+
 	<td width="400px"><input type="text" name="id" /></td>
->>>>>>> branch 'master' of https://github.com/Ahnjihyeon/MovieMove.git
+
   </tr>
   <tr>
 	<td>비밀번호</td>
-<<<<<<< HEAD
+
 	<td><input type="password" name="memberPwd" id="memberPwd"/></td>
   </tr>
   <tr>
 	<td>비밀번호 확인</td>
 	<td><input type="password" name="memberPwd2" id="memberPwd2"/>  <span style="font-size:13px; color:red" id="pwdCheck"></span></td>
-=======
+
 	<td><input type="password" name="pwd" /></td>
->>>>>>> branch 'master' of https://github.com/Ahnjihyeon/MovieMove.git
+
   </tr>
   <tr>
 	<td>이름</td>
-	<td><input type="text" name="name" /></td>
+	<td><input type="text" name="memberName" /></td>
   </tr>
   <tr>
 	<td>별명</td>
-	<td><input type="text" name="nickname" /></td>
+	<td><input type="text" name="memberNickname" /></td>
   </tr>
   <tr>
 	<td>나이</td>
-	<td><input type="text" name="age" /></td>
+	<td><input type="text" name="memberAge" /></td>
   </tr>
   <tr>
 	<td>이메일</td>
-	<td><input type="text" name="email" /></td>
+	<td><input type="text" name="memberEmail" /></td>
   </tr>
   <tr>
 	<td colspan="2" style="text-align: center;background-color: pink">

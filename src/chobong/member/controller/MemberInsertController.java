@@ -1,11 +1,10 @@
 package chobong.member.controller;
 
 import java.io.IOException;
-<<<<<<< HEAD
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
-=======
->>>>>>> branch 'master' of https://github.com/Ahnjihyeon/MovieMove.git
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,22 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
+import chobong.member.service.MemberService;
+import chobong.movie.dto.MemberDTO;
 
 public class MemberInsertController implements Controller {
-/*
-	memberId;
-	private String memberPwd;
-	private String memberEmail;
-	private String memberName;
-	private String memberNickname;
-	private int memberAge;
-	private String memberDate;*/
+
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ModelAndView mv = new ModelAndView();
+		
 		String memberId = request.getParameter("memberId");
-<<<<<<< HEAD
+
 		String memberPwd = request.getParameter("memberPwd");
 		String memberEmail = request.getParameter("memberEmail");
 		String memberName = request.getParameter("memberName");
@@ -38,7 +33,9 @@ public class MemberInsertController implements Controller {
 		MemberDTO member = new MemberDTO(memberId, memberPwd, memberEmail, memberName, memberNickname, memberAge, null);
 		
 		try {
+
 			MemberService.insert(member);			
+
 			mv.setPath("review.jsp");
 			mv.setRedirect(true);
 		} catch (SQLException e) {
@@ -46,8 +43,6 @@ public class MemberInsertController implements Controller {
 		}
 		
 		return mv;
-=======
-		return null;
->>>>>>> branch 'master' of https://github.com/Ahnjihyeon/MovieMove.git
 	}
 }
+

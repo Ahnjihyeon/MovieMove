@@ -82,7 +82,9 @@
     				success:  function( result ) {
     					$("#listTable tr").remove();  // #listTable tr:gt(0)
     					
-    					var str="";
+    					console.log( "총길이 = " + result.length );
+    					String totalLength = "총 " + result.length + "건";
+    					var str="" ;
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
     						str += "<tr>";
@@ -98,6 +100,8 @@
     						str += "<td colspan='4'>"+ item.reviewContent +"</td>";
     						str += "</tr>";
     					})	
+    					
+    					$("#review_left").before(totalLength);
     					$("#listTable").append(str); 
     					$("a").css("textDecoration","none");
      				},
@@ -224,6 +228,9 @@
                             <form action="#" method="post">
                             <div class="blog-list">
                                 <h4>리뷰</h4>
+                                
+                                $("#review_left").before(totalLength);
+                                
                                 <div class="review_top"><span class="review_left">총 0건</span>
                                 <span class="review_right"><select name="sort" size=1>
         						<option value=1>최신순</option>
