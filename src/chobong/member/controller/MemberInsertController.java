@@ -1,6 +1,7 @@
 package chobong.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class MemberInsertController implements Controller {
 		MemberDTO member = new MemberDTO(memberId, memberPwd, memberEmail, memberName, memberNickname, memberAge, null);
 		
 		try {
-			MemberService.insert(member);
+			MemberService.insert(member);			
 			mv.setPath("review.jsp");
 			mv.setRedirect(true);
 		} catch (SQLException e) {

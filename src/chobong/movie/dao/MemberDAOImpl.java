@@ -12,9 +12,26 @@ import chobong.util.DbUtil;
 public class MemberDAOImpl implements MemberDAO {
 
 	@Override
-	public boolean idCheck(String id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean idCheck(String memberId) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		boolean result = false;
+		try {
+			con = DbUtil.getConnection();					
+			String sql = "select member_id from member where member_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, memberId);			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = true;
+			}			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return result;
 	}
 
 	@Override

@@ -7,11 +7,37 @@
   table {border: 5px groove pink; width:500px}
   td,th{border:1px black solid ;  padding:10px}
 
-  input{border:solid 1px gray}
-  
+  input{border:solid 1px gray}  
 </style>
 </head>
+<script src="js/jquery-3.4.1.min.js"></script>
 <script>
+$(function(){
+	$("#memberPwd2").keyup(function(){
+		var str = "";
+		console.log(1);
+		if($(this).val()==$("#memberPwd").val()){
+			$("span").css("color", "black")
+			str += "비밀번호가 일치합니다.";			
+		}else{
+			str += "비밀번호가 일치하지않습니다.";
+		}
+		$("#pwdCheck").text(str);
+	})
+	$("#idCheck").click(function(){
+		$.ajax({
+			type:"post",
+			url:"../idcheck"
+			dataType:"text",
+			data:"id="+$("#memberId").val(),
+			success:function(result){
+				$("span").text(reulst);
+			}
+			
+		})
+	})
+	
+})
 function checkValid() {
     var f = window.document.writeForm;
 		
@@ -56,11 +82,15 @@ function checkValid() {
    <caption><h2> 회원가입 Form</h2></caption>
   <tr>
 	<td width="100px">아이디</td>
-	<td width="400px"><input type="text" name="memberId" /></td>
+	<td width="400px"><input type="text" name="memberId" id="memberId" />    <input type="button" id="idCheck" value="중복확인"></td>
   </tr>
   <tr>
 	<td>비밀번호</td>
-	<td><input type="password" name="memberPwd" /></td>
+	<td><input type="password" name="memberPwd" id="memberPwd"/></td>
+  </tr>
+  <tr>
+	<td>비밀번호 확인</td>
+	<td><input type="password" name="memberPwd2" id="memberPwd2"/>  <span style="font-size:13px; color:red" id="pwdCheck"></span></td>
   </tr>
   <tr>
 	<td>이름</td>
@@ -82,8 +112,7 @@ function checkValid() {
 	<td colspan="2" style="text-align: center;background-color: pink">
 	<input type="submit" value="가입" />
 	<input type="reset" value="취소" onclick="history.back()"/>
-	</td>
-	
+	</td>	
   </tr>
   </table> 
 </form>
