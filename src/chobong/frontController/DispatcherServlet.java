@@ -28,14 +28,15 @@ public class DispatcherServlet extends HttpServlet {
 		String key = request.getParameter("command");
 		
 		if( key==null ) key="list"; // list는 전체검색
-			
+		System.out.println("key=" + key);
 		Controller controller = map.get(key);
 		
 		ModelAndView mv = controller.handleRequest(request, response);
+		System.out.println("mv=" + mv);
 		if( mv.isRedirect() ) { // redirect로 이동
 			response.sendRedirect( mv.getPath() );
 		} else {
-			request.getRequestDispatcher( mv.getPath() ).forward(request, response);;
+			request.getRequestDispatcher( mv.getPath()).forward(request, response);;
 		}
 	}
 }

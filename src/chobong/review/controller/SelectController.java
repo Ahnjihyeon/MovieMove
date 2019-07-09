@@ -14,6 +14,7 @@ public class SelectController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("셀렉트컨트롤러 호출");
 /*		// 서비스 -> dao -> 그 결과 list를 저장하고 list.jsp 이동
 		String url="errorView/error.jsp";
 		try {

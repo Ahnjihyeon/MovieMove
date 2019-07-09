@@ -30,14 +30,14 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int insert(MemberDTO memberDTO) {
+		System.out.println("insert Impl»£√‚");
 		int result = 0;
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = DbUtil.getConnection();		
-			String sql = "insert into member(member_id,member_pwd,"
-					+ "member_email, member_name,member_nickname,member_age"
-					+ "join_date) values(?,?,?,?,?,?, sysdate)";
+			String sql = "insert into member(member_id,member_pwd,member_email, member_name,member_nickname,member_age,"
+					+ "member_date) values(?,?,?,?,?,?, sysdate)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, memberDTO.getMemberId());
 			ps.setString(2, memberDTO.getMemberPwd());
