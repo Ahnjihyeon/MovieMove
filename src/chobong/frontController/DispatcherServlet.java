@@ -1,9 +1,9 @@
 package chobong.frontController;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +19,7 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	public void init( ) throws ServletException {
 		ServletContext application = super.getServletContext();
-		map = ( Map<String, Controller>)application.getAttribute("map");
+		map = ( Map<String, Controller>)application.getAttribute("map");	
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,14 +28,15 @@ public class DispatcherServlet extends HttpServlet {
 		String key = request.getParameter("command");
 		
 		if( key==null ) key="list"; // list는 전체검색
-			
+		System.out.println("key=" + key);
 		Controller controller = map.get(key);
 		
 		ModelAndView mv = controller.handleRequest(request, response);
+		System.out.println("mv=" + mv);
 		if( mv.isRedirect() ) { // redirect로 이동
 			response.sendRedirect( mv.getPath() );
 		} else {
-			request.getRequestDispatcher( mv.getPath() ).forward(request, response);;
-		}
+			request.getRequestDispatcher( mv.getPath()).forward(request, response);;
+		}		
 	}
 }

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+ .a{border:solid red 5px}
+ span{width:150px; color:red}
+ input{border:solid gray 1px}
+ table{width:100%}
+ th,td{border:1px gray solid; text-align:center;padding:3px}
+ h2{text-align:center}
+</style>
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		// 1. 중복체크
+		$("#id").keyup(function() {
+			if( $(this).val() == "" ) {
+				return;
+			}
+			$.ajax({ 
+				type: "get",
+				url: "../front", // "../kosta/dao/CustomerDAOImpl.java"
+				dataType: "text", // html, text, xml, json
+				data: "command=idCheck&id=" + $(this).val() , // { "id" : $(this).val() }
+				success:  function( result ) {
+					$("span").text( result );
+				},
+				error: function( error ) {
+					console.log( error );
+				} 
+			}) 
+		});
+		//------------------------------------------------------------------
+		// 2. 등록하기 or 수정하기
+		$("#btn").click(function() {
+			
+			// text박스의 값 유무체크
+			var state = true; // 등록한다, 안한다.
+ 			$("input[type=text]").each(function(index, item ) {
+				if( $(this).val()=="" ) {
+					alert("값 입력해주세요.");
+					$(this).focus();
+					state=false;
+					// return만 적으면 functio(함수)만 끝나고 each함수는 안끝나서 false로 줌
+					return false; 
+				}
+			}) 
+/*  		if( $("#name").val()=="" | $("#age").val()=="" | $("#tel").val()=="" | $("#addr").val()==""  ) { 
+ 			// $("#name").val()==null로 하면 제대로 체크안됌
+				alert("폼을 다 입력해주세요.");
+				return; }  */
+			
+			if( state ) {	
+				var urlParam = "command=insert&";
+				if( $(this).val()=="수정하기" ) { // 수정하기라면
+					urlParam = "command=update&";
+					
+					// 버튼 글씨 변경
+					$(this).val("가입하기");
+					
+					// id 다시 쓰기기능 가능
+					$("#id").removeAttr("readonly");
+					
+					// span 다시 보이게
+					$("span").show();
+				}
+				
+				$.ajax({ 
+					type: "post",
+					url: "../front", // "../kosta/dao/CustomerDAOImpl.java"
+					dataType: "text",
+					data: urlParam + $("form").serialize() , // 폼전송
+					success:  function( result ) {
+						if( result > 0 ) {
+							alert( "등록완료" );
+							selectAll(); // 전체검색(화면갱신)
+						} else {
+							alert("오류가 발생해서 처리되지 않았습니다.");
+						}
+					},
+					error: function( error ) {
+						console.log( error );
+					} 
+				}) 
+			}
+		})
+		//------------------------------------------------------------------
+		// 3. 전체검색 ( #listTable에 행추가 )
+	 	function selectAll(){
+			$.ajax({ 
+				type: "post",
+				url: "../front", // "../kosta/dao/CustomerDAOImpl.java"
+				dataType: "json",
+				data: "command=select" , // $("form").serialize()
+				success:  function( result ) {
+					$("#listTable tr:gt(0)").remove();
+				/* console.log( $("#listTable tr:nth-child(2)").text() );
+					console.log( $("#listTable tr").length ); */
+					var str="";
+					$.each(result, function(index, item){
+						// 번호	아이디	이름	나이	전화번호	주소	삭제
+						str += "<tr>";
+						str += "<td>"+ (index+1) +"</td>";
+						str += "<td><a href='#'>"+ item.id +"</a></td>";
+						str += "<td>"+ item.name +"</td>"
+						str += "<td>"+ item.age +"</td>";
+						str += "<td>"+ item.tel +"</td>"
+						str += "<td>"+ item.addr +"</td>";
+						str += "<td><input type='button' value='삭제' name='"+item.id+"'/></td>"; 
+						str += "</tr>";
+					})	
+					//$("#listTable").append(str); 걍 테이블의 자식으로 추가
+					$("#listTable tr:eq(0)").after(str);// 행1의 형제노드로 추가
+					$("a").css("textDecoration","none");
+ 				},
+				error: function( error ) {
+					console.log( "검색오류" );
+				} 
+			}) 
+		}
+		// 4. 수정 - 아이디를 클릭했을때 이벤트
+		$(document).on("click","#listTable a", function() {
+			//console.log( $( this+" a" ) );
+			//if( $( "a", this ).text() != "" ) {   // "click","#listTable td" 일때
+				$("#id").val( $(this).parent().text() ); //$("#id").val( $(this).text() );
+				$("#name").val( $(this).parent().next().text() );
+				$("#age").val( $(this).parent().next().next().text() );
+				$("#tel").val( $(this).parent().next().next().next().text() );
+				$("#addr").val( $(this).parent().next().next().next().next().text() );
+			
+				// id박스 비활성
+				$("#id").attr( "readonly" , "readonly" ); 		//disabled	
+			
+				// span태그 숨기기
+				$("span").hide();
+			
+				// 버튼을 수정하기 변경
+				$("#btn").val("수정하기");
+/* 			} else {
+				return false;
+			}   */
+		});
+		//------------------------------------------------------------------
+		// 5. 삭제
+ 		$(document).on("click","#listTable td>input", function() {
+			console.log( $(this).attr("name") ); // 속성중 name값 가져옴
+			console.log( $(this).parent().parent().find("a").text() ); // 아이디
+			
+			var id = $(this).parent().parent().find("a").text();
+			$.ajax({ 
+				type: "post",
+				url: "../front", // "../kosta/dao/CustomerDAOImpl.java"
+				dataType: "json",
+				data: { "command" : "delete", "id" : $(this).attr("name") } , // $("form").serialize()
+				success:   function( result ) {
+					if( result>0 ) {
+						alert("삭제성공!");
+						selectAll();
+					}else {
+						alert("삭제되지 않았습니다.");
+					}
+				},
+				error: function( error ) {
+					console.log( "검색오류" );
+				} 
+			}) 
+		}); 
+		
+		selectAll();
+		
+		setInterval("selectAll", 5000 ); // 글 업데이트 
+	});
+</script>
+</head>
+<body>
+
+<h2>회원정보 입력 </h2>
+
+<form name="inForm" method="post" id="inForm">
+<table cellspacing="0">
+	<tr bgcolor="pink" >
+	    <th >아이디</th>
+		<th >이름</th>
+		<th  >나이</th>
+		<th  >전화번호</th>	
+		<th  >주소</th>
+	</tr>
+	<tr>
+	    <td style="text-align:left"><input type="text" size="8" name="id" id="id"> <span>중복결과여부</span></td>
+		<td><input type="text" size="8" name="name" id="name"></td>
+		<td><input type="text" size="4" name="age" id="age"></td>
+		<td><input type="text" size="12" name="tel" id="tel"></td>
+		<td><input type="text" size="30" name="addr" id="addr"></td>
+	</tr>
+	<tr>
+		<td colspan="5" align="center"> 
+			<input type="button" value="가입하기"  id="btn">
+		</td>
+	</tr>
+</table>
+<br>
+<hr color="red">
+
+<h2> 고객 리스트 !  </h2>
+<table  id="listTable" cellspacing="0">
+	<tr bgcolor="pink">
+	   <th>번호</th>
+	   <th>아이디</th>
+		<th>이름</th>
+		<th>나이</th>
+		<th>전화번호</th>	
+		<th>주소</th>
+		<th>삭제</th>
+	</tr>
+</table>
+
+</body>
+</html>
