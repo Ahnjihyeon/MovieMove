@@ -15,10 +15,15 @@ public class ReviewDTO {
 	//Constructor
 	public ReviewDTO() { }
 
-	public ReviewDTO(String reviewId, String reviewSubject, String reviewContent, String reviewWriteday,
-			int reviewStarPoint, int reviewCount, String reviewPwd) {
-		super();
+	public ReviewDTO(String reviewId, String memberId, String movieCode, String reviewSubject,
+						String reviewContent, String reviewWriteday,
+						int reviewStarPoint, int reviewCount, String reviewPwd) {
+		
 		this.reviewId = reviewId;
+		
+		this.memberId = memberId;
+		this.movieCode = movieCode;
+		
 		this.reviewSubject = reviewSubject;
 		this.reviewContent = reviewContent;
 		this.reviewWriteday = reviewWriteday;
