@@ -45,7 +45,7 @@
         $(function(){
         	$(".loginbtn").click(function(){
         		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-        	})
+        	});
         	
         	//-----게시판---------------------------------------------
         	// 1.등록
@@ -83,7 +83,7 @@
     					$("#listTable tr").remove();  // #listTable tr:gt(0)
     					
     					console.log( "총길이 = " + result.length );
-    					String totalLength = "총 " + result.length + "건";
+    					var totalLength = "총 " + result.length + "건";
     					var str="" ;
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목

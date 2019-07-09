@@ -25,6 +25,7 @@ public class MemberDAOImpl implements MemberDAO {
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				result = true;
+				System.out.println(result);
 			}			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -32,13 +33,8 @@ public class MemberDAOImpl implements MemberDAO {
 			DbUtil.dbClose(ps, con);
 		}
 		return result;
-	public List<MemberDTO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
-
-	@Override
-	public MemberDTO selectById(String id) {
+	public List<MemberDTO> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -83,7 +79,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int login(String memberId, String memberPwd) {
-		System.out.println("�α��� implȣ��");
 		int result = 0;
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -101,7 +96,6 @@ public class MemberDAOImpl implements MemberDAO {
 					result = 0;					
 				}
 			}			
-			System.out.println("�α��� impl ������");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

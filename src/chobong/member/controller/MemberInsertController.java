@@ -33,15 +33,18 @@ public class MemberInsertController implements Controller {
 		MemberDTO member = new MemberDTO(memberId, memberPwd, memberEmail, memberName, memberNickname, memberAge, null);
 		
 		try {
-
+			
 			MemberService.insert(member);			
-
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('회원가입 되셨습니다.')");
+			out.println("</script>");
+			
 			mv.setPath("review.jsp");
 			mv.setRedirect(true);
 		} catch (SQLException e) {
 			request.setAttribute("errrMsg", e.getMessage());
-		}
-		
+		}		
 		return mv;
 	}
 }

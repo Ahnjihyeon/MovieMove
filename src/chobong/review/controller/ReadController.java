@@ -14,6 +14,13 @@ public class ReadController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/*
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		
 		String modelNum = request.getParameter("modelNum");
 		String flag = request.getParameter("flag");
@@ -31,5 +38,5 @@ public class ReadController implements Controller {
 		}
 		mv.setPath(url);
 		return null;
-	}
+	}*/
 }
