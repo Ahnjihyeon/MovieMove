@@ -15,7 +15,7 @@ public class ReadController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String modelNum = request.getParameter("modelNum");
+		/*String modelNum = request.getParameter("modelNum");
 		String flag = request.getParameter("flag");
 		
 		boolean state = flag==null ? true : false; // 수정 후 되돌아올때의 read요청은 flag=1같을 들고옴
@@ -29,7 +29,7 @@ public class ReadController implements Controller {
 		} catch (SQLException e) {
 			request.setAttribute( "errorMsg", e.getMessage() );
 		}
-		mv.setPath(url);
+		mv.setPath(url);*/
 		return null;
 	}
 }
