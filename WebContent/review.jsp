@@ -60,9 +60,12 @@
                                     <!--<a href="index.html"><img src="images/logo.png" alt="logo"></a>-->
                                     <a href="index.html"><span>뮤비</span>무비</a>
                                 </div>                       
-                            </div>
+                            </div>             
                             <div class="col-sm-6 visible-sm">
-                                <div class="text-right"><button type="button" class="book-now-btn">로그인</button></div>
+                                <div class="text-right">
+                                <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
+                                <button type="button" class="book-now-btn">로그인</button>
+                                </div>
                             </div>
                             <div class="col-md-8 col-sm-12 col-xs-12 remove-padd">
                                 <nav class="navbar navbar-default">
