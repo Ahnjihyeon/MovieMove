@@ -1,7 +1,10 @@
 package chobong.member.controller;
 
 import java.io.IOException;
+
+import java.io.PrintWriter;
 import java.sql.SQLException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,7 @@ public class MemberInsertController implements Controller {
 		ModelAndView mv = new ModelAndView();
 		
 		String memberId = request.getParameter("memberId");
+
 		String memberPwd = request.getParameter("memberPwd");
 		String memberEmail = request.getParameter("memberEmail");
 		String memberName = request.getParameter("memberName");
@@ -29,7 +33,9 @@ public class MemberInsertController implements Controller {
 		MemberDTO member = new MemberDTO(memberId, memberPwd, memberEmail, memberName, memberNickname, memberAge, null);
 		
 		try {
-			MemberService.insert(member);
+
+			MemberService.insert(member);			
+
 			mv.setPath("review.jsp");
 			mv.setRedirect(true);
 		} catch (SQLException e) {
