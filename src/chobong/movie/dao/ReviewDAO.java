@@ -9,15 +9,16 @@ import chobong.movie.dto.ReviewDTO;
 public interface ReviewDAO {
 	
 	 // 영화
-	 /** 영화 전체 검색 */
-	List<MovieDTO> selectAll() throws SQLException; 
-	  
-	  /** 영화 제목검색 
+	/** 영화 제목검색 
 		select * from Movie where movie_Title like ?	   */
 	List<MovieDTO> selectBykeySearch( String keyField , String keyWord );
 	  
 	  
 	  // 게시판  	  - 게시판 번호는 시퀀스라서 중복체크x
+	/** 영화리뷰 전체 검색 */
+	 List<ReviewDTO> selectAll( String movieCode ) throws SQLException; 
+	
+	
 	  /** 게시글번호에 해당하는 레코드 검색 ( 상세페이지 )  */
 	  ReviewDTO selectByReviewNum(String reviewNum) throws SQLException;
 	  
