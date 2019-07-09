@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+\${pageContext.request.contextPath} = ${pageContext.request.contextPath} <br>
+
+<c:set var="path" value="${pageContext.request.contextPath}" scope="application"/>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,11 +46,74 @@
         	$(".loginbtn").click(function(){
         		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
         	})
+        	
+        	//-----게시판---------------------------------------------
+        	// 1.등록
+    		$("#btn").click( function() {
+    			console.log( $("form[name=reInsert]").serialize()  );
+    			
+    			$.ajax({ 
+    				type: "post",
+    				url: "${path}/ReviewInsert", 
+    				dataType: "text",
+    				data: $("form[name=reInsert]").serialize() , // 폼전송
+    				success:  function( result ) {
+    					if( result > 0 ) {
+    						//alert( "등록완료" );
+    						selectAll(); // 전체검색(화면갱신)
+    					} else {
+    						alert("오류가 발생해서 처리되지 않았습니다.");
+    					}
+    				},
+    				error: function( error ) {
+    					alert("삽입x");
+    					console.log( error );
+    				} 
+    			})
+    		}); /////////////////// 
+    		
+    		// 2. 전체 리스트 출력
+    		function selectAll(){
+    			$.ajax({ 
+    				type: "post",
+    				url: "${path}/ReviewSelectAll",  
+    				dataType: "json",
+    				data: "movieCode=A01" ,
+    				success:  function( result ) {
+    					$("#listTable tr").remove();  // #listTable tr:gt(0)
+    					
+    					var str="";
+    					$.each(result, function(index, item){
+    						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
+    						str += "<tr>";
+    						str += "<td>"+ (index+1) +"</td>";
+    						str += "<td><a href='#' id='listSubject'>"+ item.reviewSubject +"</a></td>";
+    						str += "<td>"+ item.memberId +"</td>"
+    						
+    						str += "<td>"+ item.reviewWriteday +"</td>";
+    						str += "<td>"+ item.reviewStarPoint +"</td>"
+    						str += "</tr>";
+    						
+    						str += "<tr>";
+    						str += "<td colspan='4'>"+ item.reviewContent +"</td>";
+    						str += "</tr>";
+    					})	
+    					$("#listTable").append(str); 
+    					$("a").css("textDecoration","none");
+     				},
+    				error: function( error ) {
+    					console.log( "검색오류" );
+    				} 
+    			}) 
+    		}////////////////////////////// 
+    		selectAll();
+    		//setInterval("selectAll", 5000 ); // 글 업데이트 
         })
         
         </script>
     </head>
     <body>
+    
         <div id="page">
             <!---header top---->
             <div class="top-header">
@@ -136,7 +204,6 @@
                 </div>
             </header>
 
-
             <div class="clearfix"></div>
 
             <!--리뷰상세페이지-->
@@ -166,7 +233,12 @@
        							<option value=5></option> -->
     							</select></span>
     							</div>
-                                <ul>
+    							
+								<table id= "listTable">
+								<!-- 이곳에서 리뷰 리스트 전체 출력 -->
+								</table>
+								
+<!--                                 <ul>
                                     <li style="padding:15px 15px 0 0;">
                                     <div style="color:#b1afaf;"><a style="display: contents; font-size:20px;"><i class="fa fa-caret-right"> </i>리뷰제목1</a>&nbsp;&nbsp;&nbsp;&nbsp;id | date | star</div>
                                     <div><a style="font-size:15px;">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</a></div>
@@ -179,23 +251,30 @@
                                     <div style="color:#b1afaf;"><a style="display: contents; font-size:20px;"><i class="fa fa-caret-right"> </i>리뷰제목3</a>&nbsp;&nbsp;&nbsp;&nbsp;id | date | star</div>
                                     <div><a style="font-size:15px;">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</a></div>
                                     </li>
-                                </ul>
-
+                                </ul> -->
+								</form>
                                 <div class="clearfix"> </div>
                             </div>
                             
                             <div class="single-bottom comment-form" style="padding:50px 0 0 0;">
-                                <h3>리뷰작성</h3>
-                                    <input type="text" class="form-control" name="Name" placeholder="리뷰제목" required="">
-                                    <input type='radio' name='star' value=1 />1
-                                    <input type='radio' name='star' value=2 />2
-                                    <input type='radio' name='star' value=3 />3
-                                    <input type='radio' name='star' value=4 />4
-                                    <input type='radio' name='star' value=5 />5
-                                    <textarea class="form-control" name="Message" placeholder="내용을 입력해주세요" required=""></textarea>
-                                    <input type="submit" class="submit-btn" value="작성">
+                               <h3>리뷰작성</h3>
+                               <form method="post"  name="reInsert"  id="reInsert"> 
+                                    <input type="text" class="form-control" name="reviewSubject" placeholder="리뷰제목" required=""><br>
+                                    <input type='radio' name='reviewStarPoint' value=1 />1
+                                    <input type='radio' name='reviewStarPoint' value=2 />2
+                                    <input type='radio' name='reviewStarPoint' value=3 />3
+                                    <input type='radio' name='reviewStarPoint' value=4 />4
+                                    <input type='radio' name='reviewStarPoint' value=5 />5
+                                    <textarea class="form-control" name="reviewContent" placeholder="내용을 입력해주세요" required=""></textarea><br>
+                                    <input type="text" name='reviewPwd' value='1234'/><!-- 비번 -->
+                                    
+                                    <input type="hidden" name='memberId' value='11'/><!-- 아이디 -->
+ 									<input type="hidden" name='movieCode' value='A01'  /><!-- 영화코드 -->
+                                    
+                                    <input type="button" class="submit-btn" id="btn" value="작성">
+                                    </form>
                              </div>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>

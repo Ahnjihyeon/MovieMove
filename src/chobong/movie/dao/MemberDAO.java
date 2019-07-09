@@ -5,13 +5,23 @@ import java.util.List;
 import chobong.movie.dto.MemberDTO;
 
 public interface MemberDAO {
+
+	
+	/**
+	 * 전체 Member 검색하기
+	 * */
+	List<MemberDTO> selectAll();
+	
+	/** id에 해당하는 정보검색( 상세페이지 ) 
+	  select * from member where id=?    */
+	MemberDTO selectById( String id );
+	
 	/** 등록전에 id중복체크 
 	  select id from member where id=?    
 	  @return true이면 중복, 
 	             false이면 중복아님   */
 	boolean idCheck(String id);
 	
-	int login(String memberId, String memberPwd);
 	/**
 	 * Member 등록하기
 	 * */
