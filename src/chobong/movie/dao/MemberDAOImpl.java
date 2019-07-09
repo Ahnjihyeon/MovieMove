@@ -32,6 +32,7 @@ public class MemberDAOImpl implements MemberDAO {
 			DbUtil.dbClose(ps, con);
 		}
 		return result;
+	}
 	public List<MemberDTO> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
