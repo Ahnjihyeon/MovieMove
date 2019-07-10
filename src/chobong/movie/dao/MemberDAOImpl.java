@@ -79,30 +79,35 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int login(String memberId, String memberPwd) {
+	public MemberDTO login(String memberId, String memberPwd) {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		MemberDTO dto = new MemberDTO();
 		try {
 			con = DbUtil.getConnection();		
-			String sql = "select member_pwd from member where member_Id = ?";
+			String sql = "select * from member where member_Id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, memberId);	
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				if(rs.getString(1).equals(memberPwd)) {
-					result = 1; //�α��� ����					
-				}else {
-					result = 0;					
+				if(rs.getString("member_pwd").equals(memberPwd)) {					
+					dto.setMemberId(rs.getString(1));
+					dto.setMemberPwd(rs.getString(2));
+					dto.setMemberEmail(rs.getString(3));
+					dto.setMemberName(rs.getString(4));
+					dto.setMemberNickname(rs.getString(5));
+					dto.setMemberAge(rs.getInt(6));
+					dto.setMemberDate(rs.getString(7));						
 				}
-			}			
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
-		return result;
+		return dto;
 	}
 
 	@Override

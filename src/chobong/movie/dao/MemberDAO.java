@@ -13,7 +13,7 @@ public interface MemberDAO {
 	
 	MemberDTO memberInfo(String memberId);
 	
-	int login(String memberId, String memberPwd);
+	MemberDTO login(String memberId, String memberPwd);
 	/**
 	 * Member 등록하기
 	 * */

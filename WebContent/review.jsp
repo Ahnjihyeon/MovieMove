@@ -145,10 +145,10 @@
                             </div>
                             <div class="col-sm-6 visible-sm">
                             		<c:choose>
-                            			<c:when test="${sessionScope.memberId!=null}">
+                            			<c:when test="${SessionScope.member.memberId!=null}">
                             				<div class="text-right">
-			                               		 <h4>${memberId}님 로그인중...</h4>
-			                                	 <a href="movie?command=memberinfo&memberId=${memberId}">마이페이지</a>
+			                               		 <h4>${SessionScope.member.memberId}님 로그인중...</h4>
+			                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
 			                                	 <form action="movie?command=logout" method="post">
 			                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
 			                                	 </form>

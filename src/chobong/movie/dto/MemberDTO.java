@@ -27,6 +27,11 @@ public class MemberDTO {
 	}
 
 	 
+	public MemberDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	//getXxx, setXxx
 	public String getMemberId() {
 		return memberId;

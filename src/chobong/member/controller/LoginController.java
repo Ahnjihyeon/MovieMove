@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
 import chobong.member.service.MemberService;
+import chobong.movie.dto.MemberDTO;
 
 public class LoginController implements Controller {
 
@@ -20,12 +21,13 @@ public class LoginController implements Controller {
 		System.out.println("로그인 컨트롤러 호출");
 		ModelAndView mv = new ModelAndView();
 		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("memberPwd");		
+		String memberPwd = request.getParameter("memberPwd");
+		MemberDTO member = new MemberDTO();
 		try {
 			HttpSession session = request.getSession();
-			MemberService.login(memberId, memberPwd);
+			member = MemberService.login(memberId, memberPwd);
 			session.setAttribute("memberId", memberId);
-			session.setAttribute("memberPwd", memberPwd);
+			session.setAttribute("member", member);
 			System.out.println("로그인 setattr"); 
 			mv.setPath("a.jsp");
 			mv.setRedirect(true);

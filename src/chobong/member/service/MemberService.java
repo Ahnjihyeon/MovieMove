@@ -25,9 +25,9 @@ public class MemberService {
 		if(result == 0) throw new SQLException("�벑濡앸릺吏� �븡�븯�뒿�땲�떎");
 		return result;			
 	}
-	public static int login(String memberId, String memberPwd) throws SQLException{
-		int result = memberDAO.login(memberId, memberPwd);
-		if(result ==0) throw new SQLException("로그인오류");
-		return result;
+	public static MemberDTO login(String memberId, String memberPwd) throws SQLException{
+		MemberDTO member = memberDAO.login(memberId, memberPwd);
+		if(member==null) throw new SQLException("로그인오류");
+		return member;
 	}
 }
