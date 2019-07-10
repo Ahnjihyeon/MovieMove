@@ -34,7 +34,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String sql="Select * from review where movie_code=?";
+		String sql="Select * from review where movie_code=? order by review_writeday desc";
 		List<ReviewDTO> list = new ArrayList<>();
 		try {
 			con = DbUtil.getConnection();

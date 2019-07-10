@@ -101,7 +101,7 @@
     						str += "</tr>";
     					})	
     					
-    					$("#review_left").before(totalLength);
+    					$("span[class=review_left]").text( totalLength );
     					$("#listTable").append(str); 
     					$("a").css("textDecoration","none");
      				},
