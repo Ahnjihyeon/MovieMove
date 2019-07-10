@@ -8,6 +8,7 @@ License URI: http://www.themevault.net/license/
 
 /*@import url('https://fonts.googleapis.com/css?family=Cabin:400,500,600,700');*/
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+
 html, body {
     height: 100%;
     margin: 0;
@@ -168,43 +169,7 @@ ul{
     padding: 8px 15px;
     text-transform: uppercase;
 }
-.loginbtn{
-    background: #ff4157 none repeat scroll 0 0;
-    border: medium none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0;
-    padding: 8px 15px;
-    text-transform: uppercase;
-}
-.deletebtn{
-    background: #ff4157 none repeat scroll 0 0;
-    border: medium none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0;
-    padding: 8px 15px;
-    text-transform: uppercase;
-}
-.logoutbtn{
-    background: #ff4157 none repeat scroll 0 0;
-    border: medium none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0;
-    padding: 8px 15px;
-    text-transform: uppercase;
-}
 .book-now-btn:hover, .vacation-offer-details .btn.btn-default:hover{
-    background: #162541;
-}
-.loginbtn:hover, .vacation-offer-details .btn.btn-default:hover{
-    background: #162541;
-}
-.logoutbtn:hover, .vacation-offer-details .btn.btn-default:hover{
     background: #162541;
 }
 
