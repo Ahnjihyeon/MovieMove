@@ -15,10 +15,11 @@ public class CommentService {
 		return list;		
 	}
 	public static int insertComment(CommentDTO dto) throws SQLException {
-		System.out.println("insertService");
 		int result = commentDAO.insertComment(dto);
 		return result;
 	}
-	
-	
+	public static int deleteComment(int commentNum) throws SQLException {
+		int result = commentDAO.deleteComment(commentNum);
+		return result;		
+	}	
 }

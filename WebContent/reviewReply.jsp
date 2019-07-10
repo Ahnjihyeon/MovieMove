@@ -59,11 +59,12 @@
 					} else {
 						alert("오류가 발생해서 처리되지 않았습니다.");
 					}
+					$("#commentContent").val("");
 				},
 				error: function( error ) {
 					alert("삽입x");
 					console.log( error );
-				} 
+				}
 			})  
 		});
 		
@@ -83,9 +84,10 @@
 						str += "</tr>";						
 						str += "<tr>";
 						str += "<td> 내용 : "+ item.commentContent +"</td>";
+						str += "<td><input type='button' value='"+(index+1)+"' class='deletebtn' id='deletebtn'>"+"삭제"+"</td>"
 						str += "</tr>";
 					})
-					$("#commentTable").append(str); 
+					$("#commentTable").append(str);					
  				},
 				error: function( error ) {
 					console.log( "검색오류" );
@@ -93,6 +95,24 @@
 			}) 
 		}////////////////////////////// 
 		selectAll();
+		
+		/////////////////////////////////
+		//댓글 삭제
+		$(".deletebtn").on("click", function(){
+			$.ajax({
+				type:"post",
+				url:"deletecomment",
+				dataType:"text",
+				data:$("#deletebtn").val(),
+				success:function(result){
+					$(this).parent().parent().remove();
+				},
+				error : function(error){
+					console.log("삭제오류");
+				}			
+			})			
+		})
+		
 		
 	})
 </script>
@@ -120,6 +140,7 @@
 	
 	<h4>댓글쓰기</h4>
 	<form method="post" name="coInsert" id="coInsert">
+		<input type="hidden" name="commentNum" value="">
 		<input type="hidden" name="commentBoard" value="${requestScope.reviewDTO.reviewId}"/>		
 		<textarea class="form-control" name="commentContent" placeholder="내용을 입력해주세요" required=""></textarea><br>
 		<input type="button" value="등록" id="insertComment" name="insertCommnet">		

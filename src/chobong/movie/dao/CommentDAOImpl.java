@@ -61,5 +61,25 @@ public class CommentDAOImpl implements CommentDAO {
 		
 		return list;
 	}
+	@Override
+	public int deleteComment(int commentNum) throws SQLException {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = DbUtil.getConnection();		
+			String sql = "delete from comments where comment_num = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, commentNum);
+			
+			result = ps.executeUpdate();			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
+	}
 
 }
