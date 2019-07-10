@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			DbUtil.dbClose(ps, con);
+			DbUtil.dbClose(rs, ps, con);
 		}
 		return result;
 	

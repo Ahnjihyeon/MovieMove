@@ -6,7 +6,6 @@
 <style>
   table {border: 5px groove pink; width:500px}
   td,th{border:1px black solid ;  padding:10px}
-
   input{border:solid 1px gray}  
 </style>
 </head>
@@ -24,22 +23,19 @@ $(function(){
 			str += "비밀번호가 일치하지않습니다.";
 		}
 		$("#pwdCheck").text(str);
-	})
+	})	
 	$("#idCheck").click(function(){
 		$.ajax({
 			type:"post",
-			url:"../idcheck"
+			url:"idcheck",
 			dataType:"text",
-			data:"id="+$("#memberId").val(),
+			data:$("input[name=memberId]"),
 			success:function(result){
-				$("span").text(reulst);
-			}
-			
+				$("#idcheckspan").text(result);
+			}			
 		})
-	})
-	
+	})	
 })
-
 function checkValid() {
     var f = window.document.writeForm;
 		
@@ -85,23 +81,15 @@ function checkValid() {
    <caption><h2> 회원가입 Form</h2></caption>
   <tr>
 	<td width="100px">아이디</td>
-
-	<td width="400px"><input type="text" name="memberId" id="memberId" />    <input type="button" id="idCheck" value="중복확인"></td>
-
-	<td width="400px"><input type="text" name="id" /></td>
-
+	<td width="400px"><input type="text" name="memberId"/>    <input type="button" id="idCheck" value="중복확인"><span id="idcheckspan"></span></td>
   </tr>
   <tr>
 	<td>비밀번호</td>
-
 	<td><input type="password" name="memberPwd" id="memberPwd"/></td>
   </tr>
   <tr>
 	<td>비밀번호 확인</td>
 	<td><input type="password" name="memberPwd2" id="memberPwd2"/>  <span style="font-size:13px; color:red" id="pwdCheck"></span></td>
-
-	<td><input type="password" name="pwd" /></td>
-
   </tr>
   <tr>
 	<td>이름</td>
@@ -113,7 +101,12 @@ function checkValid() {
   </tr>
   <tr>
 	<td>나이</td>
-	<td><input type="text" name="memberAge" /></td>
+	<td><input type="radio" name="memberAge" value="10">10대 
+		<input type="radio" name="memberAge" value="20">20대 
+		<input type="radio" name="memberAge" value="30">30대 
+		<input type="radio" name="memberAge" value="40">40대 
+		<input type="radio" name="memberAge" value="50">50대 
+		<input type="radio" name="memberAge" value="60">60대</td>
   </tr>
   <tr>
 	<td>이메일</td>
@@ -129,9 +122,3 @@ function checkValid() {
 </form>
 </body>
 </html>
-
-
-
-
-
-

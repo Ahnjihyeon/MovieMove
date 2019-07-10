@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import chobong.frontController.ModelAndView;
 import chobong.movie.dto.ReviewDTO;
@@ -21,7 +22,8 @@ public class ReviewInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 넘어오는 값 받기
-		String memberId = request.getParameter("memberId");
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
 		String movieCode = request.getParameter("movieCode");
 		String reviewSubject = request.getParameter("reviewSubject");
 		String reviewContent = request.getParameter("reviewContent");

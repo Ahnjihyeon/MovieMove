@@ -83,7 +83,7 @@
     					$("#listTable tr").remove();  // #listTable tr:gt(0)
     					
     					console.log( "총길이 = " + result.length );
-    					String totalLength = "총 " + result.length + "건";
+    					var totalLength = "총 " + result.length + "건";
     					var str="" ;
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
@@ -146,7 +146,7 @@
                             			<c:when test="${sessionScope.memberId!=null}">
                             				<div class="text-right">
 			                               		 <h4>${memberId}님 로그인중...</h4>
-			                                	 <a href="#">마이페이지</a>
+			                                	 <a href="movie?command=memberinfo&memberId=${memberId}">마이페이지</a>
 			                                	 <form action="movie?command=logout" method="post">
 			                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
 			                                	 </form>
@@ -189,7 +189,7 @@
                            			<c:when test="${sessionScope.memberId!=null}">
                            				<div class="text-right">
 		                               		 <h4>${memberId}님 로그인중...</h4>
-		                                	 <a href="#">마이페이지</a>
+		                                	 <a href="movie?command=memberinfo&memberId=${memberId}">마이페이지</a>
 		                                	 <form action="movie?command=logout" method="post">
 		                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
 		                                	 </form>
@@ -275,7 +275,7 @@
                                     <textarea class="form-control" name="reviewContent" placeholder="내용을 입력해주세요" required=""></textarea><br>
                                     <input type="text" name='reviewPwd' value='1234'/><!-- 비번 -->
                                     
-                                    <input type="hidden" name='memberId' value='11'/><!-- 아이디 -->
+                                    <input type="hidden" name='memberId'/><!-- 아이디 -->
  									<input type="hidden" name='movieCode' value='A01'  /><!-- 영화코드 -->
                                     
                                     <input type="button" class="submit-btn" id="btn" value="작성">
