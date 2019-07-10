@@ -18,9 +18,9 @@ public interface ReviewDAO {
 	/** 영화리뷰 전체 검색 */
 	 List<ReviewDTO> selectAll( String movieCode ) throws SQLException; 
 	
-	
-	  /** 게시글번호에 해당하는 레코드 검색 ( 상세페이지 )  */
-	  ReviewDTO selectByReviewNum(String reviewNum) throws SQLException;
+	 // ----수정됬음-----
+	  /** 게시글제목에 해당하는 레코드 검색 ( 상세페이지 )  */
+	  ReviewDTO selectByReviewSubject(String reviewSubject) throws SQLException;
 	  
 	  
 	  /** 게시판 조회수를 증가하는 기능

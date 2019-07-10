@@ -53,12 +53,34 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 		return list;
 	}
-
+	// ----수정됬음----
 	@Override
-	public ReviewDTO selectByReviewNum(String reviewNum) throws SQLException {
-		return null;
+	public ReviewDTO selectByReviewSubject(String reviewSubject) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql="Select * from review where review_subject=? order by review_writeday desc";//11
+		ReviewDTO reviewDTO =  null;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString( 1, reviewSubject );
+			
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				// 가저올값들만
+				reviewDTO = new ReviewDTO(rs.getString(1), rs.getString(2), rs.getString(3),
+									rs.getString(4), rs.getString(5), rs.getString(6), 
+									rs.getInt(7), rs.getInt(8), rs.getString(9) );
+			}
+			System.out.println("DAO 성공 = " + reviewDTO );
+		} finally {
+			DbUtil.dbClose( rs, ps, con );
+		}
+		return reviewDTO;
 	}
-
+	
 	@Override
 	public int increamentByReadnum(String ReviewNum) throws SQLException {
 		return 0;

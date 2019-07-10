@@ -28,8 +28,9 @@ public class ReviewService {
 	
 	
 	  /** 게시글번호에 해당하는 레코드 검색 ( 상세페이지 )  */
-	public static  ReviewDTO selectByReviewNum(String reviewNum) throws SQLException {
-		return null;
+	public static  ReviewDTO selectByReviewSubject(String reviewSubject) throws SQLException {
+		ReviewDTO reviewDTO = reviewDAO.selectByReviewSubject(reviewSubject);
+		return reviewDTO;
 	}
 	  
 	  

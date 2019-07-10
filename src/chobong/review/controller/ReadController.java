@@ -1,6 +1,7 @@
 package chobong.review.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,28 +9,40 @@ import javax.servlet.http.HttpServletResponse;
 
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
+import chobong.movie.dto.ReviewDTO;
+import chobong.movie.service.ReviewService;
 
 public class ReadController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("read 컨트롤러가 호출됬습니다.");
 		
-		/*String modelNum = request.getParameter("modelNum");
-		String flag = request.getParameter("flag");
+		String reviewSubject = request.getParameter("reviewSubject");
+		System.out.println("review에서 넘긴 리뷰 제목 = " + reviewSubject);
+	
+/*		String flag = request.getParameter("flag");
+		boolean state = flag==null ? true : false; // 수정 후 되돌아올때의 read요청은 flag=1같을 들고옴 */
 		
-		boolean state = flag==null ? true : false; // 수정 후 되돌아올때의 read요청은 flag=1같을 들고옴
-		
+		// 이거랑 같은 제목을 가진 review 검색
 		String url = "errorView/error.jsp";
 		ModelAndView mv = new ModelAndView();
 		try {
-			Electronics elec = ElectronicsService.selectByModelnum( modelNum, state );
-			request.setAttribute("elec", elec );
-			url ="elecView/read.jsp";
+			// Electronics elec = ElectronicsService.selectByModelnum( modelNum, state );
+			ReviewDTO reviewDTO= ReviewService.selectByReviewSubject(reviewSubject);
+			
+			System.out.println("ReviewDTO.reviewDTO" +  reviewDTO.getReviewId() );
+			System.out.println("ReviewDTO.getReviewContent()" +  reviewDTO.getReviewContent() );
+			System.out.println("ReviewDTO.getReviewSubject()" +  reviewDTO.getReviewSubject() );
+			
+			request.setAttribute( "reviewDTO", reviewDTO );
+			url = "reviewReply.jsp";
+			
 		} catch (SQLException e) {
 			request.setAttribute( "errorMsg", e.getMessage() );
 		}
-		mv.setPath(url);*/
-		return null;
+		mv.setPath( url );
+		return mv;
 	}
 }

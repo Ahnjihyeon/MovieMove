@@ -84,14 +84,13 @@
     				success:  function( result ) {
     					$("#listTable tr").remove();  // #listTable tr:gt(0)
     					
-    					console.log( "총길이 = " + result.length );
     					var totalLength = "총 " + result.length + "건";
     					var str="" ;
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
     						str += "<tr>";
     						str += "<td>"+ (index+1) +"</td>";
-    						str += "<td><a href='#' id='listSubject'>"+ item.reviewSubject +"</a></td>";
+    						str += "<td><a href='#' id='listSubject' value='item.reviewSubject'>"+ item.reviewSubject +"</a></td>";
     						str += "<td>"+ item.memberId +"</td>"
     						
     						str += "<td>"+ item.reviewWriteday +"</td>";
@@ -114,7 +113,16 @@
     		}////////////////////////////// 
     		selectAll();
     		//setInterval("selectAll", 5000 ); // 글 업데이트 
-        })
+    		
+    		// 3. 리뷰게시글 상세페이지 이동
+    		$(document).on("click", "#listTable a", function() {
+    			//alert(1);
+    			
+    			// 클릭한 리뷰 제목을 토대로 상세페이지를 보여줘야함
+    			console.log( "클릭한 a 태그 제목값 =" + $(this).text() );
+    			location.href="${path}/movie?command=read&reviewSubject="+$(this).text();
+    		});
+        });
         
         </script>
     </head>
@@ -266,7 +274,7 @@
  									<input type="hidden" name='movieCode' value='A01'  /><!-- 영화코드 -->
                                     
                                     <input type="button" class="submit-btn" id="btn" value="작성">
-                                    </form>
+                               </form>
                              </div>
                                 
                             </div>
