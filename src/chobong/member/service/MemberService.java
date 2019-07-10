@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import chobong.movie.dao.MemberDAO;
 import chobong.movie.dao.MemberDAOImpl;
+import chobong.movie.dto.CommentDTO;
 import chobong.movie.dto.MemberDTO;
 
 public class MemberService {
@@ -35,6 +36,11 @@ public class MemberService {
 	}
 	public static int update(MemberDTO dto) throws SQLException{
 		int result = memberDAO.update(dto);
+		return result;
+	}
+	public static int insertComment(CommentDTO dto) {
+		System.out.println("insertService");
+		int result = memberDAO.insertComment(dto);
 		return result;
 	}
 	

@@ -2,24 +2,30 @@ package chobong.movie.dto;
 
 public class CommentDTO {
 	private int commentNum; //댓글번호
-	private int memberId; //회원id
+	private String commentBoard; // 리뷰 글 번호
+	private String memberId; //회원id
 	private String commentContent;// 댓글내용
 	private String commentDate; //댓글입력날짜
-	private int commentBoard; // 리뷰 글 번호
 	
-	
-	
-	
+		
+	public CommentDTO(int commentNum, String commentBoard, String memberId, String commentContent, String commentDate) {
+		super();
+		this.commentNum = commentNum;
+		this.commentBoard = commentBoard;
+		this.memberId = memberId;
+		this.commentContent = commentContent;
+		this.commentDate = commentDate;
+	}
 	public int getCommentNum() {
 		return commentNum;
 	}
 	public void setCommentNum(int commentNum) {
 		this.commentNum = commentNum;
 	}
-	public int getMemberId() {
+	public String getMemberId() {
 		return memberId;
 	}
-	public void setMemberId(int memberId) {
+	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
 	public String getCommentContent() {
@@ -34,10 +40,10 @@ public class CommentDTO {
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
 	}	
-	public int getCommentBoard() {
+	public String getCommentBoard() {
 		return commentBoard;
 	}
-	public void setCommentBoard(int commentBoard) {
+	public void setCommentBoard(String commentBoard) {
 		this.commentBoard = commentBoard;
 	}
 	

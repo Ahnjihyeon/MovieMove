@@ -24,6 +24,59 @@
 		});
 
 		// 세션 아이디랑 등록한 사랑 아이디랑 같으면 수정하기, 삭제하기 버튼 나옴
+		
+		
+		//댓글 입력하기
+		$("#insertComment").click(function() {	
+			//alert(${requestScope.reviewDTO.reviewId});
+			$.ajax({ 
+				type: "post",
+				url: "insertcomment", 
+				dataType: "text",
+				data: $("form[name=coInsert]").serialize(), // 폼전송
+				success:  function( result ) {
+					if( result > 0 ) {
+						//selectAll(); // 전체검색(화면갱신)
+					} else if( result==-1 ){
+						alert( "로그인 후에 댓글을 등록해주세요." );
+					} else {
+						alert("오류가 발생해서 처리되지 않았습니다.");
+					}
+				},
+				error: function( error ) {
+					alert("삽입x");
+					console.log( error );
+				} 
+			})  
+		});
+		
+		//댓글 전체 리스트 출력
+		function selectAll(){
+			$.ajax({ 
+				type: "post",
+				url: "commentselectall",  
+				dataType: "json",
+				data: $(requestScope.reviewDTO.reviewId) ,
+				success:  function( result ) {
+					$("#commentTable tr").remove();  // #listTable tr:gt(0)
+					var str="" ;
+					$.each(result, function(index, item){
+						str += "<tr>";
+						str += "<td> 작성자 : "+ item.memberId +"</td>"				
+						str += "</tr>";						
+						str += "<tr>";
+						str += "<td>"+ item.commentContent +"</td>";
+						str += "</tr>";
+					})
+					$("#commentTable").append(str); 
+ 				},
+				error: function( error ) {
+					console.log( "검색오류" );
+				} 
+			}) 
+		}////////////////////////////// 
+		selectAll();
+		
 	})
 </script>
 </head>
@@ -46,5 +99,18 @@
 <input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
 </form>
 
+<div class="single-bottom comment-form" style="padding:50px 0 0 0;">
+	
+	<h4>댓글쓰기</h4>
+	<form method="post" name="coInsert" id="coInsert">
+		<input type="hidden" name="commentBoard" value="${requestScope.reviewDTO.reviewId}"/>		
+		<textarea class="form-control" name="commentContent" placeholder="내용을 입력해주세요" required=""></textarea><br>
+		<input type="button" value="등록" id="insertComment" name="insertCommnet">		
+	</form>
+	<h4>댓글목록</h4>
+	<table id="commentTable">
+		
+	</table>
+</div>
 </body>
 </html>

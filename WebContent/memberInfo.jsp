@@ -196,21 +196,19 @@ function sendDelete(){//삭제
         <td>${member.memberDate}</td>
     </tr>
     
-    	<tr>
-    		<td>
-    			비밀번호 입력 : <input type=password name="password" value="">
-    		</td>	
-    		<td>
-    			<input type=hidden name="memberId" value="${member.memberId}">
-				<input type=hidden name="command" value="">
-				<input type=button value="수정하기" onClick="sendUpdate()">
-				<input type=button value="회원탈퇴" onClick="sendDelete()">
-			</td>
-		</tr>		
-	</form>
-    
-    </tbody>
+   	<tr>
+   		<td>
+   			비밀번호 입력 : <input type=password name="password" value="">
+   		</td>	
+   		<td>
+   			<input type=hidden name="memberId" value="${member.memberId}">
+			<input type=hidden name="command" value="">
+			<input type=button value="수정하기" onClick="sendUpdate()">
+			<input type=button value="회원탈퇴" onClick="sendDelete()">
+		</td>
+	</tr>		
+	</form> 
+</tbody>
 </table>
-
 </body>
 </html>

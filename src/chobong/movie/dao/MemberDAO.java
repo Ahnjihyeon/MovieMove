@@ -2,6 +2,7 @@ package chobong.movie.dao;
 
 import java.util.List;
 
+import chobong.movie.dto.CommentDTO;
 import chobong.movie.dto.MemberDTO;
 
 public interface MemberDAO {
@@ -28,5 +29,7 @@ public interface MemberDAO {
 	 * id에 해당하는 레코드 수정하기
 	 * */
 	int update(MemberDTO memberDTO);
+	
+	int insertComment(CommentDTO commentDTO);
 
 }

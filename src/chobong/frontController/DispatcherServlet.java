@@ -28,6 +28,7 @@ public class DispatcherServlet extends HttpServlet {
 		String key = request.getParameter("command");
 		
 		if( key==null ) key="list"; // list는 전체검색
+		System.out.println("key" + key);
 		Controller controller = map.get(key);
 		
 		ModelAndView mv = controller.handleRequest(request, response);
