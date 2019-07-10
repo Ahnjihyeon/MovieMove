@@ -8,11 +8,7 @@ public class MemberDTO {
 	private String memberNickname;
 	private int memberAge;
 	private String memberDate;
-	
-	
-	
-	
-	//Constructor	
+		//Constructor	
 	
 	public MemberDTO(String memberId, String memberPwd, String memberEmail, String memberName, String memberNickname,
 			int memberAge, String memberDate) {
@@ -24,6 +20,13 @@ public class MemberDTO {
 		this.memberNickname = memberNickname;
 		this.memberAge = memberAge;
 		this.memberDate = memberDate;
+	}
+	
+	//수정을 위한 DTO
+	public MemberDTO(String memberId, String memberEmail, String memberNickname) {
+		this.memberId = memberId;
+		this.memberEmail = memberEmail;
+		this.memberNickname = memberNickname;
 	}
 
 	 

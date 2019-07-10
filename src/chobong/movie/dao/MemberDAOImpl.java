@@ -67,20 +67,49 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int delete(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(String memberId) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = DbUtil.getConnection();		
+			String sql = "delete from member where member_Id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, memberId);
+			result = ps.executeUpdate();
+			System.out.println("delete result" + result);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int update(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = DbUtil.getConnection();		
+			String sql = "update member set member_email=?, member_nickname=? where member_id=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, memberDTO.getMemberEmail());
+			ps.setString(2, memberDTO.getMemberNickname());
+			ps.setString(3, memberDTO.getMemberId());		
+			result = ps.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return result;
 	}
 
 	@Override
 	public MemberDTO login(String memberId, String memberPwd) {
-		int result = 0;
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -112,7 +141,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberDTO memberInfo(String memberId) {
-		System.out.println("memberinfoµé¾î¿È");
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -125,7 +153,6 @@ public class MemberDAOImpl implements MemberDAO {
 			rs = ps.executeQuery();
 			if(rs.next())
 			dto = new MemberDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
-			System.out.println("dtoÀúÀå");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

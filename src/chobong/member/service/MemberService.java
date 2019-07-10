@@ -10,7 +10,6 @@ public class MemberService {
 	private static MemberDAO memberDAO = new MemberDAOImpl();
 	
 	public static MemberDTO memberInfo(String memberId) {
-		System.out.println(memberId);
 		MemberDTO dto = memberDAO.memberInfo(memberId);
 		return dto;
 	}
@@ -22,7 +21,7 @@ public class MemberService {
 	
 	public static int insert(MemberDTO dto) throws SQLException{		
 		int result = memberDAO.insert(dto);
-		if(result == 0) throw new SQLException("�벑濡앸릺吏� �븡�븯�뒿�땲�떎");
+		if(result == 0) throw new SQLException("가입 오류");
 		return result;			
 	}
 	public static MemberDTO login(String memberId, String memberPwd) throws SQLException{
@@ -30,4 +29,13 @@ public class MemberService {
 		if(member==null) throw new SQLException("로그인오류");
 		return member;
 	}
+	public static int delete(String memberId) throws SQLException{
+		int result = memberDAO.delete(memberId);
+		return result;
+	}
+	public static int update(MemberDTO dto) throws SQLException{
+		int result = memberDAO.update(dto);
+		return result;
+	}
+	
 }

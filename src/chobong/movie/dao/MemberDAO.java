@@ -9,7 +9,7 @@ public interface MemberDAO {
 	  select id from member where id=?    
 	  @return true이면 중복, 
 	             false이면 중복아님   */
-	boolean idCheck(String id);
+	boolean idCheck(String memberId);
 	
 	MemberDTO memberInfo(String memberId);
 	
@@ -22,7 +22,7 @@ public interface MemberDAO {
 	/**
 	 * id에 해당하는 레코드 삭제하기
 	 * */
-	int delete(String id);
+	int delete(String memberId);
 	
 	/**
 	 * id에 해당하는 레코드 수정하기

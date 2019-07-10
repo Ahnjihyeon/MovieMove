@@ -1,6 +1,7 @@
 package chobong.member.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,7 @@ import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
 import chobong.member.service.MemberService;
 
-public class MemberInfoController implements Controller {
+public class DeleteMemberController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -19,8 +20,16 @@ public class MemberInfoController implements Controller {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		String memberId = (String)session.getAttribute("memberId");
-		MemberService.memberInfo(memberId);
-		mv.setPath("memberInfo.jsp");		
+		
+		try {
+			MemberService.delete(memberId);
+			session.invalidate();
+			mv.setPath("review.jsp");
+			mv.setRedirect(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return mv;
 	}
