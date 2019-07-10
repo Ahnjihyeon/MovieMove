@@ -16,18 +16,18 @@
         <title>MovieMove</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap.min.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet" type="text/css" />
         <!-- Custom styles for this template -->
-        <link href="css/style.css" rel="stylesheet">
-        <link href="fonts/antonio-exotic/stylesheet.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/lightbox.min.css">
-        <link href="css/responsive.css" rel="stylesheet">
-        <script src="js/jquery-3.4.1.min.js"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
-        <script src="js/instafeed.min.js" type="text/javascript"></script>
-        <script src="js/custom.js" type="text/javascript"></script>
+        <link href="css/style.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <link href="fonts/antonio-exotic/stylesheet.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <link rel="stylesheet" href="css/lightbox.min.css?v=<%=System.currentTimeMillis() %>">
+        <link href="css/responsive.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <script src="js/jquery-3.4.1.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <script src="js/lightbox-plus-jquery.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <script src="js/instafeed.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <script src="js/custom.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
         
         <style type="text/css">        
           div.review_top {border-bottom: 1px solid #ff9faa;
@@ -38,12 +38,14 @@
 			   margin-top: 20px;
 			   padding-bottom: 10px;
 			   text-transform: uppercase;}
-		span.review_left{}
 		span.review_right{float:right;}
+		span >.form-control{display:inline; width:90%;}
+        .submit-btn{padding:8px; 15px;}
+        .event-blog-details > p {margin:10px 0;}
         </style>
         <script>
         $(function(){
-        	$(".loginbtn").click(function(){
+        	$("#loginbtn").click(function(){
         		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
         	})
         	
@@ -88,18 +90,10 @@
     					var str="" ;
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
-    						str += "<tr>";
-    						str += "<td>"+ (index+1) +"</td>";
-    						str += "<td><a href='#' id='listSubject' value='item.reviewSubject'>"+ item.reviewSubject +"</a></td>";
-    						str += "<td>"+ item.memberId +"</td>"
-    						
-    						str += "<td>"+ item.reviewWriteday +"</td>";
-    						str += "<td>"+ item.reviewStarPoint +"</td>"
-    						str += "</tr>";
-    						
-    						str += "<tr>";
-    						str += "<td colspan='4'>"+ item.reviewContent +"</td>";
-    						str += "</tr>";
+    						str += "<li style='padding:15px 15px 0 0;'>";
+    						str += "<div style='color:#b1afaf;'><a href='#' id='listSubject' value='item.reviewSubject' style='display: contents; font-size:20px;'>"+ (index+1) +"&nbsp;&nbsp;&nbsp;"+ item.reviewSubject +"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+ item.memberId +" | "+ item.reviewWriteday +" | "+ item.reviewStarPoint +"</div>";
+    						str += "<div><a href='#' id='listSubject' value='item.reviewSubject' style='font-size:15px;'>"+ item.reviewContent +"</a></div>";
+    						str += "</li>";
     					})	
     					
     					$("span[class=review_left]").text( totalLength );
@@ -130,11 +124,22 @@
     
         <div id="page">
             <!---header top---->
-            <div class="top-header">
+            <div class="top-header" style="background-color:#000">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-
+                            <!--                            <a href="#"> </a>
+                                                        <div class="info-block"><i class="fa fa-map"></i>701 Old York Drive Richmond USA.</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-grid">
+                                <ul class="list-unstyled text-right">
+                                    <li><a><i class="fa fa-facebook"></i></a></li>
+                                    <li><a><i class="fa fa-twitter"></i></a></li>
+                                    <li><a><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,92 +153,98 @@
                             <div class="col-md-2 col-sm-6 col-xs-6">
                                 <div id="logo">
                                     <!--<a href="index.html"><img src="images/logo.png" alt="logo"></a>-->
-                                    <a href="index.html"><span>뮤비</span>무비</a>
-                                </div>                       
+                                    <a href="index.jsp"><span>뮤비</span>무비</a>
+                                </div>
                             </div>
-                            <div class="col-sm-6 visible-sm">
-                            		 <c:choose>
-                           			<c:when test="${sessionScope.member.memberId!=null}">
-                           				<div class="text-right">
-		                               		 <h4>${member.memberId}님 로그인중...</h4>
-		                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
-		                                	 <form action="movie?command=logout" method="post">
-		                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
-		                                	 </form>
-	                                	 </div>
-                            		</c:when>
-                            		<c:otherwise>
-                            			<div style="width: 300px; margin-right: 400px" class="text-right">
-	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
-	                                     <button type="button" class="loginbtn">로그인</button>
-	                                     </div>
-                           			</c:otherwise>
-                      			</c:choose>                                  	    
-                            </div>
-                            <div class="col-md-8 col-sm-12 col-xs-12 remove-padd">
+                            
+                            <form action="#" method="get">
+                            <div class="col-md-8 col-sm-12 col-xs-12 remove-padd" style="bottom:15px;">
                                 <nav class="navbar navbar-default">
-                                    <div class="navbar-header page-scroll">
-                                        <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                                            <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-
-                                    </div>
                                     <div class="collapse navigation navbar-collapse navbar-ex1-collapse remove-space">
                                         <ul class="list-unstyled nav1 cl-effect-10">
-                                            <li><a  data-hover="Home" href="index.html"><span>Home</span></a></li>
-                                            <!-- <li><a data-hover="About" href="about.html"><span>About</span></a></li>
-                                            <li><a data-hover="Rooms" href="rooms.html"><span>Rooms</span></a></li>
-                                            <li><a data-hover="Gallery"  href="gallery.html"><span>Gallery</span></a></li>
-                                            <li><a data-hover="Dinning"><span>Dinning</span></a></li>
-                                            <li><a data-hover="News" href="news.html"><span>News</span></a></li>
-                                            <li><a data-hover="Contact Us" href="contact.html"><span>contact Us</span></a></li> -->
+                                            <li><span><input type="text" class="form-control" name="Search" placeholder="검색"></span></li>
+                                            <li><span><input type="submit" class="submit-btn" value="검색"></span></li>
                                         </ul>
+
                                     </div>
                                 </nav>
                             </div>
+                            </form>
                             <div class="col-md-2  col-sm-4 col-xs-12 hidden-sm">
-                               <c:choose>
+                            <c:choose>
                            			<c:when test="${sessionScope.member.memberId!=null}">
                            				<div class="text-right">
 		                               		 <h4>${member.memberId}님 로그인중...</h4>
 		                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
 		                                	 <form action="movie?command=logout" method="post">
-		                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
+		                                	 	<button type="submit" class="book-now-btn" id="logoutbtn">로그아웃</button>
 		                                	 </form>
 	                                	 </div>
                             		</c:when>
                             		<c:otherwise>
                             			<div style="width: 300px; margin-right: 400px" class="text-right">
+                            			 <button type="button" class="book-now-btn" id="loginbtn">로그인</button>
 	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
-	                                     <button type="button" class="loginbtn">로그인</button>
 	                                     </div>
                            			</c:otherwise>
-                      			</c:choose>           
+                      		</c:choose>  
                             </div>
+                            
                         </div>
                     </div>
                 </div>
             </header>
+            
+            <hr style="border:1px solid #eee; margin-top: 0;">
 
-            <div class="clearfix"></div>
-
-            <!--리뷰상세페이지-->
+			<!---영화정보 block--->
+            <section class="blog-block" style="padding:0">
+                <div class="container">
+                    <div class="row offspace-45">
+                        <div class="view-set-block">
+                            <div class="col-md-6 col-sm-6 col-xs-12 side-in-image">
+                                <div class="event-blog-details">
+                                    <h4>영화제목</h4>
+                                    <h5>2019.07<a><i aria-hidden="true" class="fa fa-heart-o fa-lg"></i>total</a></h5>
+                                    <p><font style="font-size:15px; font-weight:bold;">평점</font>&nbsp;&nbsp;&nbsp;</p>
+                                    <p><font style="font-size:15px; font-weight:bold;">장르</font>&nbsp;&nbsp;&nbsp;</p>
+                                    <p><font style="font-size:15px; font-weight:bold;">감독</font>&nbsp;&nbsp;&nbsp;</p>
+                                    <p><font style="font-size:15px; font-weight:bold;">출연</font>&nbsp;&nbsp;&nbsp;</p>
+                                    <p><font style="font-size:15px; font-weight:bold;">등급</font>&nbsp;&nbsp;&nbsp;</p>
+                                    <p><font style="font-size:15px; font-weight:bold;">흥행</font>&nbsp;&nbsp;&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="event-blog-image" style="text-align: -webkit-center;">
+                                    <img alt="image" class="img-responsive" src="images/blog1.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-list">
+                         <h4>줄거리</h4>
+                         <div class="blog-desc" style="display: inline-block; margin:0 0 40px 0;">줄거리</div>		
+					</div>
+					
+                </div>
+            </section>
+            
+            
+            <!--리뷰 block-->
             <section class="blog" style="padding:0px;">
                 <div class="container">
                     <div class="row">
 
                         <div class="col-md-9 col-sm-8 col-xs-12" style="width:100%;">
-                            <h2 class="blog-title-head">영화제목</h2>
+                            <!-- <h2 class="blog-title-head">영화제목</h2>
                             <div class="blog-image-single margin-top-small">
                                 <div style="width:65%; height:auto; display:grid; float:left; padding:20px 0px 20px 20px;"><img src="http://via.placeholder.com/750x450?text=left" class="img-responsive"></div>
                                 <div style="width:35%; height:auto; display:grid; float:right; text-align:-webkit-right; padding:20px 20px 20px 0px;"><img src="http://via.placeholder.com/300x450?text=right" class="img-responsive"></div>
                             </div>
                             <div class="blog-desc" style="display: inline-block;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </div>
 
-                            <div class="clearfix"></div>
+                            <div class="clearfix"></div> -->
                             
                             <form action="#" method="post">
                             <div class="blog-list">
@@ -251,24 +262,24 @@
     							</select></span>
     							</div>
     							
-								<table id= "listTable">
+								<ul id= "listTable">
 								<!-- 이곳에서 리뷰 리스트 전체 출력 -->
-								</table>							
+								</ul>		
+							</div>					
 								</form>
                                 <div class="clearfix"> </div>
-                            </div>
                             
                             <div class="single-bottom comment-form" style="padding:50px 0 0 0;">
                                <h3>리뷰작성</h3>
                                <form method="post"  name="reInsert"  id="reInsert"> 
-                                    <input type="text" class="form-control" name="reviewSubject" placeholder="리뷰제목" required=""><br>
-                                    <input type='radio' name='reviewStarPoint' value=1 />1
+                                    <input type="text" class="form-control" name="reviewSubject" placeholder="제목을 입력해주세요">
+                                    평점&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name='reviewStarPoint' value=1 />1
                                     <input type='radio' name='reviewStarPoint' value=2 />2
                                     <input type='radio' name='reviewStarPoint' value=3 />3
                                     <input type='radio' name='reviewStarPoint' value=4 />4
                                     <input type='radio' name='reviewStarPoint' value=5 />5
-                                    <textarea class="form-control" name="reviewContent" placeholder="내용을 입력해주세요" required=""></textarea><br>
-                                    <input type="text" name='reviewPwd' placeholder='ex) 1234'/><!-- 비번 -->
+                                    <textarea class="form-control" name="reviewContent" placeholder="내용을 입력해주세요"></textarea>
+                                    <input type="text" class="form-control" name="reviewPwd" placeholder="ex) 1234" style="width: 20%;"><!-- 비번 -->
                                     
                                     <input type="hidden" name='memberId'/><!-- 아이디 -->
  									<input type="hidden" name='movieCode' value='A01'  /><!-- 영화코드 -->
@@ -276,18 +287,17 @@
                                     <input type="button" class="submit-btn" id="btn" value="작성">
                                </form>
                              </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                             
+                            </div>   
+                          </div>
+                       </div>
             </section>
             
             <!---footer--->
             <footer>
                 <div class="container">
                     <div class="copyright">
-                        &copy; 2019 All right reserved. Designed by <a href="#" target="_blank">KOSTA</a>
+                        &copy; 2019 All right reserved. Designed by <a href="#" target="_blank">CHOBONG</a>
                     </div>
 
                 </div>
