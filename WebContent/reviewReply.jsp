@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		// reviewStarPoint ${request.reviewSubject} 의 value  selectIndex
@@ -23,9 +23,26 @@
   	   		}
 		});
 
-		// 세션 아이디랑 등록한 사랑 아이디랑 같으면 수정하기, 삭제하기 버튼 나옴
-		
-		
+		// 로그인해서 자기 등록글만 수정,삭제 버튼 나타나기
+		var loginId = '${sessionScope.memberId}';
+		var memberId = '${ requestScope.reviewDTO.memberId }';
+		//console.log( "로그인 = " + loginId + " 등록자 = " + memberId );
+		if( loginId == "" ) {
+			//console.log("세션없음");
+			$("#update-btn").hide();
+			$("#delete-btn").hide();
+		} else {
+			if( loginId == memberId ) {
+				//console.log("세션아이디랑 게시글 등록자랑 같음");
+				$("#update-btn").show();
+				$("#delete-btn").show();
+			} else if( loginId != memberId ) {
+				//console.log("세션아이디랑 게시글 등록자랑 같지않음");
+				$("#update-btn").hide();
+				$("#delete-btn").hide();
+			}
+		}
+		//-------------------------------------------------------------------
 		//댓글 입력하기
 		$("#insertComment").click(function() {	
 			//alert(${requestScope.reviewDTO.reviewId});
