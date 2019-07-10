@@ -19,10 +19,9 @@ import chobong.comment.service.CommentService;
 public class DeleteCommentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String commentNum = request.getParameter("commentNum");
+		
 		int result = 0;
-		System.out.println("commentNum === " + commentNum );
 		try {
-			System.out.println("deleteservlet");
 			result = CommentService.deleteComment(commentNum);
 			
 		} catch (SQLException e) {
