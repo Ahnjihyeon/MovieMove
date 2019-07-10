@@ -61,6 +61,8 @@
     					if( result > 0 ) {
     						//alert( "등록완료" );
     						selectAll(); // 전체검색(화면갱신)
+    					} else if( result==-1 ){
+    						alert( "로그인 후에 게시글을 등록해주세요." );
     					} else {
     						alert("오류가 발생해서 처리되지 않았습니다.");
     					}
@@ -273,7 +275,7 @@
                                     <input type='radio' name='reviewStarPoint' value=4 />4
                                     <input type='radio' name='reviewStarPoint' value=5 />5
                                     <textarea class="form-control" name="reviewContent" placeholder="내용을 입력해주세요" required=""></textarea><br>
-                                    <input type="text" name='reviewPwd' value='1234'/><!-- 비번 -->
+                                    <input type="text" name='reviewPwd' placeholder='ex) 1234'/><!-- 비번 -->
                                     
                                     <input type="hidden" name='memberId'/><!-- 아이디 -->
  									<input type="hidden" name='movieCode' value='A01'  /><!-- 영화코드 -->

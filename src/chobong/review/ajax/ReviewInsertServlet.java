@@ -31,25 +31,29 @@ public class ReviewInsertServlet extends HttpServlet {
 		String reviewStarPoint = request.getParameter("reviewStarPoint");
 					// 카운트
 		String reviewPwd = request.getParameter("reviewPwd");
-				
-				
-		// 값 넘어왔나 확인
-				
-		// reviewContent 부분에 tag( < )를 문자( &lt; )로 변경
-		//reviewContent = reviewContent.replace("<", "&lt;");
 		
-		ReviewDTO reviewDTO = new ReviewDTO( null, memberId, movieCode, reviewSubject, reviewContent, 
-											null, Integer.parseInt(reviewStarPoint), 0, reviewPwd);
-				
-		// DB에 넣기		
 		int result=0;
-		try {
-			result = ReviewService.insert(reviewDTO);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		if( memberId == null )	{
+			result=-1;
+		} else {
+			// 값 넘어왔나 확인
+				
+			// reviewContent 부분에 tag( < )를 문자( &lt; )로 변경
+			if( reviewContent.contains("<") ) {
+				reviewContent = reviewContent.replace("<", "&lt;");
+			}
 		
+			ReviewDTO reviewDTO = new ReviewDTO( null, memberId, movieCode, reviewSubject, reviewContent, 
+											null, Integer.parseInt(reviewStarPoint), 0, reviewPwd);
+			// DB에 넣기		
+			try {
+				result = ReviewService.insert(reviewDTO);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		PrintWriter out = response.getWriter();
 		out.print(result);
+		
 	}
 }
