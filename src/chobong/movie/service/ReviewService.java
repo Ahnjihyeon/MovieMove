@@ -65,8 +65,8 @@ public class ReviewService {
 	   * 게시글아이디에 해당하는 레코드 삭제
 	   * @return : 1-삭제성공 , 0 - 삭제실패
 	   * */
-	public static int delete(String memberId, String password ) throws SQLException {
-		int result = reviewDAO.delete(memberId, password);
+	public static int delete(String reviewId, String password ) throws SQLException {
+		int result = reviewDAO.delete(reviewId, password);
 		if( result == 0 ) throw new SQLException("게시글을 삭제할 수 없습니다.");
 		return result;
 	}

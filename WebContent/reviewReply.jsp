@@ -14,7 +14,6 @@
 	$(function() {
 		// reviewStarPoint ${request.reviewSubject} 의 value  selectIndex
 		var rePoint = '${requestScope.reviewDTO.reviewStarPoint}';
-		alert( rePoint );
 		
 		//$("input[type=radio]").attr("checked", true);
 		$('input[type=radio]').each( function( index, item ) {
@@ -46,14 +45,11 @@
 		// 삭제하기
 		$("#delete-btn").click(function() {
 			var result = prompt("등록했던 게시글 비빌번호를 입력해주세요.","1234");
-			console.log( "입력한 게시글 비번 = " + result );
  			
-			var memberId = '${requestScope.reviewDTO.memberId}';
+			var reviewId = '${requestScope.reviewDTO.reviewId}';
 			var rePwd = '${requestScope.reviewDTO.reviewPwd}';
-			console.log( "게시글의 비밀번호 = " + rePwd );
 			if ( result==rePwd ) {
-				// 아이디 
-				location.href="${path}/movie?command=delete&memberId="+memberId+"&reviewPwd="+result;
+				location.href="${path}/movie?command=delete&reviewId="+reviewId+"&reviewPwd="+result;
 			} else {
 				alert('비밀번호가 틀렸습니다. 다시 입력해주세요.');
 			}

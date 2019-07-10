@@ -18,17 +18,14 @@ public class DeleteController implements Controller {
 			throws ServletException, IOException {
 		
 		// 삭제할 url ( 게시글 번호로 삭제 );
-		System.out.println("오오 호출 완료");
-		String memberId = request.getParameter("memberId"); 
+		String reviewId = request.getParameter("reviewId"); 
 		String reviewPwd = request.getParameter("reviewPwd");
-		
-		System.out.println("삭제서블릿 memberId 값 = "+ memberId  + ", reviewPwd 값" + reviewPwd ); 
 		
 		String url="errorView/error.jsp";
 		ModelAndView mv = new ModelAndView();
 		// 삭제 후에는 review.jsp로 돌아가야함.
 		try {
-			int result = ReviewService.delete(memberId, reviewPwd);
+			int result = ReviewService.delete(reviewId, reviewPwd);
 			url="review.jsp";
 			mv.setRedirect(true); // 이거 없으면 command=delete가 유지되서 또 호출되서 예외 발생 
 			
