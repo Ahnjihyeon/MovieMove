@@ -6,19 +6,22 @@ public class MovieDTO {
 	private int movieYear;
 	private int starPoint;
 	private String movieSummary;
+	private String movieImg;
 	
 	//Constructor
-	public MovieDTO(String movieCode, String movieTitle, int movieYear, int starPoint, String movieSummary) {
+	public MovieDTO(String movieCode, String movieTitle, int movieYear, int starPoint, String movieSummary,
+			String movieImg) {
 		super();
 		this.movieCode = movieCode;
 		this.movieTitle = movieTitle;
 		this.movieYear = movieYear;
 		this.starPoint = starPoint;
 		this.movieSummary = movieSummary;
+		this.movieImg = movieImg;
 	}
 
 	
-	 
+	
 	//getXxx,setXxx
 	public String getMovieCode() {
 		return movieCode;
@@ -59,6 +62,16 @@ public class MovieDTO {
 	public void setMovieSummary(String movieSummary) {
 		this.movieSummary = movieSummary;
 	}
+
+	public String getMovieImg() {
+		return movieImg;
+	}
+
+	public void setMovieImg(String movieImg) {
+		this.movieImg = movieImg;
+	}
+	
+	
 	
 	  
 	
