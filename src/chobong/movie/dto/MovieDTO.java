@@ -19,8 +19,6 @@ public class MovieDTO {
 		this.movieSummary = movieSummary;
 		this.movieImg = movieImg;
 	}
-
-	
 	
 	//getXxx,setXxx
 	public String getMovieCode() {
