@@ -54,7 +54,7 @@ public interface ReviewDAO {
 	    * */
 	  int update(ReviewDTO movieDTO, String password ) throws SQLException;
 	  
-	  List<CommentDTO> selectComment(String commentBoard) throws SQLException;
+	  
 	  
 	  
 }

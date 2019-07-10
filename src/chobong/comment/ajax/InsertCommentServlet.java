@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import chobong.member.service.MemberService;
+import chobong.comment.service.CommentService;
 import chobong.movie.dto.CommentDTO;
 
 /**
@@ -39,7 +39,12 @@ public class InsertCommentServlet extends HttpServlet {
   			
   			CommentDTO dto = new CommentDTO(0, commentBoard, memberId, commentContent, null);
   			
-  			result = MemberService.insertComment(dto);
+  			try {
+				result = CommentService.insertComment(dto);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
   			
   		}
   		PrintWriter out = response.getWriter();

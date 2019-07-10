@@ -38,10 +38,5 @@ public class MemberService {
 		int result = memberDAO.update(dto);
 		return result;
 	}
-	public static int insertComment(CommentDTO dto) {
-		System.out.println("insertService");
-		int result = memberDAO.insertComment(dto);
-		return result;
-	}
 	
 }

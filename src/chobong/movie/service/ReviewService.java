@@ -77,10 +77,6 @@ public class ReviewService {
 		return 0;
 	}
 	
-	public static List<CommentDTO> selectComment(String commentBoard) throws SQLException{
-		List<CommentDTO> list = reviewDAO.selectComment(commentBoard);
-		return list;
-		
-	}
+	
 
 }

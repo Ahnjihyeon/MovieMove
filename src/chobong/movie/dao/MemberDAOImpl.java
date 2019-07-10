@@ -161,29 +161,6 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return dto;
 	}
-	@Override
-	public int insertComment(CommentDTO commentDTO) {
-		int result = 0;
-		Connection con = null;
-		PreparedStatement ps = null;
-		try {
-			System.out.println("insertImpl");
-			con = DbUtil.getConnection();		
-			String sql = "insert into comments values(comments_seq.nextval, ?, ?, ?, sysdate)";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, commentDTO.getCommentBoard());
-			ps.setString(2, commentDTO.getMemberId());
-			ps.setString(3, commentDTO.getCommentContent());
-			
-			result = ps.executeUpdate();
-			
-			System.out.println("insertImpl, result = " + result);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			DbUtil.dbClose(ps, con);
-		}
-		return result;
-	}
+	
 
 }

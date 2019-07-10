@@ -128,30 +128,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return 0;
 	}
 
-	@Override
-	public List<CommentDTO> selectComment(String commentBoard) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		List<CommentDTO> list = new ArrayList<>();
-		String sql="Select comment_content, member_id, comment_date from comments where comment_board=? order by comment_date desc";//11
-		CommentDTO dto =  null;
-		try {
-			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			ps.setString(1, commentBoard);
-			
-			rs = ps.executeQuery();
-			while(rs.next()) {
-			
-				dto = new CommentDTO(rs.getString(1), rs.getString(2), rs.getString(3));
-				list.add(dto);
-			}
-		} finally {
-			DbUtil.dbClose( rs, ps, con );
-		}
-		
-		return list;
-	}
+	
 
 }

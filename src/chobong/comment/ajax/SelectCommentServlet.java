@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import chobong.comment.service.CommentService;
 import chobong.movie.dto.CommentDTO;
 import chobong.movie.service.ReviewService;
 import net.sf.json.JSONArray;
@@ -26,7 +27,7 @@ public class SelectCommentServlet extends HttpServlet {
 		List<CommentDTO> list = new ArrayList<>();
 		
 		try {
-			list = ReviewService.selectComment(commentBoard);
+			list = CommentService.selectComment(commentBoard);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

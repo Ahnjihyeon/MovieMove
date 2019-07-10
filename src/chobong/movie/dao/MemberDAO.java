@@ -30,6 +30,6 @@ public interface MemberDAO {
 	 * */
 	int update(MemberDTO memberDTO);
 	
-	int insertComment(CommentDTO commentDTO);
+	
 
 }
