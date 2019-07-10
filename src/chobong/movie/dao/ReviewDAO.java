@@ -3,6 +3,7 @@ package chobong.movie.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import chobong.movie.dto.CommentDTO;
 import chobong.movie.dto.MovieDTO;
 import chobong.movie.dto.ReviewDTO;
 
@@ -53,6 +54,7 @@ public interface ReviewDAO {
 	    * */
 	  int update(ReviewDTO movieDTO, String password ) throws SQLException;
 	  
+	  List<CommentDTO> selectComment(String commentBoard) throws SQLException;
 	  
 	  
 }

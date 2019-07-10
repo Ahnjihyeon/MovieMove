@@ -36,7 +36,7 @@
 				data: $("form[name=coInsert]").serialize(), // 폼전송
 				success:  function( result ) {
 					if( result > 0 ) {
-						//selectAll(); // 전체검색(화면갱신)
+						selectAll(); // 전체검색(화면갱신)
 					} else if( result==-1 ){
 						alert( "로그인 후에 댓글을 등록해주세요." );
 					} else {
@@ -54,9 +54,9 @@
 		function selectAll(){
 			$.ajax({ 
 				type: "post",
-				url: "commentselectall",  
+				url: "selectcomment",  
 				dataType: "json",
-				data: $(requestScope.reviewDTO.reviewId) ,
+				data: $("input[name=commentBoard]") ,
 				success:  function( result ) {
 					$("#commentTable tr").remove();  // #listTable tr:gt(0)
 					var str="" ;
@@ -65,7 +65,7 @@
 						str += "<td> 작성자 : "+ item.memberId +"</td>"				
 						str += "</tr>";						
 						str += "<tr>";
-						str += "<td>"+ item.commentContent +"</td>";
+						str += "<td> 내용 : "+ item.commentContent +"</td>";
 						str += "</tr>";
 					})
 					$("#commentTable").append(str); 
@@ -109,7 +109,7 @@
 	</form>
 	<h4>댓글목록</h4>
 	<table id="commentTable">
-		
+	<!-- 댓글 전체 리스트 출력 -->
 	</table>
 </div>
 </body>

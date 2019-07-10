@@ -5,6 +5,7 @@ import java.util.List;
 
 import chobong.movie.dao.ReviewDAO;
 import chobong.movie.dao.ReviewDAOImpl;
+import chobong.movie.dto.CommentDTO;
 import chobong.movie.dto.MovieDTO;
 import chobong.movie.dto.ReviewDTO;
 
@@ -74,6 +75,12 @@ public class ReviewService {
 	    * */
 	public static int update(ReviewDTO movieDTO, String password ) throws SQLException {
 		return 0;
+	}
+	
+	public static List<CommentDTO> selectComment(String commentBoard) throws SQLException{
+		List<CommentDTO> list = reviewDAO.selectComment(commentBoard);
+		return list;
+		
 	}
 
 }

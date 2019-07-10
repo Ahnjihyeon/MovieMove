@@ -16,6 +16,12 @@ public class CommentDTO {
 		this.commentContent = commentContent;
 		this.commentDate = commentDate;
 	}
+	//출력하기 위한 생성자
+	public CommentDTO(String commentContent, String memberId, String commentDate) {
+		this.commentContent = commentContent;
+		this.memberId = memberId;
+		this.commentDate = commentDate;		
+	}
 	public int getCommentNum() {
 		return commentNum;
 	}
