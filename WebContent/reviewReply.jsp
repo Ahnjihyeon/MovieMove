@@ -59,7 +59,7 @@
 					} else {
 						alert("오류가 발생해서 처리되지 않았습니다.");
 					}
-					$("#commentContent").val("");
+					$("#commentContent").text("");
 				},
 				error: function( error ) {
 					alert("삽입x");
@@ -84,7 +84,7 @@
 						str += "</tr>";						
 						str += "<tr>";
 						str += "<td> 내용 : "+ item.commentContent +"</td>";
-						str += "<td><input type='button' value='"+(index+1)+"' class='deletebtn' id='deletebtn'>"+"삭제"+"</td>"
+						str += "<td><input type='button' value='삭제' name='"+item.commentNum+"'></td>"
 						str += "</tr>";
 					})
 					$("#commentTable").append(str);					
@@ -98,20 +98,25 @@
 		
 		/////////////////////////////////
 		//댓글 삭제
-		$(".deletebtn").on("click", function(){
+		$(document).on("click", "[value=삭제]",function(){
 			$.ajax({
 				type:"post",
 				url:"deletecomment",
 				dataType:"text",
-				data:$("#deletebtn").val(),
+				data:{"commentNum" : $(this).attr("name")},
 				success:function(result){
-					$(this).parent().parent().remove();
+					if(result>0){
+						$(this).remove();
+						selectAll(); // 삭제 후 전체출력
+					}else{
+						alert("삭제되지않았습니다.");
+					}
 				},
 				error : function(error){
 					console.log("삭제오류");
 				}			
-			})			
-		})
+			});			
+		});
 		
 		
 	})

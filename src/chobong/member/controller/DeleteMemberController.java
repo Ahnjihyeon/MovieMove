@@ -19,8 +19,7 @@ public class DeleteMemberController implements Controller {
 			throws ServletException, IOException {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
-		String memberId = (String)session.getAttribute("memberId");
-		
+		String memberId = (String)session.getAttribute("memberId");		
 		try {
 			MemberService.delete(memberId);
 			session.invalidate();

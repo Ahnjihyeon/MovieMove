@@ -20,11 +20,11 @@ public class CommentDAOImpl implements CommentDAO {
 		try {
 			System.out.println("insertImpl");
 			con = DbUtil.getConnection();		
-			String sql = "insert into comments values(comments_seq.nextval, ?, ?, ?, sysdate)";
+			String sql = "insert into comments values(comment_seq.nextval, ?, ?, sysdate, ?)";
 			ps = con.prepareStatement(sql);
-			ps.setString(1, commentDTO.getCommentBoard());
-			ps.setString(2, commentDTO.getMemberId());
-			ps.setString(3, commentDTO.getCommentContent());
+			ps.setString(1, commentDTO.getMemberId());
+			ps.setString(2, commentDTO.getCommentContent());
+			ps.setString(3, commentDTO.getCommentBoard());
 			
 			result = ps.executeUpdate();
 			
@@ -42,7 +42,7 @@ public class CommentDAOImpl implements CommentDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<CommentDTO> list = new ArrayList<>();
-		String sql="Select comment_content, member_id, comment_date from comments where comment_board=? order by comment_date desc";//11
+		String sql="Select comment_number,member_id,comment_content,comment_date from comments where comment_board=? order by comment_date desc";//11
 		CommentDTO dto =  null;
 		try {
 			con = DbUtil.getConnection();
@@ -52,7 +52,7 @@ public class CommentDAOImpl implements CommentDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 			
-				dto = new CommentDTO(rs.getString(1), rs.getString(2), rs.getString(3));
+				dto = new CommentDTO(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4));
 				list.add(dto);
 			}
 		} finally {
@@ -62,17 +62,19 @@ public class CommentDAOImpl implements CommentDAO {
 		return list;
 	}
 	@Override
-	public int deleteComment(int commentNum) throws SQLException {
+	public int deleteComment(String commentNum) throws SQLException {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = DbUtil.getConnection();		
-			String sql = "delete from comments where comment_num = ?";
+			String sql = "delete from comments where comment_number = ?";
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, commentNum);
+			ps.setString(1, commentNum);
+			System.out.println("commentNum = " + commentNum);
 			
-			result = ps.executeUpdate();			
+			result = ps.executeUpdate();
+			System.out.println("delete impl result = " + result);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

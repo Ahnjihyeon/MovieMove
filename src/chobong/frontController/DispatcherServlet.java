@@ -32,6 +32,7 @@ public class DispatcherServlet extends HttpServlet {
 		Controller controller = map.get(key);
 		
 		ModelAndView mv = controller.handleRequest(request, response);
+		System.out.println(mv);
 		if( mv.isRedirect() ) { // redirect∑Œ ¿Ãµø
 			response.sendRedirect( mv.getPath() );
 		} else {

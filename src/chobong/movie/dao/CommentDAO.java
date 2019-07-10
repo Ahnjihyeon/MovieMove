@@ -10,5 +10,5 @@ public interface CommentDAO {
 	
 	public List<CommentDTO> selectComment(String commentBoard) throws SQLException;
 	
-	public int deleteComment(int commentNum) throws SQLException;
+	public int deleteComment(String commentNum) throws SQLException;
 }

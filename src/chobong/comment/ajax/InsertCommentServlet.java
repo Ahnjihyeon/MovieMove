@@ -37,7 +37,7 @@ public class InsertCommentServlet extends HttpServlet {
   			System.out.println(commentContent);
   			
   			
-  			CommentDTO dto = new CommentDTO(0, commentBoard, memberId, commentContent, null);
+  			CommentDTO dto = new CommentDTO(null, commentBoard, memberId, commentContent, null);
   			
   			try {
 				result = CommentService.insertComment(dto);

@@ -18,7 +18,8 @@ public class CommentService {
 		int result = commentDAO.insertComment(dto);
 		return result;
 	}
-	public static int deleteComment(int commentNum) throws SQLException {
+	public static int deleteComment(String commentNum) throws SQLException {
+		System.out.println("deleteservice");
 		int result = commentDAO.deleteComment(commentNum);
 		return result;		
 	}	
