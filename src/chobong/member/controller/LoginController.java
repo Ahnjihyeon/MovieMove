@@ -18,7 +18,6 @@ public class LoginController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("로그인 컨트롤러 호출");
 		ModelAndView mv = new ModelAndView();
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
@@ -28,7 +27,6 @@ public class LoginController implements Controller {
 			member = MemberService.login(memberId, memberPwd);
 			session.setAttribute("memberId", memberId);
 			session.setAttribute("member", member);
-			System.out.println("로그인 setattr"); 
 			mv.setPath("a.jsp");
 			mv.setRedirect(true);
 		} catch (SQLException e) {

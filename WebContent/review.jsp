@@ -144,23 +144,23 @@
                                 </div>                       
                             </div>
                             <div class="col-sm-6 visible-sm">
-                            		<c:choose>
-                            			<c:when test="${SessionScope.member.memberId!=null}">
-                            				<div class="text-right">
-			                               		 <h4>${SessionScope.member.memberId}님 로그인중...</h4>
-			                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
-			                                	 <form action="movie?command=logout" method="post">
-			                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
-			                                	 </form>
-		                                	 </div>
-	                            		</c:when>
-	                            		<c:otherwise>
-	                            			<div class="text-right">
-		                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
-		                                     <button type="button" class="loginbtn">로그인</button>
-		                                     </div>
-                            			</c:otherwise>
-                           			</c:choose>                                 	    
+                            		 <c:choose>
+                           			<c:when test="${sessionScope.member.memberId!=null}">
+                           				<div class="text-right">
+		                               		 <h4>${member.memberId}님 로그인중...</h4>
+		                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
+		                                	 <form action="movie?command=logout" method="post">
+		                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
+		                                	 </form>
+	                                	 </div>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<div style="width: 300px; margin-right: 400px" class="text-right">
+	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
+	                                     <button type="button" class="loginbtn">로그인</button>
+	                                     </div>
+                           			</c:otherwise>
+                      			</c:choose>                                  	    
                             </div>
                             <div class="col-md-8 col-sm-12 col-xs-12 remove-padd">
                                 <nav class="navbar navbar-default">
@@ -188,10 +188,10 @@
                             </div>
                             <div class="col-md-2  col-sm-4 col-xs-12 hidden-sm">
                                <c:choose>
-                           			<c:when test="${sessionScope.memberId!=null}">
+                           			<c:when test="${sessionScope.member.memberId!=null}">
                            				<div class="text-right">
-		                               		 <h4>${memberId}님 로그인중...</h4>
-		                                	 <a href="movie?command=memberinfo&memberId=${memberId}">마이페이지</a>
+		                               		 <h4>${member.memberId}님 로그인중...</h4>
+		                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
 		                                	 <form action="movie?command=logout" method="post">
 		                                	 	<button type="submit" class="logoutbtn">로그아웃</button>
 		                                	 </form>
@@ -245,22 +245,7 @@
     							
 								<table id= "listTable">
 								<!-- 이곳에서 리뷰 리스트 전체 출력 -->
-								</table>
-								
-<!--                                 <ul>
-                                    <li style="padding:15px 15px 0 0;">
-                                    <div style="color:#b1afaf;"><a style="display: contents; font-size:20px;"><i class="fa fa-caret-right"> </i>리뷰제목1</a>&nbsp;&nbsp;&nbsp;&nbsp;id | date | star</div>
-                                    <div><a style="font-size:15px;">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</a></div>
-                                    </li>
-                                    <li style="padding:15px 15px 0 0;">
-                                    <div style="color:#b1afaf;"><a style="display: contents; font-size:20px;"><i class="fa fa-caret-right"> </i>리뷰제목2</a>&nbsp;&nbsp;&nbsp;&nbsp;id | date | star</div>
-                                    <div><a style="font-size:15px;">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</a></div>
-                                    </li>
-                                    <li style="padding:15px 15px 0 0;">
-                                    <div style="color:#b1afaf;"><a style="display: contents; font-size:20px;"><i class="fa fa-caret-right"> </i>리뷰제목3</a>&nbsp;&nbsp;&nbsp;&nbsp;id | date | star</div>
-                                    <div><a style="font-size:15px;">리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용</a></div>
-                                    </li>
-                                </ul> -->
+								</table>							
 								</form>
                                 <div class="clearfix"> </div>
                             </div>
