@@ -6,7 +6,7 @@ public class MovieDTO {
 	private int movieYear;
 	private int starPoint;
 	private String movieSummary;
-	private String movieImg;
+	private String movieImage;
 	
 	//Constructor
 	public MovieDTO(String movieCode, String movieTitle, int movieYear, int starPoint, String movieSummary,
@@ -17,7 +17,7 @@ public class MovieDTO {
 		this.movieYear = movieYear;
 		this.starPoint = starPoint;
 		this.movieSummary = movieSummary;
-		this.movieImg = movieImg;
+		this.movieImage = movieImage;
 	}
 	
 	//getXxx,setXxx
@@ -61,16 +61,13 @@ public class MovieDTO {
 		this.movieSummary = movieSummary;
 	}
 
-	public String getMovieImg() {
-		return movieImg;
+	public String getMovieImage() {
+		return movieImage;
 	}
 
-	public void setMovieImg(String movieImg) {
-		this.movieImg = movieImg;
+	public void setMovieImage(String movieImage) {
+		this.movieImage  = movieImage;
 	}
-	
-	
-	
-	  
+		  
 	
 }
