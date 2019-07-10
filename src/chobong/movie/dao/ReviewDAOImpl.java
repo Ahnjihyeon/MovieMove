@@ -119,8 +119,25 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public int delete(String reviewNum, String password) throws SQLException {
-		return 0;
+	public int delete(String memberId, String password) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String sql="delete from review where member_id=? and review_pwd=?";
+		int result = 0;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, memberId );
+			ps.setString(2, password );
+			
+			result = ps.executeUpdate();
+			System.out.println("ªË¡¶ DAOdhdhldhld = " + result );
+		} finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return result;
 	}
 
 	@Override

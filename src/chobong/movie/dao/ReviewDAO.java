@@ -36,17 +36,17 @@ public interface ReviewDAO {
 	List<ReviewDTO> selectBykeyBest( String keyField );
 		  
 		  
-	/**
+	/**		ajax 씀
 	 * 레코드 삽입
 	 * @return : 1-삽입성공 , 0 - 삽입실패
 	 * */
 	  int insert( ReviewDTO reviewDTO ) throws SQLException;
 	  
 	  /**
-	   * 게시글번호에 해당하는 레코드 삭제
+	   * 게시글아이디에 해당하는 레코드 삭제
 	   * @return : 1-삭제성공 , 0 - 삭제실패
 	   * */
-	  int delete(String reviewNum, String password ) throws SQLException;
+	  int delete(String memberId, String password ) throws SQLException;
 	  
 	   /**
 	    * 게시글번호에 해당하는 레코드 수정 

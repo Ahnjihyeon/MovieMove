@@ -17,10 +17,8 @@ public class ReadController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("read 컨트롤러가 호출됬습니다.");
 		
 		String reviewSubject = request.getParameter("reviewSubject");
-		System.out.println("review에서 넘긴 리뷰 제목 = " + reviewSubject);
 	
 /*		String flag = request.getParameter("flag");
 		boolean state = flag==null ? true : false; // 수정 후 되돌아올때의 read요청은 flag=1같을 들고옴 */
@@ -31,11 +29,6 @@ public class ReadController implements Controller {
 		try {
 			// Electronics elec = ElectronicsService.selectByModelnum( modelNum, state );
 			ReviewDTO reviewDTO= ReviewService.selectByReviewSubject(reviewSubject);
-			
-			System.out.println("ReviewDTO.reviewDTO" +  reviewDTO.getReviewId() );
-			System.out.println("ReviewDTO.getReviewContent()" +  reviewDTO.getReviewContent() );
-			System.out.println("ReviewDTO.getReviewSubject()" +  reviewDTO.getReviewSubject() );
-			
 			request.setAttribute( "reviewDTO", reviewDTO );
 			url = "reviewReply.jsp";
 			
