@@ -1,7 +1,7 @@
-<%@page import="chobong.movie.dto.MemberDTO"%>
+<%-- <%@page import="chobong.movie.dto.MemberDTO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +27,16 @@
         
 <title>Insert title here</title>
 <style>
+.form-control{display:inline; width:90%;}
+.submit-btn{padding:8px; 15px;} 
+a :hover{color:blue;}
 table.memberinfo {
     border-collapse: collapse;
     text-align: left;
+    width: 500px;
     line-height: 1.5;
     border-left: 1px solid #ccc;
-    margin: 20px 10px;
+    margin: auto;
 }
 
 table.memberinfo thead th {
@@ -59,6 +63,17 @@ table.memberinfo tbody td {
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
+
+div.submenu{
+			  font-size: 18px;
+			  font-weight: bold;
+              width:200px;
+              height:400px;
+              position:fixed;
+              background:#f9622e;
+              overflow:hidden;
+              float:left;
+      }
 </style>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
@@ -96,11 +111,22 @@ function sendDelete(){//삭제
 <body>
 <div id="page">
             <!---header top---->
-            <div class="top-header">
+            <div class="top-header" style="background-color:#000">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-
+                            <!--                 <a href="#"> </a>
+                                                        <div class="info-block"><i class="fa fa-map"></i>701 Old York Drive Richmond USA.</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-grid">
+                                <ul class="list-unstyled text-right">
+                                    <li><a><i class="fa fa-facebook"></i></a></li>
+                                    <li><a><i class="fa fa-twitter"></i></a></li>
+                                    <li><a><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,13 +164,8 @@ function sendDelete(){//삭제
                                     </div>
                                     <div class="collapse navigation navbar-collapse navbar-ex1-collapse remove-space">
                                         <ul class="list-unstyled nav1 cl-effect-10">
-                                            <li><a  data-hover="Home" href="index.html"><span>Home</span></a></li>
-                                            <!-- <li><a data-hover="About" href="about.html"><span>About</span></a></li>
-                                            <li><a data-hover="Rooms" href="rooms.html"><span>Rooms</span></a></li>
-                                            <li><a data-hover="Gallery"  href="gallery.html"><span>Gallery</span></a></li>
-                                            <li><a data-hover="Dinning"><span>Dinning</span></a></li>
-                                            <li><a data-hover="News" href="news.html"><span>News</span></a></li>
-                                            <li><a data-hover="Contact Us" href="contact.html"><span>contact Us</span></a></li> -->
+                                            <li><span><input type="text" class="form-control" name="Search" placeholder="검색"></span></li>
+                                            <li><span><input type="submit" class="submit-btn" value="검색"></span></li>
                                         </ul>
                                     </div>
                                 </nav>
@@ -167,7 +188,7 @@ function sendDelete(){//삭제
 <table class="memberinfo">
     <thead>
     <tr>
-        <th colspan="2">마이페이지</th>        
+        <th colspan="2">회원 정보 수정</th>        
     </tr>
     </thead>
     <tbody>
@@ -196,19 +217,29 @@ function sendDelete(){//삭제
         <td>${member.memberDate}</td>
     </tr>
     
-   	<tr>
-   		<td>
-   			비밀번호 입력 : <input type=password name="password" value="">
-   		</td>	
-   		<td>
-   			<input type=hidden name="memberId" value="${member.memberId}">
-			<input type=hidden name="command" value="">
-			<input type=button value="수정하기" onClick="sendUpdate()">
-			<input type=button value="회원탈퇴" onClick="sendDelete()">
-		</td>
-	</tr>		
-	</form> 
-</tbody>
+    	<tr>
+    		<td>
+    			비밀번호 입력 : <input type=password name="password" value="">
+    		</td>	
+    		<td>
+    			<input type=hidden name="memberId" value="${member.memberId}">
+				<input type=hidden name="command" value="">
+				<input type=button value="수정하기" onClick="sendUpdate()">
+				<input type=button value="회원탈퇴" onClick="sendDelete()">
+			</td>
+		</tr>		
+	</form>
+	<div class="submenu">
+		<ul>
+		  <li style="color: white; font-size: 20px;">마이페이지</li><br>
+		  <a href="memberMyFage.jsp"><li>내 정보</li></a><br>
+		  <a href="#"><li>회원 정보 수정</li></a><br>
+		  <a href="#"><li>찜목록</li></a><br>
+		</ul>
+	</div>
+    
+    </tbody>
 </table>
+
 </body>
 </html>
