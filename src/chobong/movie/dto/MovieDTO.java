@@ -10,7 +10,7 @@ public class MovieDTO {
 	
 	//Constructor
 	public MovieDTO(String movieCode, String movieTitle, int movieYear, int starPoint, String movieSummary,
-			String movieImg) {
+			String movieImage) {
 		super();
 		this.movieCode = movieCode;
 		this.movieTitle = movieTitle;
