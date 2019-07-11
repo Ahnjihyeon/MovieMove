@@ -11,6 +11,7 @@ public class DbUtil2 {
 	// static 블록 - 객체 생성과 동시에 생성 & main시작 전 실행
 	/** (1)로드  */ 
 	static {
+		
 		try {
 			Class.forName( DbProperty.DRIVER_NAME );
 		} catch (ClassNotFoundException e) {
