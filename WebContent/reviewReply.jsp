@@ -110,10 +110,18 @@
 								console.log( error );
 							}
 						}) // ajax 끝 
+						
 					} else {
 						alert('비밀번호가 틀렸습니다. 다시 입력해주세요.');
 					}
 				}) // 완료버튼 클릭 끝
+				//////////////////////
+			} else if( $(this).val()=="수정완료" ) {
+			
+				$(this).val("수정완료");	
+				$("#reUpdate").hide();
+				$("#reSelet").show();
+				
 			}// 버튼이 수정하기 이냐 묻기 끝
 		})
 		//-------------------------------------------------------------------
@@ -261,10 +269,10 @@
 <input type="hidden" name='memberId'/><!-- 아이디 -->
 <input type="hidden" name='movieCode' value='${requestScope.reviewDTO.movieCode}'  /><!-- 영화코드 -->
 
-<input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
-<input type="button" class="like-btn" id="like-btn">
 </form>
 <input type="button" class="update-btn" id="update-btn" value="수정하기">
+<input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
+<input type="button" class="like-btn" id="like-btn">
 
 <div class="single-bottom comment-form" style="padding:50px 0 0 0;">
 	
