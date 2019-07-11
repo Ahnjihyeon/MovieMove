@@ -234,7 +234,7 @@ function sendDelete(){//삭제
 		  <li style="color: white; font-size: 20px;">마이페이지</li><br>
 		  <a href="memberMyFage.jsp"><li>내 정보</li></a><br>
 		  <a href="#"><li>회원 정보 수정</li></a><br>
-		  <a href="#"><li>찜목록</li></a><br>
+		  <a href="memberReview.jsp"><li>찜목록</li></a><br>
 		</ul>
 	</div>
     

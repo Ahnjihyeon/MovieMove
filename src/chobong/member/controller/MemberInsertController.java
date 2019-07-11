@@ -1,10 +1,7 @@
 package chobong.member.controller;
 
 import java.io.IOException;
-
-import java.io.PrintWriter;
 import java.sql.SQLException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
-import chobong.member.service.MemberService;
 import chobong.movie.dto.MemberDTO;
+import chobong.movie.service.MemberService;
 
 public class MemberInsertController implements Controller {
 

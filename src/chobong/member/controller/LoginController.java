@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
-import chobong.member.service.MemberService;
 import chobong.movie.dto.MemberDTO;
+import chobong.movie.service.MemberService;
 
 public class LoginController implements Controller {
 

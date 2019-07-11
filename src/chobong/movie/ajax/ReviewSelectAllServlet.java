@@ -1,4 +1,4 @@
-package chobong.review.ajax;
+package chobong.movie.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;

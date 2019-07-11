@@ -34,7 +34,7 @@ a :hover {
 	color: blue;
 }
 
-table.memberinfo {
+table.memberReview {
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 2.5;
@@ -44,7 +44,7 @@ table.memberinfo {
 	border-left: 1px solid #ccc;
 }
 
-table.memberinfo thead th {
+table.memberReview thead th {
 	padding: 10px;
 	font-weight: bold;
 	border-top: 1px solid #ccc;
@@ -53,7 +53,7 @@ table.memberinfo thead th {
 	background: #dcdcd1;
 }
 
-table.memberinfo tbody th {
+table.memberReview tbody th {
 	width: 150px;
 	padding: 10px;
 	font-weight: bold;
@@ -63,7 +63,7 @@ table.memberinfo tbody th {
 	background: #ececec;
 }
 
-table.memberinfo tbody td {
+table.memberReview tbody td {
 	width: 150px;
 	padding: 10px;
 	vertical-align: top;
@@ -85,42 +85,33 @@ div.submenu {
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <script>
-	function sendUpdate() {//수정폼
-		var dbPwd = $
-		{
-			member.memberPwd
+	$(function(){
+		function selectAll(){
+			$.ajax({ 
+				type: "post",
+				url: "memberreview",  
+				dataType: "json",
+				data: "${sessionScope.memberId}",
+				success:  function( result ) {
+					console.log(result);
+					/* //$("#memberReview").remove();  // #listTable tr:gt(0)										
+					var str="";					
+					$.each(result, function(index, item){						
+						str += "<li style='padding:15px 15px 0 0;'>";
+						str += "<div style='color:#b1afaf;'>"+(index+1)+"</div>";
+						str += "<div>"+item.movieCode+"<a href='movie?command=read&reviewId="+item.reviewId+"' value='item.reviewSubject' style='font-size:15px;'></a>별점 :"+item.reviewStarPoint+"개 조회수 : "+item.reviewCount+" 작성일 : "+reviewWriteday+"</div>";
+						str += "</li>";
+					})						
+					$("#memberReview").append(str); 
+					$("a").css("textDecoration","none"); */
+ 				},
+				error: function( error ) {
+					console.log( "검색오류" );
+				} 
+			}) 
 		}
-		;
-		if (document.requestForm.password.value == "") {
-			alert("비밀번호를 입력해 주세요")
-			document.requestForm.password.focus();
-			return;
-		}
-		if (document.requestForm.password.value == dbPwd) {
-			document.requestForm.command.value = "updatemember";
-			document.requestForm.submit();
-		}
-		alert("수정이 완료되었습니다. 다시 로그인 해 주세요");
-	}
-
-	function sendDelete() {//삭제
-		var dbPwd = $
-		{
-			member.memberPwd
-		}
-		;
-		if (document.requestForm.password.value == "") {
-			alert("비밀번호를 입력해 주세요")
-			document.requestForm.password.focus();
-			return;
-		}
-		if (document.requestForm.password.value == dbPwd) {
-			document.requestForm.command.value = "deletemember";
-			document.requestForm.submit();
-		} else {
-			alert("비밀번호가 틀렸습니다.");
-		}
-	}
+		selectAll();
+	})
 </script>
 <body>
 	<div id="page">
@@ -172,7 +163,6 @@ div.submenu {
 												class="icon-bar"></span> <span class="icon-bar"></span> <span
 												class="icon-bar"></span>
 										</button>
-
 									</div>
 									<div class="collapse navigation navbar-collapse navbar-ex1-collapse remove-space">
                                         <ul class="list-unstyled nav1 cl-effect-10">
@@ -195,53 +185,24 @@ div.submenu {
 				</div>
 			</header>
 		</div>
-		<form name="requestForm" method=post action="${path}/movie">
-			<table class="memberinfo">
-				<thead>
-					<tr>
-						<th colspan="2">내 정보</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">아이디</th>
-						<td>${member.memberId}</td>
-					</tr>
-					<tr>
-						<th scope="row">이메일</th>
-						<td>${member.memberEmail}</td>
-					</tr>
-					<tr>
-						<th scope="row">이름</th>
-						<td>${member.memberName}</td>
-					</tr>
-					<tr>
-						<th scope="row">별명</th>
-						<td>${member.memberNickname}</td>
-					</tr>
-					<tr>
-						<th scope="row">연령대</th>
-						<td>${member.memberAge}</td>
-					</tr>
-					<tr>
-						<th scope="row">가입일</th>
-						<td>${member.memberDate}</td>
-					</tr>
-					</form>
-					<div class="submenu">
-						<ul>
-							<li style="color: white; font-size: 20px;">마이페이지</li>
-							<br>
-							<a href="#"><li>내 정보</li></a>
-							<br>
-							<a href="memberInfo.jsp"><li>회원 정보 수정</li></a>
-							<br>
-							<a href="memberReview.jsp"><li>찜목록</li></a>
-							<br>
-						</ul>
-					</div>
-
-				</tbody>
-			</table>
+		
+				<div class="submenu">
+					<ul>
+						<li style="color: white; font-size: 20px;">마이페이지</li>
+						<br>
+						<a href="#"><li>내 정보</li></a>
+						<br>
+						<a href="memberInfo.jsp"><li>회원 정보 수정</li></a>
+						<br>
+						<a href="memberReview.jsp"><li>찜목록</li></a>
+						<br>
+					</ul>
+				</div>
+			<div align="center">
+				<ul id="memberReview">
+			
+				</ul>
+			</div>
+				
 </body>
 </html>

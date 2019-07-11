@@ -1,4 +1,4 @@
-package chobong.comment.ajax;
+package chobong.movie.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,16 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import chobong.comment.service.CommentService;
 import chobong.movie.dto.CommentDTO;
-import chobong.movie.service.ReviewService;
+import chobong.movie.service.CommentService;
 import net.sf.json.JSONArray;
 
 /**
  * Servlet implementation class SelectCommentServlet
  */
 @WebServlet("/selectcomment")
-public class SelectCommentServlet extends HttpServlet {
+public class CommentSelectServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String commentBoard = request.getParameter("commentBoard");
 		List<CommentDTO> list = new ArrayList<>();

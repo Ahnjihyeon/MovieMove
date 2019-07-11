@@ -1,4 +1,4 @@
-package chobong.like.service;
+package chobong.movie.service;
 
 import java.sql.SQLException;
 

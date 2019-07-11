@@ -1,4 +1,4 @@
-package chobong.comment.service;
+package chobong.movie.service;
 
 import java.sql.SQLException;
 import java.util.List;

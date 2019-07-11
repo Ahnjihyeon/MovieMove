@@ -1,4 +1,4 @@
-package chobong.comment.ajax;
+package chobong.movie.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import chobong.comment.service.CommentService;
 import chobong.movie.dto.CommentDTO;
+import chobong.movie.service.CommentService;
 
 /**
  * Servlet implementation class InsertComment
  */
 @WebServlet("/insertcomment")
-public class InsertCommentServlet extends HttpServlet {
+public class CommentInsertServlet extends HttpServlet {
   	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   		HttpSession session = request.getSession();
   		String commentBoard = request.getParameter("commentBoard");

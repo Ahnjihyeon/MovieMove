@@ -1,6 +1,7 @@
-package chobong.like.ajax;
+package chobong.movie.ajax;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -10,23 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import chobong.like.service.LikeService;
+import chobong.movie.dto.ReviewDTO;
+import chobong.movie.service.MemberService;
 
 /**
- * Servlet implementation class LikeDoServlet
+ * Servlet implementation class MemberReviewServlet
  */
-@WebServlet("/likeclick")
-public class LikeDoServlet extends HttpServlet {
+@WebServlet("/memberreview")
+public class MemberReviewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("¸®ºäÃâ·Â ¼­ºí·¿");
 		HttpSession session = request.getSession();
-		
 		String memberId = (String)session.getAttribute("memberId");
-		String reviewId = request.getParameter("reviewId");
-		
+		ReviewDTO dto = new ReviewDTO();
 		try {
-			LikeService.likeDo(memberId, reviewId);
+			dto = MemberService.memberReview(memberId);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
+		PrintWriter out = response.getWriter();
+		out.println(dto);
 	}
 }

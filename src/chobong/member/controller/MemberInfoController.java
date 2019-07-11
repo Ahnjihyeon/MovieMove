@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
-import chobong.member.service.MemberService;
+import chobong.movie.service.MemberService;
 
 public class MemberInfoController implements Controller {
 

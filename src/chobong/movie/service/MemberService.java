@@ -1,14 +1,17 @@
-package chobong.member.service;
+package chobong.movie.service;
 
 import java.sql.SQLException;
 
 import chobong.movie.dao.MemberDAO;
 import chobong.movie.dao.MemberDAOImpl;
-import chobong.movie.dto.CommentDTO;
+import chobong.movie.dao.ReviewDAO;
+import chobong.movie.dao.ReviewDAOImpl;
 import chobong.movie.dto.MemberDTO;
+import chobong.movie.dto.ReviewDTO;
 
 public class MemberService {
 	private static MemberDAO memberDAO = new MemberDAOImpl();
+	
 	
 	public static MemberDTO memberInfo(String memberId) {
 		MemberDTO dto = memberDAO.memberInfo(memberId);
@@ -38,5 +41,9 @@ public class MemberService {
 		int result = memberDAO.update(dto);
 		return result;
 	}
-	
+	public static ReviewDTO memberReview(String memberId) throws SQLException{
+		System.out.println("리뷰출력서비스");
+		ReviewDTO dto = memberDAO.memberReview(memberId);
+		return dto;	
+	}
 }

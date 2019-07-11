@@ -1,9 +1,6 @@
 package chobong.movie.dao;
-
-import java.util.List;
-
-import chobong.movie.dto.CommentDTO;
 import chobong.movie.dto.MemberDTO;
+import chobong.movie.dto.ReviewDTO;
 
 public interface MemberDAO {
 	/** 등록전에 id중복체크 
@@ -28,8 +25,7 @@ public interface MemberDAO {
 	/**
 	 * id에 해당하는 레코드 수정하기
 	 * */
-	int update(MemberDTO memberDTO);
+	int update(MemberDTO memberDTO);	
 	
-	
-
+	ReviewDTO memberReview(String memberId);
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import chobong.movie.dto.CommentDTO;
 import chobong.movie.dto.MemberDTO;
+import chobong.movie.dto.ReviewDTO;
 import chobong.util.DbUtil;
 
 public class MemberDAOImpl implements MemberDAO {
@@ -160,6 +161,29 @@ public class MemberDAOImpl implements MemberDAO {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return dto;
+	}
+	@Override
+	public ReviewDTO memberReview(String memberId) {
+		System.out.println("¸®ºäÃâ·Â impl");
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ReviewDTO dto = null;
+		try {
+			con = DbUtil.getConnection();		
+			String sql = "select * from review where member_Id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, memberId);	
+			rs = ps.executeQuery();
+			if(rs.next())
+			dto = new ReviewDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),
+					rs.getInt(8),rs.getString(9));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return dto;		
 	}
 	
 
