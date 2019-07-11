@@ -8,7 +8,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link rel="icon" href="images/icons/favicon.png"/>
+<!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="fonts/antonio-exotic/stylesheet.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/lightbox.min.css">
+        <link href="css/responsive.css" rel="stylesheet">
 <style>
 	input.like-btn{
 		background: url('images/icons/like.png') no-repeat;
@@ -17,6 +25,22 @@
 		height:40px;
 		cursor:pointer;
 	}
+	.commentList{
+	 			font-size: 13px;
+ 				list-style:none;
+			   font-weight: 600;
+			   letter-spacing: 1px;
+			   margin-bottom: 5px;
+			   margin-top: 20px;
+			   padding-bottom: 10px;
+			   text-transform: uppercase;
+			   border-bottom: 1px dashed #ddd;
+}
+.reviewAvertissement { 
+border:1px solid; 
+padding:10px; 
+width: 800px;
+}
 </style>
 <title>Insert title here</title>
 <script src="js/jquery.min.js"></script>
@@ -111,18 +135,10 @@
 								console.log( error );
 							}
 						}) // ajax 끝 
-						
 					} else {
 						alert('비밀번호가 틀렸습니다. 다시 입력해주세요.');
 					}
 				}) // 완료버튼 클릭 끝
-				//////////////////////
-			} else if( $(this).val()=="수정완료" ) {
-			
-				$(this).val("수정완료");	
-				$("#reUpdate").hide();
-				$("#reSelet").show();
-				
 			}// 버튼이 수정하기 이냐 묻기 끝
 		})
 		//-------------------------------------------------------------------
@@ -160,16 +176,16 @@
 				dataType: "json",
 				data: $("input[name=commentBoard]") ,
 				success:  function( result ) {
-					$("#commentTable tr").remove();  // #listTable tr:gt(0)
+					$(".commentList").remove();  // #listTable tr:gt(0)
 					var str="" ;
 					$.each(result, function(index, item){
-						str += "<tr>";
-						str += "<td> 작성자 :<span>"+ item.memberId +"</span></td>"				
-						str += "</tr>";						
-						str += "<tr>";
-						str += "<td> 내용 : "+ item.commentContent +"</td>";
-						str += "<td><input type='button' value='삭제' name='"+item.commentNum+"'></td>"
-						str += "</tr>";						
+						str += "<ul class='commentList'>";
+                        str += "<li style='padding:15px 15px 0 0;'>";
+                        str += "<div style='color:#b1afaf;'>"+"&nbsp;&nbsp;&nbsp;<h3 style='display: contents; font-size:20px;'><span>"+item.memberId+"</span></h3>&nbsp;&nbsp;&nbsp;&nbsp;"+" | "+ item.commentDate +"</div>";
+                        str += "<br><div id='listSubject' value='item.reviewSubject' style='font-size:15px;'>"+ item.commentContent;
+                        str += "<input type='button' value='삭제' style='float: right; margin-top: -21px; margin-right: -11px;width: 80px; height: 40px;' name='"+item.commentNum+"'>"+"</div>"
+                        str += "</li>";
+                        str += "</ul>";	
 					})
 					$("#commentTable").append(str);
  				},
@@ -183,7 +199,7 @@
 		/////////////////////////////////
 		//댓글 삭제
 		$(document).on("click", "[value=삭제]",function(){
-			var commentId = $(this).parent().parent().prev().children().children().text();			
+			var commentId = $(this).parent().prev().prev().children().children().text();	
 			if(loginId!=commentId){
 				alert("아무나 삭제하는거 아닙니다^^");
 				return false;
@@ -246,48 +262,89 @@
 </script>
 </head>
 <body>
+<div id="page">
+            <!---header top 맨위---->
+            <div class="top-header" style="background-color:#000">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-grid">
+                                <ul class="list-unstyled text-right">
+                                    <li><a><i class="fa fa-facebook"></i></a></li>
+                                    <li><a><i class="fa fa-twitter"></i></a></li>
+                                    <li><a><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <!--header--->
+            <c:import url="header.jsp"/>
+            
+            <hr style="border:1px solid #eee; margin-top: 0;">
 
-<h3>리뷰 상세페이지</h3>
-
+			
+            </section>
+             
+                </div>
 <!-- 일반 페이지  -->
-<div name="reSelet" id="reSelet">
-<span id="reSubject" >${requestScope.reviewDTO.reviewSubject}</span>
-<span id="reStarPoint" >${requestScope.reviewDTO.reviewStarPoint}점</span>
+<form name="reSelet" id="reSelet">
+<div class="reviewAvertissement" style=" margin: auto; height: 615px;">
+<h4 id="reSubject">${requestScope.reviewDTO.reviewSubject}</h4><br>
+<%-- <span id="reSubject" >${requestScope.reviewDTO.reviewSubject}</span> --%>
+<span id="reStarPoint" >평점 : ${requestScope.reviewDTO.reviewStarPoint}점</span>
+<span style="float: right;">등록일: ${requestScope.reviewDTO.reviewWriteday}</span><br><br>
 <hr>
 <div id="reContent" >${requestScope.reviewDTO.reviewContent}</div>
-</div>
 
-<!-- update용 페이지  -->
-<form method="post"  name="reUpdate"  id="reUpdate"> 
-<input type="text" class="form-control" name="reviewSubject" value=" ${requestScope.reviewDTO.reviewSubject}">좋아요 : <span class="like_count"></span>개<br>
+</div>
+</form>
+
+<!-- 수정하기 페이지 -->
+<form method="post"  name="reUpdate"  id="reUpdate">
+<div class="reviewAvertissement" style=" margin: auto; height: 615px;">
+<h4 class="form-control" name="reviewSubject">${requestScope.reviewDTO.reviewSubject}</h4><br>
+<span style="margin-left: auto;">id: ${requestScope.reviewDTO.reviewId }</span>
+<span style="float: right;">좋아요 수</span> <br><br>
 <input type='radio' name='reviewStarPoint' value=1 />1
 <input type='radio' name='reviewStarPoint' value=2 />2
 <input type='radio' name='reviewStarPoint' value=3 />3
 <input type='radio' name='reviewStarPoint' value=4 />4
-<input type='radio' name='reviewStarPoint' value=5 />5<br>
-<textarea class="form-control" name="reviewContent" >${requestScope.reviewDTO.reviewContent}</textarea><br>
-                                    
+<input type='radio' name='reviewStarPoint' value=5 />5 <span style="float: right;">등록일: ${requestScope.reviewDTO.reviewWriteday}</span><br><br>
+<textarea class="form-control" name="reviewContent" style="height: 400px; width: 775px;">${requestScope.reviewDTO.reviewContent}</textarea><br>
 <input type="hidden" name='memberId'/><!-- 아이디 -->
 <input type="hidden" name='movieCode' value='${requestScope.reviewDTO.movieCode}'  /><!-- 영화코드 -->
 
-</form>
-<input type="button" class="update-btn" id="update-btn" value="수정하기">
+ </div> 
+ </form>
+ <input type="button" class="update-btn" id="update-btn" value="수정하기">
 <input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
 <input type="button" class="like-btn" id="like-btn">
 
+
 <div class="single-bottom comment-form" style="padding:50px 0 0 0;">
-	
-	<h4>댓글쓰기</h4>
-	<form method="post" name="coInsert" id="coInsert">
+
+	<h3 style="padding: 0 280px; font-size: 22px; font-weight: 600;">댓글</h3>
+	<form method="post" name="coInsert" id="coInsert" style="overflow: hidden; margin: 0 auto; width: 800px;">
 		<input type="hidden" name="commentNum" value="">
-		<input type="hidden" name="commentBoard" value="${requestScope.reviewDTO.reviewId}"/>		
-		<textarea class="form-control" name="commentContent" placeholder="내용을 입력해주세요" required=""></textarea><br>
-		<input type="button" value="등록" id="insertComment" name="insertCommnet">		
+		<input type="hidden" name="commentBoard" value="${requestScope.reviewDTO.reviewId}"/>	
+		<textarea class="form-control" name="commentContent" placeholder="내용을 입력해주세요" required="" style="width: 800px; margin: auto;"></textarea><br>
+		<input type="button" value="등록" id="insertComment" name="insertCommnet" style="float: right; width: 80px; height: 40px; margin-top: -15px;">
 	</form>
-	<h4>댓글목록</h4>
-	<table id="commentTable">
+	<br>
+	<div style="padding: 0 280px;">
+	<h4 style="font-size: 22px; border-bottom: 2px solid; padding-bottom: 10px; font-weight: 600;">댓글목록</h4>
+	<table id="commentTable" style="width: 800px;">
+	
 	<!-- 댓글 전체 리스트 출력 -->
 	</table>
+	</div>
 </div>
 </body>
 </html>
