@@ -19,6 +19,7 @@ public class ReadController implements Controller {
 			throws ServletException, IOException {
 		
 		String reviewSubject = request.getParameter("reviewSubject");
+		//System.out.println( "리드 컨드롤러= " +reviewSubject );
 	
 /*		String flag = request.getParameter("flag");
 		boolean state = flag==null ? true : false; // 수정 후 되돌아올때의 read요청은 flag=1같을 들고옴 */
