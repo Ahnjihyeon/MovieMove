@@ -24,11 +24,9 @@ public class ReviewSelectAllServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String movieCode = request.getParameter("movieCode");
-		
 		List<ReviewDTO> list= new ArrayList<ReviewDTO>();
 		try {
-			list = ReviewService.selectAllByMovieTitle(movieCode);
+			list = ReviewService.selectAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

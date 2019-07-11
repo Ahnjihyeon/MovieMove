@@ -23,6 +23,70 @@
 <%-- <script src="js/lightbox-plus-jquery.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script> --%>
 <script src="js/instafeed.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
 <script src="js/custom.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		// 리뷰 전체 리스트
+		function selectAll(){
+			$.ajax({ 
+				type: "post",
+				url: "${path}/ReviewSelectAll",  
+				dataType: "json",
+				success:  function( result ) {
+					$("#listTable p").remove();  // #listTable tr:gt(0)
+					
+					var totalLength = "총 " + result.length + "건";
+					console.log( "총 개수 = " + totalLength );
+					var str="" ;
+					$.each(result, function(index, item){
+						// 리뷰제목 , 아이디, 내용 , 날짜 , 댓글수, 별점, 조회수
+						str += "<div class='well' style='background-color:#fff;'>";
+						str += "<div class='media'><a class='pull-left' href='#'>";
+						str += "<img class='media-object' src='http://placekitten.com/150/150'></a>";
+						str += "<div class='media-body'>";
+						str += "<h4 class='media-heading'>"+item.reviewSubject+"</h4>"; // 제목
+						str += "<p class='text-right'>"+item.memberId+"</p>"; // 아이디
+						str += "<p>"+item.reviewContent+"</p>"; // 리뷰내용
+						str += "<ul class='list-inline list-unstyled'>";
+						str += "<li><span>"+item.reviewWriteday+"</span></li>"; // 날짜
+						str += "<li><span> 댓글수 :"+item.댓글수+"</span></li><li>|</li>"; // 댓글수
+						str += "<li><span>"+item.reviewStarPoint+"점</span></li><li>|</li><li>"; // 별점
+						
+						str += "<span>조회수: "+item.reviewCount+"</span></li></ul></div></div></div>"; // 조회수
+						
+						$("#listTotal").text(totalLength);
+						$("#listTable").append(str);
+						})	
+					},
+				error: function( error ) {
+					console.log( "검색오류" );
+				} 
+			}) 
+		}////////////////////////////// 
+		selectAll();
+/* 		
+		<div class="well" style="background-color:#fff; ">
+	      <div class="media">
+	      	<a class="pull-left" href="#">
+	    		<img class="media-object" src="http://placekitten.com/150/150">
+	  		</a>
+	  		<div class="media-body">
+	    		<h4 class="media-heading">리뷰제목</h4>
+	          <p class="text-right">아이디</p>
+	          <p>리뷰내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</p>
+	          <ul class="list-inline list-unstyled">
+	  			<li><span>날짜</span></li>
+	            <li>|</li>
+	            <li><span>댓글수</span></li>
+	            <li>|</li>
+	            <li><span>별점</span></li>
+	            <li>|</li>
+	            <li>
+	              <span>조회수</span>
+	            </li>
+				</ul></div></div></div> */
+		
+	})
+</script>
 </head>
 <body>
 <div id="page">
@@ -55,7 +119,13 @@
             <br>
             <br>
 			<div class="container">
-			  <div class="well" style="background-color:#fff; ">
+			
+			<di id="listTotal">총 0건</di>
+			<!--  여기서 부터 반복 시작 -->
+			<div id="listTable"><p>게시물이 없습니다.</p></div>
+			
+			
+			 <!-- <div class="well" style="background-color:#fff; ">
 			      <div class="media">
 			      	<a class="pull-left" href="#">
 			    		<img class="media-object" src="http://placekitten.com/150/150">
@@ -77,7 +147,10 @@
 						</ul>
 			       </div>
 			    </div>
-			  </div>
+			  </div> -->
+			  <!-- 여기까지 반복 -->
+			  
+			  
 			</div>
 
 			<!---footer--->
