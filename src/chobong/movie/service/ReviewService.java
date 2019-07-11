@@ -29,8 +29,8 @@ public class ReviewService {
 	
 	
 	  /** 게시글번호에 해당하는 레코드 검색 ( 상세페이지 )  */
-	public static  ReviewDTO selectByReviewSubject(String reviewSubject) throws SQLException {
-		ReviewDTO reviewDTO = reviewDAO.selectByReviewSubject(reviewSubject);
+	public static  ReviewDTO selectByReviewId(String reviewId) throws SQLException {
+		ReviewDTO reviewDTO = reviewDAO.selectByReviewId(reviewId);
 		return reviewDTO;
 	}
 	  
@@ -75,8 +75,10 @@ public class ReviewService {
 	    * 게시글번호에 해당하는 레코드 수정 
 	    * @return : 1-수정성공 , 0 - 수정실패
 	    * */
-	public static int update(ReviewDTO movieDTO, String password ) throws SQLException {
-		return 0;
+	public static int update(ReviewDTO upReviewDTO, String password ) throws SQLException {
+		int result = reviewDAO.update(upReviewDTO, password);
+		if( result == 0 ) throw new SQLException("게시글을 수정할 수 없습니다.");
+		return result;
 	}
 	
 	

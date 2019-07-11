@@ -18,8 +18,8 @@ public class ReadController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String reviewSubject = request.getParameter("reviewSubject");
-		//System.out.println( "리드 컨드롤러= " +reviewSubject );
+		String reviewId = request.getParameter("reviewId");
+		//System.out.println( "리드 컨드롤러= " +reviewId );
 	
 /*		String flag = request.getParameter("flag");
 		boolean state = flag==null ? true : false; // 수정 후 되돌아올때의 read요청은 flag=1같을 들고옴 */
@@ -29,7 +29,7 @@ public class ReadController implements Controller {
 		ModelAndView mv = new ModelAndView();
 		try {
 			// Electronics elec = ElectronicsService.selectByModelnum( modelNum, state );
-			ReviewDTO reviewDTO= ReviewService.selectByReviewSubject(reviewSubject);
+			ReviewDTO reviewDTO= ReviewService.selectByReviewId(reviewId);
 			request.setAttribute( "reviewDTO", reviewDTO );
 			url = "reviewReply.jsp";
 			

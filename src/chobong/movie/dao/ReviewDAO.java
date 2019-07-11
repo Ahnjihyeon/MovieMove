@@ -20,8 +20,8 @@ public interface ReviewDAO {
 	 List<ReviewDTO> selectAll( String movieCode ) throws SQLException; 
 	
 	 // ----수정됬음-----
-	  /** 게시글제목에 해당하는 레코드 검색 ( 상세페이지 )  */
-	  ReviewDTO selectByReviewSubject(String reviewSubject) throws SQLException;
+	  /** 게시글번호에 해당하는 레코드 검색 ( 상세페이지 )  */
+	  ReviewDTO selectByReviewId(String reviewId) throws SQLException;
 	  
 	  
 	  /** 게시판 조회수를 증가하는 기능
@@ -52,7 +52,7 @@ public interface ReviewDAO {
 	    * 게시글번호에 해당하는 레코드 수정 
 	    * @return : 1-수정성공 , 0 - 수정실패
 	    * */
-	  int update(ReviewDTO movieDTO, String password ) throws SQLException;
+	  int update(ReviewDTO upReviewDTO, String password ) throws SQLException;
 	  
 	  
 	  

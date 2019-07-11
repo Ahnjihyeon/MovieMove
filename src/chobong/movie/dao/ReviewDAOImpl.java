@@ -7,23 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import chobong.movie.dto.CommentDTO;
 import chobong.movie.dto.MovieDTO;
 import chobong.movie.dto.ReviewDTO;
 import chobong.util.DbUtil;
 
 public class ReviewDAOImpl implements ReviewDAO {
-	
-
-	/*	private String reviewId;
-	private String memberId;
-	private String movieCode;
-	private String reviewSubject;
-	private String reviewContent;
-	private String reviewWriteday;
-	private int reviewStarPoint;
-	private int reviewCount;
-	private String reviewPwd;*/
 	@Override
 	public List<MovieDTO> selectBykeySearch(String keyField, String keyWord) {
 		return null;
@@ -56,17 +44,17 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 	// ----수정됬음----
 	@Override
-	public ReviewDTO selectByReviewSubject(String reviewSubject) throws SQLException {
+	public ReviewDTO selectByReviewId(String reviewId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		String sql="Select * from review where review_subject=? order by review_writeday desc";//11
+		String sql="Select * from review where review_id=? order by review_writeday desc";//11
 		ReviewDTO reviewDTO =  null;
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString( 1, reviewSubject );
+			ps.setString( 1, reviewId );
 			
 			rs = ps.executeQuery();
 			if( rs.next() ) {
@@ -75,7 +63,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 									rs.getString(4), rs.getString(5), rs.getString(6), 
 									rs.getInt(7), rs.getInt(8), rs.getString(9) );
 			}
-			System.out.println("DAO 성공 = " + reviewDTO );
+			//System.out.println("DAO 성공 = " + reviewDTO );
 		} finally {
 			DbUtil.dbClose( rs, ps, con );
 		}
@@ -138,12 +126,30 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 		return result;
 	}
-
-	@Override
-	public int update(ReviewDTO movieDTO, String password) throws SQLException {
-		return 0;
-	}
-
 	
-
+	@Override
+	public int update(ReviewDTO upReviewDTO, String password) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		System.out.println(  "업데이트 DAO = " + upReviewDTO.getReviewId() );
+		String sql="Update review Set review_subject =?,review_starPoint=?,review_content=? where review_id=? and review_pwd=?";
+		int result = 0;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, upReviewDTO.getReviewSubject() );
+			ps.setInt(2, upReviewDTO.getReviewStarPoint() );
+			ps.setString(3, upReviewDTO.getReviewContent() );
+			
+			ps.setString(4, upReviewDTO.getReviewId() );
+			ps.setString(5, password );
+			
+			result = ps.executeUpdate();
+			System.out.println("업데이트 DAO = " + result );
+		} finally {
+			DbUtil.dbClose( ps, con);
+		}
+		return result;
+	}
 }

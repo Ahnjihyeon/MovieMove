@@ -62,6 +62,60 @@
 				alert('비밀번호가 틀렸습니다. 다시 입력해주세요.');
 			}
 		});
+		
+		
+		$("#reSelet").show();
+		$("#reUpdate").hide();
+		
+		// 수정하기  reSelet   reUpdate
+		$("#update-btn").click(function() {
+			if( $(this).val()=="수정하기" ) {
+				
+				$(this).val("수정완료");	
+				$("#reUpdate").show();
+				$("#reSelet").hide();
+				
+				// 완료버튼 클릭하면 값 전송
+				$(this).click(function() {
+					var result = prompt("등록했던 게시글 비빌번호를 입력해주세요.","1234");
+					var reviewId = '${requestScope.reviewDTO.reviewId}';
+					var rePwd = '${requestScope.reviewDTO.reviewPwd}';
+					
+					console.log( "전송되는 업데이트 폼 값 = " + $("form[name=reUpdate]").serialize() );
+					
+					if ( result==rePwd ) {
+						var param = $("form[name=reUpdate]").serialize()+ "&reviewId="+reviewId+"&reviewPwd="+result;
+					
+						// 수정하기 ajax
+						$.ajax({ 
+						type: "post",
+						url: "ReviewUpdate", 
+						dataType: "json",
+						data: param,
+						success:  function( result ) {
+								
+								$.each( result, function( index, item ) {
+									//alert("수정완료");
+									$("#reSubject").text( item.reviewSubject );	
+									$("#reStarPoint").text( item.reviewStarPoint );
+									$("#reContent").text( item.reviewContent );
+								})
+								
+								$("#update-btn").val("수정하기");	
+								$("#reSelet").show();
+								$("#reUpdate").hide();  
+							},
+							error: function( error ) {
+								alert("수정x");
+								console.log( error );
+							}
+						}) // ajax 끝 
+					} else {
+						alert('비밀번호가 틀렸습니다. 다시 입력해주세요.');
+					}
+				}) // 완료버튼 클릭 끝
+			}// 버튼이 수정하기 이냐 묻기 끝
+		})
 		//-------------------------------------------------------------------
 		//댓글 입력하기
 		$("#insertComment").click(function() {	
@@ -185,7 +239,17 @@
 <body>
 
 <h3>리뷰 상세페이지</h3>
-<form method="post"  name="reInsert"  id="reInsert"> 
+
+<!-- 일반 페이지  -->
+<div name="reSelet" id="reSelet">
+<span id="reSubject" >${requestScope.reviewDTO.reviewSubject}</span>
+<span id="reStarPoint" >${requestScope.reviewDTO.reviewStarPoint}점</span>
+<hr>
+<div id="reContent" >${requestScope.reviewDTO.reviewContent}</div>
+</div>
+
+<!-- update용 페이지  -->
+<form method="post"  name="reUpdate"  id="reUpdate"> 
 <input type="text" class="form-control" name="reviewSubject" value=" ${requestScope.reviewDTO.reviewSubject}">좋아요 : <span class="like_count"></span>개<br>
 <input type='radio' name='reviewStarPoint' value=1 />1
 <input type='radio' name='reviewStarPoint' value=2 />2
@@ -197,11 +261,10 @@
 <input type="hidden" name='memberId'/><!-- 아이디 -->
 <input type="hidden" name='movieCode' value='MV_1'  /><!-- 영화코드 -->
 
-                                    
-<input type="button" class="update-btn" id="update-btn" value="수정하기">
 <input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
 <input type="button" class="like-btn" id="like-btn">
 </form>
+<input type="button" class="update-btn" id="update-btn" value="수정하기">
 
 <div class="single-bottom comment-form" style="padding:50px 0 0 0;">
 	
