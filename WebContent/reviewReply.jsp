@@ -5,7 +5,7 @@
 
 <c:set var="reDTO" value="${request.reviewDTO}"/>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <style>
