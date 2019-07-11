@@ -92,7 +92,7 @@
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
     						str += "<li style='padding:15px 15px 0 0;'>";
-    						str += "<div style='color:#b1afaf;'>"+ (index+1) +"&nbsp;&nbsp;&nbsp;<a href='#' id='listSubject' value='item.reviewSubject' style='display: contents; font-size:20px;'>"+ item.reviewSubject +"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+ item.memberId +" | "+ item.reviewWriteday +" | "+ item.reviewStarPoint +"점 | 조회수 : "+ item.reviewCount + "</div>";
+    						str += "<div style='color:#b1afaf;'>"+ (index+1) +"&nbsp;&nbsp;&nbsp;<a href='#' id='listSubject' value='"+item.reviewId+"' style='display: contents; font-size:20px;'>"+ item.reviewSubject +"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+ item.memberId +" | "+ item.reviewWriteday +" | "+ item.reviewStarPoint +"점 | 조회수 : "+ item.reviewCount + "</div>";
     						str += "<div><a href='#' id='listSubject' value='item.reviewSubject' style='font-size:15px;'>"+ item.reviewContent +"</a></div>";
     						str += "</li>";
     					})	
@@ -114,8 +114,9 @@
     			//alert(1);
     			
     			// 클릭한 리뷰 제목을 토대로 상세페이지를 보여줘야함
-    			console.log( "클릭한 a 태그 제목값 =" + $(this).text() );
-    			location.href="${path}/movie?command=read&reviewSubject="+$(this).text();
+    			console.log( "클릭한 a 게시글번호 =" + $(this).attr("value") );
+    			var reId = $(this).attr("value");
+    			location.href="${path}/movie?command=read&reviewId="+reId;
     		});
         });
         
