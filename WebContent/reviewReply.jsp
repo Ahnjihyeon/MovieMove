@@ -92,7 +92,7 @@
 					var str="" ;
 					$.each(result, function(index, item){
 						str += "<tr>";
-						str += "<td> 작성자 : "+ item.memberId +"</td>"				
+						str += "<td> 작성자 :<span>"+ item.memberId +"</span></td>"				
 						str += "</tr>";						
 						str += "<tr>";
 						str += "<td> 내용 : "+ item.commentContent +"</td>";
@@ -111,23 +111,29 @@
 		/////////////////////////////////
 		//댓글 삭제
 		$(document).on("click", "[value=삭제]",function(){
+			var commentId = $(this).parent().parent().prev().children().children().text();			
+			if(loginId!=commentId){
+				alert("아무나 삭제하는거 아닙니다^^");
+				return false;
+			}			
 			$.ajax({
 				type:"post",
 				url:"deletecomment",
 				dataType:"text",
 				data:{"commentNum" : $(this).attr("name")},
-				success:function(result){
-					if(result>0){
+				success:function(result){					
+					if(result>0){					
 						$(this).remove();
-						selectAll(); // 삭제 후 전체출력
+						selectAll(); // 삭제 후 전체출력					
 					}else{
 						alert("삭제되지않았습니다.");
+						return false;
 					}
 				},
 				error : function(error){
 					console.log("삭제오류");
 				}			
-			});			
+			});			 
 		});
 		
 		
