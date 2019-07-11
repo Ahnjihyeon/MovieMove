@@ -1,4 +1,4 @@
-package chobong.comment.ajax;
+package chobong.like.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,25 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import chobong.comment.service.CommentService;
+import chobong.like.service.LikeService;
 
 /**
- * Servlet implementation class DeleteCommentServlet
+ * Servlet implementation class LikeCountServlet
  */
-@WebServlet("/deletecomment")
-public class DeleteCommentServlet extends HttpServlet {
+@WebServlet("/likecount")
+public class LikeCountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String commentNum = request.getParameter("commentNum");
-		
-		int result = 0;
+		String reviewId = request.getParameter("reviewId");
+		int sum = 0;
 		try {
-			result = CommentService.deleteComment(commentNum);
+			sum = LikeService.likeCount(reviewId);
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		PrintWriter out = response.getWriter();
-		
-		out.println(result);		
+		out.println(sum);
 	}
+
 }

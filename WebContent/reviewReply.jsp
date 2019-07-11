@@ -8,6 +8,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+	input.like-btn{
+		background: url('images/icons/like.png') no-repeat;
+		border:none;
+		width:40px;
+		height:40px;
+		cursor:pointer;
+	}
+</style>
 <title>Insert title here</title>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
@@ -21,7 +30,6 @@
     	        	this.checked = true; //checked 처리
   	   		}
 		});
-
 		// 로그인해서 자기 등록글만 수정,삭제 버튼 나타나기
 		var loginId = '${sessionScope.memberId}';
 		var memberId = '${ requestScope.reviewDTO.memberId }';
@@ -68,6 +76,7 @@
 						selectAll(); // 전체검색(화면갱신)
 					} else if( result==-1 ){
 						alert( "로그인 후에 댓글을 등록해주세요." );
+						window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
 					} else {
 						alert("오류가 발생해서 처리되지 않았습니다.");
 					}
@@ -92,14 +101,14 @@
 					var str="" ;
 					$.each(result, function(index, item){
 						str += "<tr>";
-						str += "<td> 작성자 : "+ item.memberId +"</td>"				
+						str += "<td> 작성자 :<span>"+ item.memberId +"</span></td>"				
 						str += "</tr>";						
 						str += "<tr>";
 						str += "<td> 내용 : "+ item.commentContent +"</td>";
 						str += "<td><input type='button' value='삭제' name='"+item.commentNum+"'></td>"
-						str += "</tr>";
+						str += "</tr>";						
 					})
-					$("#commentTable").append(str);					
+					$("#commentTable").append(str);
  				},
 				error: function( error ) {
 					console.log( "검색오류" );
@@ -111,25 +120,64 @@
 		/////////////////////////////////
 		//댓글 삭제
 		$(document).on("click", "[value=삭제]",function(){
+			var commentId = $(this).parent().parent().prev().children().children().text();			
+			if(loginId!=commentId){
+				alert("아무나 삭제하는거 아닙니다^^");
+				return false;
+			}			
 			$.ajax({
 				type:"post",
 				url:"deletecomment",
 				dataType:"text",
 				data:{"commentNum" : $(this).attr("name")},
-				success:function(result){
-					if(result>0){
+				success:function(result){					
+					if(result>0){					
 						$(this).remove();
-						selectAll(); // 삭제 후 전체출력
+						selectAll(); // 삭제 후 전체출력					
 					}else{
 						alert("삭제되지않았습니다.");
+						return false;
 					}
 				},
 				error : function(error){
 					console.log("삭제오류");
 				}			
-			});			
+			});			 
 		});
-		
+		///////////////////////////////////////////////////////
+		//좋아요 버튼 클릭
+		$("#like-btn").click(function(){			
+			console.log('좋아요!');
+			$.ajax({
+				type:"post",
+				url:"likeclick",
+				dataType:"text",
+				data:{
+					"memberId":"${sessionScope.memberId}",
+					"reviewId":${requestScope.reviewDTO.reviewId}
+				},
+				success: function(){
+					likeCount();
+				},
+				error : function(error){
+					console.log("좋아요 버튼클릭 오류");
+				}			
+			})
+		});
+		//좋아요 카운트 출력
+		function likeCount(){
+			$.ajax({
+				type:"post",
+				url:"likecount",
+				data:{
+					"reviewId":${requestScope.reviewDTO.reviewId}				
+				},
+				success: function(count){
+					$(".like_count").html(count);
+				}
+			})
+		};
+		likeCount(); //처음 들어왔을 때 좋아요 개수 호출
 		
 	})
 </script>
@@ -138,7 +186,7 @@
 
 <h3>리뷰 상세페이지</h3>
 <form method="post"  name="reInsert"  id="reInsert"> 
-<input type="text" class="form-control" name="reviewSubject" value=" ${requestScope.reviewDTO.reviewSubject}"><br>
+<input type="text" class="form-control" name="reviewSubject" value=" ${requestScope.reviewDTO.reviewSubject}">좋아요 : <span class="like_count"></span>개<br>
 <input type='radio' name='reviewStarPoint' value=1 />1
 <input type='radio' name='reviewStarPoint' value=2 />2
 <input type='radio' name='reviewStarPoint' value=3 />3
@@ -147,10 +195,12 @@
 <textarea class="form-control" name="reviewContent" >${requestScope.reviewDTO.reviewContent}</textarea><br>
                                     
 <input type="hidden" name='memberId'/><!-- 아이디 -->
-<input type="hidden" name='movieCode' value='A01'  /><!-- 영화코드 -->
+<input type="hidden" name='movieCode' value='MV_1'  /><!-- 영화코드 -->
+
                                     
 <input type="button" class="update-btn" id="update-btn" value="수정하기">
 <input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
+<input type="button" class="like-btn" id="like-btn">
 </form>
 
 <div class="single-bottom comment-form" style="padding:50px 0 0 0;">

@@ -19,7 +19,7 @@ public class LogoutController implements Controller {
 		HttpSession session = request.getSession();
 		
 		session.invalidate();
-		mv.setPath("review.jsp");
+		mv.setPath("index.jsp");
 		mv.setRedirect(true);
 		return mv;
 	}

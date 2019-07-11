@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +32,14 @@
         	.form-control{display:inline; width:90%;}
         	.submit-btn{padding:8px; 15px;}
         </style>
-        
+        <script>
+        	$(function(){
+        		$("#loginbtn").click(function(){
+            		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+            	})        		
+        	})
+        	
+        </script>
     </head>
     <body>
         <div id="page">
@@ -56,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            
+            <input type="button" value="리뷰jsp이동" onClick="location.href='review.jsp'">
             <!--header--->
             <header class="header-container">
                 <div class="container">
@@ -83,7 +91,23 @@
                             </div>
                             </form>
                             <div class="col-md-2  col-sm-4 col-xs-12 hidden-sm">
-                                <div class="text-right"><button type="button" class="book-now-btn">로그인</button></div>
+                                <c:choose>
+                           			<c:when test="${sessionScope.member.memberId!=null}">
+                           				<div class="text-right">
+		                               		 <h4>${member.memberId}님 로그인중...</h4>
+		                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
+		                                	 <form action="movie?command=logout" method="post">
+		                                	 	<button type="submit" class="book-now-btn" id="logoutbtn">로그아웃</button>
+		                                	 </form>
+	                                	 </div>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<div style="width: 300px; margin-right: 400px" class="text-right">
+                            			 <button type="button" class="book-now-btn" id="loginbtn">로그인</button>
+	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
+	                                     </div>
+                           			</c:otherwise>
+                      		</c:choose>
                             </div>
                             
                         </div>
