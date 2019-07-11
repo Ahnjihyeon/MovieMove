@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <style>
 	input.like-btn{
 		background: url('images/icons/like.png') no-repeat;
