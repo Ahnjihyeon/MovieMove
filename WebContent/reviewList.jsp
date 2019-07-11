@@ -43,7 +43,7 @@
 						str += "<div class='media'><a class='pull-left' href='#'>";
 						str += "<img class='media-object' src='http://placekitten.com/150/150'></a>";
 						str += "<div class='media-body'>";
-						str += "<h4 class='media-heading'>"+item.reviewSubject+"</h4>"; // 제목
+						str += "<h4 class='media-heading'><a href='#' value='"+item.reviewId+"'>"+item.reviewSubject+"</a></h4>"; // 제목
 						str += "<p class='text-right'>"+item.memberId+"</p>"; // 아이디
 						str += "<p>"+item.reviewContent+"</p>"; // 리뷰내용
 						str += "<ul class='list-inline list-unstyled'>";
@@ -63,27 +63,14 @@
 			}) 
 		}////////////////////////////// 
 		selectAll();
-/* 		
-		<div class="well" style="background-color:#fff; ">
-	      <div class="media">
-	      	<a class="pull-left" href="#">
-	    		<img class="media-object" src="http://placekitten.com/150/150">
-	  		</a>
-	  		<div class="media-body">
-	    		<h4 class="media-heading">리뷰제목</h4>
-	          <p class="text-right">아이디</p>
-	          <p>리뷰내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</p>
-	          <ul class="list-inline list-unstyled">
-	  			<li><span>날짜</span></li>
-	            <li>|</li>
-	            <li><span>댓글수</span></li>
-	            <li>|</li>
-	            <li><span>별점</span></li>
-	            <li>|</li>
-	            <li>
-	              <span>조회수</span>
-	            </li>
-				</ul></div></div></div> */
+		//setInterval("selectAll", 5000 ); // 글 업데이트 
+		
+		// a태그 클릭하면 상세보기로 이동
+		$(document).on("click", "#listTable a", function() {
+			console.log( "클릭한 a 게시글번호 =" + $(this).attr("value") );
+			var reId = $(this).attr("value");
+			location.href="${path}/movie?command=read&reviewId="+reId;
+		})
 		
 	})
 </script>
