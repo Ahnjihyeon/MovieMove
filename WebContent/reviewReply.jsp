@@ -8,6 +8,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+	input.like-btn{
+		background: url('images/icons/like.png') no-repeat;
+		border:none;
+		width:40px;
+		height:40px;
+		cursor:pointer;
+	}
+</style>
 <title>Insert title here</title>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
@@ -135,7 +144,40 @@
 				}			
 			});			 
 		});
-		
+		///////////////////////////////////////////////////////
+		//좋아요 버튼 클릭
+		$("#like-btn").click(function(){			
+			console.log('좋아요!');
+			$.ajax({
+				type:"post",
+				url:"likeclick",
+				dataType:"text",
+				data:{
+					"memberId":"${sessionScope.memberId}",
+					"reviewId":${requestScope.reviewDTO.reviewId}
+				},
+				success: function(){
+					likeCount();
+				},
+				error : function(error){
+					console.log("좋아요 버튼클릭 오류");
+				}			
+			})
+		});
+		//좋아요 카운트 출력
+		function likeCount(){
+			$.ajax({
+				type:"post",
+				url:"likecount",
+				data:{
+					"reviewId":${requestScope.reviewDTO.reviewId}				
+				},
+				success: function(count){
+					$(".like_count").html(count);
+				}
+			})
+		};
+		likeCount(); //처음 들어왔을 때 좋아요 개수 호출
 		
 	})
 </script>
@@ -144,7 +186,7 @@
 
 <h3>리뷰 상세페이지</h3>
 <form method="post"  name="reInsert"  id="reInsert"> 
-<input type="text" class="form-control" name="reviewSubject" value=" ${requestScope.reviewDTO.reviewSubject}"><br>
+<input type="text" class="form-control" name="reviewSubject" value=" ${requestScope.reviewDTO.reviewSubject}">좋아요 : <span class="like_count"></span>개<br>
 <input type='radio' name='reviewStarPoint' value=1 />1
 <input type='radio' name='reviewStarPoint' value=2 />2
 <input type='radio' name='reviewStarPoint' value=3 />3
@@ -154,9 +196,11 @@
                                     
 <input type="hidden" name='memberId'/><!-- 아이디 -->
 <input type="hidden" name='movieCode' value='MV_1'  /><!-- 영화코드 -->
+
                                     
 <input type="button" class="update-btn" id="update-btn" value="수정하기">
 <input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
+<input type="button" class="like-btn" id="like-btn">
 </form>
 
 <div class="single-bottom comment-form" style="padding:50px 0 0 0;">
