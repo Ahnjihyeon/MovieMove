@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import chobong.frontController.Controller;
 import chobong.frontController.ModelAndView;
-import chobong.movie.dto.ReviewDTO;
+import chobong.movie.dto.MovieDTO;
+import chobong.movie.service.MovieService;
 import chobong.movie.service.ReviewService;
 
-public class ReadController implements Controller {
+public class MovieReadController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String reviewId = request.getParameter("reviewId");
+		String movieCode = request.getParameter("movieCode");
+		System.out.println(movieCode);
 		//System.out.println( "리드 컨드롤러= " +reviewId );
 	
 /*		String flag = request.getParameter("flag");
@@ -28,9 +30,10 @@ public class ReadController implements Controller {
 		String url = "errorView/error.jsp";
 		ModelAndView mv = new ModelAndView();
 		try {
-			ReviewDTO reviewDTO= ReviewService.selectByReviewId(reviewId);
-			request.setAttribute( "reviewDTO", reviewDTO );
-			url = "reviewReply.jsp";
+			MovieDTO movieDTO = MovieService.selectByMovieCode(movieCode);
+			request.setAttribute( "movieDTO", movieDTO );		
+			System.out.println(movieDTO);
+			url = "review.jsp";
 			
 		} catch (SQLException e) {
 			request.setAttribute( "errorMsg", e.getMessage() );

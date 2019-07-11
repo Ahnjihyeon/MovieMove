@@ -95,9 +95,10 @@ div.submenu {
 				success:  function( result ) {																		
 					var str="";					
 					$.each(result, function(index, item){
+						var reviewId = item.reviewId;
 						str += "<li style='padding:15px 15px 0 0;'>";
-						str += "<div style='color:#b1afaf;'>"+(index+1)+"</div>";
-						str += "<div>"+item.movieCode+"<a href='#' style='font-size:15px;'>"+item.reviewSubject+"</a>별점 :"+item.reviewStarPoint+"개 조회수 : "+item.reviewCount+" 작성일 : "+ item.reviewWriteday+"</div>";
+						str += "<div style='color:#b1afaf;'>"+(index+1)+"</div>"; //
+						str += "<div>"+item.movieCode+"<a href='movie?command=read&reviewId="+reviewId+"' style='font-size:15px;'>"+item.reviewSubject+"</a>별점 :"+item.reviewStarPoint+"개 조회수 : "+item.reviewCount+" 작성일 : "+ item.reviewWriteday+"</div>";
 						str += "</li>";
 					})						
 					$("#memberReview").append(str);  
@@ -140,7 +141,7 @@ div.submenu {
 							<div class="col-md-2 col-sm-6 col-xs-6">
 								<div id="logo">
 									<!--<a href="index.html"><img src="images/logo.png" alt="logo"></a>-->
-									<a href="index.html"><span>뮤비</span>무비</a>
+									<a href="index.jsp"><span>뮤비</span>무비</a>
 								</div>
 							</div>
 							<div class="col-sm-6 visible-sm">
