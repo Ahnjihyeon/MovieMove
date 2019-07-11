@@ -82,16 +82,17 @@
     				type: "post",
     				url: "${path}/ReviewSelectAll",  
     				dataType: "json",
-    				data: "movieCode=A01" ,
+    				data: "movieCode=MV_1" ,
     				success:  function( result ) {
     					$("#listTable tr").remove();  // #listTable tr:gt(0)
     					
     					var totalLength = "총 " + result.length + "건";
+    					console.log( "총 개수 = " + totalLength );
     					var str="" ;
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
     						str += "<li style='padding:15px 15px 0 0;'>";
-    						str += "<div style='color:#b1afaf;'><a href='#' id='listSubject' value='item.reviewSubject' style='display: contents; font-size:20px;'>"+ (index+1) +"&nbsp;&nbsp;&nbsp;"+ item.reviewSubject +"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+ item.memberId +" | "+ item.reviewWriteday +" | "+ item.reviewStarPoint +"</div>";
+    						str += "<div style='color:#b1afaf;'><a href='#' id='listSubject' value='item.reviewSubject' style='display: contents; font-size:20px;'>"+ (index+1) +"&nbsp;&nbsp;&nbsp;"+ item.reviewSubject +"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+ item.memberId +" | "+ item.reviewWriteday +" | "+ item.reviewStarPoint +"점</div>";
     						str += "<div><a href='#' id='listSubject' value='item.reviewSubject' style='font-size:15px;'>"+ item.reviewContent +"</a></div>";
     						str += "</li>";
     					})	
@@ -250,7 +251,7 @@
                             <div class="blog-list">
                                 <h4>리뷰</h4>
                                 
-                                $("#review_left").before(totalLength);
+                                <!-- //$("#review_left").before(totalLength); -->
                                 
                                 <div class="review_top"><span class="review_left">총 0건</span>
                                 <span class="review_right"><select name="sort" size=1>
@@ -282,7 +283,7 @@
                                     <input type="text" class="form-control" name="reviewPwd" placeholder="ex) 1234" style="width: 20%;"><!-- 비번 -->
                                     
                                     <input type="hidden" name='memberId'/><!-- 아이디 -->
- 									<input type="hidden" name='movieCode' value='A01'  /><!-- 영화코드 -->
+ 									<input type="hidden" name='movieCode' value='MV_1'  /><!-- 영화코드 -->
                                     
                                     <input type="button" class="submit-btn" id="btn" value="작성">
                                </form>
