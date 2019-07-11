@@ -259,7 +259,7 @@
 <textarea class="form-control" name="reviewContent" >${requestScope.reviewDTO.reviewContent}</textarea><br>
                                     
 <input type="hidden" name='memberId'/><!-- 아이디 -->
-<input type="hidden" name='movieCode' value='MV_1'  /><!-- 영화코드 -->
+<input type="hidden" name='movieCode' value='${requestScope.reviewDTO.movieCode}'  /><!-- 영화코드 -->
 
 <input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
 <input type="button" class="like-btn" id="like-btn">
