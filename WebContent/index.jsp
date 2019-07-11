@@ -33,11 +33,15 @@
         	.submit-btn{padding:8px; 15px;}
         </style>
         <script>
-        	$(function(){
-        		$("#loginbtn").click(function(){
-            		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-            	})        		
-        	})
+        $(function(){
+        	$("#loginbtnVisible").click(function(){
+        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+        	});
+        	
+        	$("#loginbtnHidden").click(function(){
+        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+        	});
+    	});
         	
         </script>
     </head>
@@ -66,54 +70,7 @@
             </div>
             <input type="button" value="리뷰jsp이동" onClick="location.href='review.jsp'">
             <!--header--->
-            <header class="header-container">
-                <div class="container">
-                    <div class="top-row">
-                        <div class="row">
-                            <div class="col-md-2 col-sm-6 col-xs-6">
-                                <div id="logo">
-                                    <!--<a href="index.html"><img src="images/logo.png" alt="logo"></a>-->
-                                    <a href="index.jsp"><span>뮤비</span>무비</a>
-                                </div>
-                            </div>
-                            
-                            <form action="#" method="get">
-                            <div class="col-md-8 col-sm-12 col-xs-12 remove-padd" style="bottom:15px;">
-                                <nav class="navbar navbar-default">
-                                    <div class="collapse navigation navbar-collapse navbar-ex1-collapse remove-space">
-                                        <ul class="list-unstyled nav1 cl-effect-10">
-                                            <li><span><input type="text" class="form-control" name="Search" placeholder="검색"></span></li>
-                                            <li><span><input type="submit" class="submit-btn" value="검색"></span></li>
-                                        </ul>
-
-                                    </div>
-                                </nav>
-                            </div>
-                            </form>
-                            <div class="col-md-2  col-sm-4 col-xs-12 hidden-sm">
-                                <c:choose>
-                           			<c:when test="${sessionScope.member.memberId!=null}">
-                           				<div class="text-right">
-		                               		 <h4>${member.memberId}님 로그인중...</h4>
-		                                	 <a href="movie?command=memberinfo&memberId=${member.memberId}">마이페이지</a>
-		                                	 <form action="movie?command=logout" method="post">
-		                                	 	<button type="submit" class="book-now-btn" id="logoutbtn">로그아웃</button>
-		                                	 </form>
-	                                	 </div>
-                            		</c:when>
-                            		<c:otherwise>
-                            			<div style="width: 300px; margin-right: 400px" class="text-right">
-                            			 <button type="button" class="book-now-btn" id="loginbtn">로그인</button>
-	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
-	                                     </div>
-                           			</c:otherwise>
-                      		</c:choose>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </header>
+            <c:import url="header.jsp"/>
 
 
             <!--end-->

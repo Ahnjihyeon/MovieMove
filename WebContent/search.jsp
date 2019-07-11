@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,7 +20,7 @@
         <link href="css/responsive.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
         <script src="js/jquery.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
         <script src="js/bootstrap.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
-        <script src="js/lightbox-plus-jquery.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <%-- <script src="js/lightbox-plus-jquery.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script> --%>
         <script src="js/instafeed.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
         <script src="js/custom.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
         
@@ -27,6 +28,18 @@
         	.form-control{display:inline; width:90%;}
         	.submit-btn{padding:8px; 15px;}
         </style>
+        <script>
+	        $(function(){
+	        	$("#loginbtnVisible").click(function(){
+	        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+	        	});
+	        	
+	        	$("#loginbtnHidden").click(function(){
+	        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+	        	});
+	    	});
+        	
+        </script>
 	</head>
 	<body>
 		<div id="page">
@@ -52,38 +65,8 @@
                 </div>
             </div>
             <!--header--->
-            <header class="header-container">
-                <div class="container">
-                    <div class="top-row">
-                        <div class="row">
-                            <div class="col-md-2 col-sm-6 col-xs-6">
-                                <div id="logo">
-                                    <!--<a href="index.html"><img src="images/logo.png" alt="logo"></a>-->
-                                    <a href="index.jsp"><span>뮤비</span>무비</a>
-                                </div>
-                            </div>
-                            
-                            <form action="#" method="get">
-                            <div class="col-md-8 col-sm-12 col-xs-12 remove-padd" style="bottom:15px;">
-                                <nav class="navbar navbar-default">
-                                    <div class="collapse navigation navbar-collapse navbar-ex1-collapse remove-space">
-                                        <ul class="list-unstyled nav1 cl-effect-10">
-                                            <li><span><input type="text" class="form-control" name="Search" placeholder="검색"></span></li>
-                                            <li><span><input type="submit" class="submit-btn" value="검색"></span></li>
-                                        </ul>
-
-                                    </div>
-                                </nav>
-                            </div>
-                            </form>
-                            <div class="col-md-2  col-sm-4 col-xs-12 hidden-sm">
-                                <div class="text-right"><button type="button" class="book-now-btn">로그인</button></div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </header>
+            <c:import url="header.jsp"/>
+            
             <hr style="border:1px solid #eee; margin-top: 0;">
             <br>
             <section class="resort-overview-block" style="padding:0">
