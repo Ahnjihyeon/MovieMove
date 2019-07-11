@@ -84,7 +84,7 @@ header.jsp
                                     </div>
                                     <div class="collapse navigation navbar-collapse navbar-ex1-collapse remove-space">
                                         <ul class="list-unstyled nav1 cl-effect-10">
-                                            <li><a data-hover="Home" class="active"><span>Home</span></a></li>
+                                            <li><a data-hover="Home" href="index.jsp" class="active"><span>Home</span></a></li>
                                             <li><a data-hover="영화리스트"  href="movieList.jsp"><span>영화리스트</span></a></li>
                                             <li><a data-hover="리뷰게시판"  href="reviewList.jsp"><span>리뷰게시판</span></a></li>
                                             <li><a data-hover="인기리뷰"  href="reviewList.jsp?best"><span>인기리뷰</span></a></li>

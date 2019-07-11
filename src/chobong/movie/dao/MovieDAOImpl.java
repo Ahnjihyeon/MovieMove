@@ -38,9 +38,34 @@ public class MovieDAOImpl implements MovieDAO {
 			}finally {
 				DbUtil.dbClose(rs, ps, con);
 			}
-			return movielist;
-
-			
+			return movielist;			
 	}
 
+	@Override
+	public MovieDTO selectByMovieCode(String movieCode) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql="select * from movie where movie_code = ?";
+		
+		MovieDTO movieDTO = null;		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);			
+			ps.setString(1, movieCode);
+			System.out.println(movieCode);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				movieDTO = new MovieDTO(rs.getString(1), rs.getString(2), rs.getInt(3),
+									rs.getInt(4), rs.getString(5), rs.getString(6) );				
+			}	
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return movieDTO;
+	}
 }

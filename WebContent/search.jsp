@@ -82,10 +82,10 @@
                                 </div>
                             </div>
                             <div class="side-B">
-                                <div class="product-desc-side">
-                                    <h3><a href="#">${dto.movieTitle }</a></h3>
+                                <div class="product-desc-side">                                
+                                    <h3>${dto.movieTitle}</h3>
                                     <p>${dto.movieSummary}</p>
-                                    <div class="links"><a href="#">상세보기</a></div>
+                                    <div class="links"><a href="movie?command=readmovie&movieCode=${dto.movieCode}">상세보기</a></div>
                                 </div>
                             </div>
                             </c:forEach>

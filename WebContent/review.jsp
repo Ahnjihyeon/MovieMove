@@ -84,7 +84,7 @@
     				type: "post",
     				url: "${path}/ReviewMovieTitle",  
     				dataType: "json",
-    				data: "movieCode=MV_1" ,
+    				data: "movieCode=${requestScope.movieDTO.movieCode}" ,
     				success:  function( result ) {
     					$("#listTable tr").remove();  // #listTable tr:gt(0)
     					
@@ -152,6 +152,7 @@
             <!--header--->
             <c:import url="header.jsp"/>
             
+            
             <hr style="border:1px solid #eee; margin-top: 0;">
 
 			<!---영화정보 block--->
@@ -161,19 +162,14 @@
                         <div class="view-set-block">
                             <div class="col-md-6 col-sm-6 col-xs-12 side-in-image">
                                 <div class="event-blog-details">
-                                    <h4>영화제목</h4>
-                                    <h5>2019.07<a><i aria-hidden="true" class="fa fa-heart-o fa-lg"></i>total</a></h5>
-                                    <p><font style="font-size:15px; font-weight:bold;">평점</font>&nbsp;&nbsp;&nbsp;</p>
-                                    <p><font style="font-size:15px; font-weight:bold;">장르</font>&nbsp;&nbsp;&nbsp;</p>
-                                    <p><font style="font-size:15px; font-weight:bold;">감독</font>&nbsp;&nbsp;&nbsp;</p>
-                                    <p><font style="font-size:15px; font-weight:bold;">출연</font>&nbsp;&nbsp;&nbsp;</p>
-                                    <p><font style="font-size:15px; font-weight:bold;">등급</font>&nbsp;&nbsp;&nbsp;</p>
-                                    <p><font style="font-size:15px; font-weight:bold;">흥행</font>&nbsp;&nbsp;&nbsp;</p>
-                                </div>
+                                    <h4>영화제목 : ${movieDTO.movieTitle}</h4>
+                                    <h5>제작년도 : ${movieDTO.movieYear}<a><i aria-hidden="true" class="fa fa-heart-o fa-lg"></i>total</a></h5>
+                                    <p><font style="font-size:15px; font-weight:bold;">평점 : ${movieDTO.starPoint} 점</font>&nbsp;&nbsp;&nbsp;</p>
+                                    <p><font style="font-size:15px; font-weight:bold;">장르 : 코미디</font>&nbsp;&nbsp;&nbsp;</p></div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="event-blog-image" style="text-align: -webkit-center;">
-                                    <img alt="image" class="img-responsive" src="images/blog1.png">
+                                    <img alt="image" class="img-responsive" src="${movieDTO.movieImage}">
                                 </div>
                             </div>
                         </div>
@@ -181,12 +177,12 @@
                     
                     <div class="blog-list">
                          <h4>줄거리</h4>
-                         <div class="blog-desc" style="display: inline-block; margin:0 0 40px 0;">줄거리</div>		
+                         <div class="blog-desc" style="display: inline-block; margin:0 0 40px 0;">${movieDTO.movieSummary}</div>		
 					</div>
 					
                 </div>
             </section>
-            
+           
             
             <!--리뷰 block-->
             <section class="blog" style="padding:0px;">
@@ -239,7 +235,7 @@
                                     <input type="text" class="form-control" name="reviewPwd" placeholder="ex) 1234" style="width: 20%;"><!-- 비번 -->
                                     
                                     <input type="hidden" name='memberId'/><!-- 아이디 -->
- 									<input type="hidden" name='movieCode' value='MV_1'  /><!-- 영화코드 -->
+ 									<input type="hidden" name='movieCode' value='${movieDTO.movieCode}'  /><!-- 영화코드 -->
                                     
                                     <input type="button" class="submit-btn" id="btn" value="작성">
                                </form>
