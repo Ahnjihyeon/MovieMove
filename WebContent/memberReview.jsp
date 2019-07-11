@@ -92,18 +92,16 @@ div.submenu {
 				url: "memberreview",  
 				dataType: "json",
 				data: "${sessionScope.memberId}",
-				success:  function( result ) {
-					console.log(result);
-					/* //$("#memberReview").remove();  // #listTable tr:gt(0)										
+				success:  function( result ) {																		
 					var str="";					
-					$.each(result, function(index, item){						
+					$.each(result, function(index, item){
 						str += "<li style='padding:15px 15px 0 0;'>";
 						str += "<div style='color:#b1afaf;'>"+(index+1)+"</div>";
-						str += "<div>"+item.movieCode+"<a href='movie?command=read&reviewId="+item.reviewId+"' value='item.reviewSubject' style='font-size:15px;'></a>별점 :"+item.reviewStarPoint+"개 조회수 : "+item.reviewCount+" 작성일 : "+reviewWriteday+"</div>";
+						str += "<div>"+item.movieCode+"<a href='#' style='font-size:15px;'>"+item.reviewSubject+"</a>별점 :"+item.reviewStarPoint+"개 조회수 : "+item.reviewCount+" 작성일 : "+ item.reviewWriteday+"</div>";
 						str += "</li>";
 					})						
-					$("#memberReview").append(str); 
-					$("a").css("textDecoration","none"); */
+					$("#memberReview").append(str);  
+					//$("a").css("textDecoration","none");
  				},
 				error: function( error ) {
 					console.log( "검색오류" );
@@ -119,8 +117,7 @@ div.submenu {
 		<div class="top-header" style="background-color: #000">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6">
-						
+					<div class="col-md-6">						
 					</div>
 					<div class="col-md-6">
 						<div class="social-grid">
@@ -185,7 +182,7 @@ div.submenu {
 				</div>
 			</header>
 		</div>
-		
+			
 				<div class="submenu">
 					<ul>
 						<li style="color: white; font-size: 20px;">마이페이지</li>
@@ -199,9 +196,7 @@ div.submenu {
 					</ul>
 				</div>
 			<div align="center">
-				<ul id="memberReview">
-			
-				</ul>
+				<ul id="memberReview"></ul>
 			</div>
 				
 </body>

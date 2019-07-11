@@ -1,6 +1,7 @@
 package chobong.movie.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import chobong.movie.dao.MemberDAO;
 import chobong.movie.dao.MemberDAOImpl;
@@ -41,9 +42,8 @@ public class MemberService {
 		int result = memberDAO.update(dto);
 		return result;
 	}
-	public static ReviewDTO memberReview(String memberId) throws SQLException{
-		System.out.println("리뷰출력서비스");
-		ReviewDTO dto = memberDAO.memberReview(memberId);
-		return dto;	
+	public static List<ReviewDTO> memberReview(String memberId) throws SQLException{
+		List<ReviewDTO> list = memberDAO.memberReview(memberId);
+		return list;	
 	}
 }

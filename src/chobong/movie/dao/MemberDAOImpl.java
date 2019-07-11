@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import chobong.movie.dto.CommentDTO;
@@ -163,27 +164,29 @@ public class MemberDAOImpl implements MemberDAO {
 		return dto;
 	}
 	@Override
-	public ReviewDTO memberReview(String memberId) {
-		System.out.println("¸®ºäÃâ·Â impl");
+	public List<ReviewDTO> memberReview(String memberId) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ReviewDTO dto = null;
+		List<ReviewDTO> list = new ArrayList<>();
 		try {
 			con = DbUtil.getConnection();		
 			String sql = "select * from review where member_Id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, memberId);	
 			rs = ps.executeQuery();
-			if(rs.next())
-			dto = new ReviewDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),
+			while(rs.next()) {
+				dto = new ReviewDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),
 					rs.getInt(8),rs.getString(9));
+				list.add(dto);
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
-		return dto;		
+		return list;		
 	}
 	
 

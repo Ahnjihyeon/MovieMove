@@ -1,4 +1,6 @@
 package chobong.movie.dao;
+import java.util.List;
+
 import chobong.movie.dto.MemberDTO;
 import chobong.movie.dto.ReviewDTO;
 
@@ -27,5 +29,5 @@ public interface MemberDAO {
 	 * */
 	int update(MemberDTO memberDTO);	
 	
-	ReviewDTO memberReview(String memberId);
+	List<ReviewDTO> memberReview(String memberId);
 }
