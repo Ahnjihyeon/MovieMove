@@ -41,6 +41,22 @@
         	$("#loginbtnHidden").click(function(){
         		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
         	});
+        	
+        	$.ajax({
+        		type:"post",
+        		url:"bestmovie",
+        		dataType:"json",
+        		success: function(result){
+        			var str="";
+        			$.each(result, function(index, item){
+        				str="<img src='"+item.movieImage+"'/>";
+        			})        			   			
+        			$("#firstSlide").append(str);
+        		}
+        	});
+        	
+        	
+        	
     	});
         	
         </script>
@@ -68,7 +84,6 @@
                     </div>
                 </div>
             </div>
-            <input type="button" value="리뷰jsp이동" onClick="location.href='review.jsp'">
             <!--header--->
             <c:import url="header.jsp"/>
 
@@ -84,12 +99,7 @@
                 </ol>
                 
                 <div class="carousel-inner" style="width: 85%;">
-                    <div class="item active">
-                            <img src="images/banner.png" alt="First slide">
-                            <img src="images/banner.png" alt="First slide">
-                            <img src="images/banner.png" alt="First slide">
-                            <img src="images/banner.png" alt="First slide">
-                            <img src="images/banner.png" alt="First slide">
+                    <div class="item active" id="firstSlide">                           
                     </div>
                     <div class="item">
 	                    	<img src="images/banner2.png" alt="Second slide">
@@ -198,15 +208,12 @@
 <!-- fade -->
 <script>
 $("#modal").click(function () {
-	
-	
     $('#fade').popup({
       transition: 'all 0.3s',
       scrolllock: true,
       autoopen: true,
 	  background: true
     });
-
 });
 </script>
 </html>

@@ -19,5 +19,10 @@ public class MovieService {
 		MovieDTO dto = movieDAO.selectByMovieCode(movieCode);
 		return dto;
 	}
+	
+	public static List<MovieDTO> selectBestMovie() throws SQLException{
+		List<MovieDTO> list = movieDAO.selectBestMovie();
+		return list;
+	}
 
 }
