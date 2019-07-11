@@ -12,13 +12,35 @@ import chobong.movie.dto.ReviewDTO;
 import chobong.util.DbUtil;
 
 public class ReviewDAOImpl implements ReviewDAO {
+	
+	// 리뷰 게시판  --- 전체 리뷰 리스트
 	@Override
-	public List<MovieDTO> selectBykeySearch(String keyField, String keyWord) {
-		return null;
+	public List<ReviewDTO> selectAll() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql="Select * from review order by review_writeday desc";
+		List<ReviewDTO> list = new ArrayList<>();
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				ReviewDTO reviewDTO = new ReviewDTO(rs.getString(1), rs.getString(2), rs.getString(3),
+									rs.getString(4), rs.getString(5), rs.getString(6), 
+									rs.getInt(7), rs.getInt(8), rs.getString(9) );
+				list.add(reviewDTO);
+			}
+		} finally {
+			DbUtil.dbClose( rs, ps, con);
+		}
+		return list;
 	}
-
+	// 특정 영화 리스트
 	@Override
-	public List<ReviewDTO> selectAll(String movieCode) throws SQLException {
+	public List<ReviewDTO> selectAllByMovieTitle(String movieCode) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -152,4 +174,5 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 		return result;
 	}
+
 }

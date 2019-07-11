@@ -18,8 +18,8 @@ import chobong.movie.dto.ReviewDTO;
 import chobong.movie.service.ReviewService;
 import net.sf.json.JSONArray;
 
-@WebServlet("/ReviewSelectAll") 
-public class ReviewSelectAllServlet extends HttpServlet {
+@WebServlet("/ReviewMovieTitle") 
+public class ReviewSelectAllByMovieTitleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

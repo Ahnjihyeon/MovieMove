@@ -11,19 +11,16 @@ import chobong.movie.dto.ReviewDTO;
 
 public class ReviewService {
 	public static ReviewDAO reviewDAO = new ReviewDAOImpl();
-	
-	 // 영화
-	/** 영화 제목검색   */
-	public static List<MovieDTO> selectBykeySearch( String keyField , String keyWord ) {
-		
-		return null;
-	}
-	  
-	  
+		  
 	  // 게시판  	  - 게시판 번호는 시퀀스라서 중복체크x
 	/** 영화리뷰 전체 검색 */
-	public static  List<ReviewDTO> selectAll( String movieCode ) throws SQLException {
-		List<ReviewDTO> list = reviewDAO.selectAll(movieCode);
+	public static List<ReviewDTO> selectAll() throws SQLException {
+		List<ReviewDTO> list = reviewDAO.selectAll();
+		return list;
+	}
+	
+	public static  List<ReviewDTO> selectAllByMovieTitle( String movieCode ) throws SQLException {
+		List<ReviewDTO> list = reviewDAO.selectAllByMovieTitle(movieCode);
 		return list;
 	}
 	

@@ -9,24 +9,21 @@ import chobong.movie.dto.ReviewDTO;
 
 public interface ReviewDAO {
 	
-	 // 영화
-	/** 영화 제목검색 
-		select * from Movie where movie_Title like ?	   */
-	List<MovieDTO> selectBykeySearch( String keyField , String keyWord );
-	  
-	  
 	  // 게시판  	  - 게시판 번호는 시퀀스라서 중복체크x
-	/** 영화리뷰 전체 검색 */
-	 List<ReviewDTO> selectAll( String movieCode ) throws SQLException; 
+	/** 전체 영화리뷰 리스트 */
+	List<ReviewDTO> selectAll() throws SQLException;
+	
+	/** 검색된 영화 리뷰 전체 */
+	List<ReviewDTO> selectAllByMovieTitle( String movieCode ) throws SQLException; 
 	
 	 // ----수정됬음-----
 	  /** 게시글번호에 해당하는 레코드 검색 ( 상세페이지 )  */
-	  ReviewDTO selectByReviewId(String reviewId) throws SQLException;
+	ReviewDTO selectByReviewId(String reviewId) throws SQLException;
 	  
 	  
 	  /** 게시판 조회수를 증가하는 기능
 	   *  update Review set review_count = review_count + 1 where review_id=? */
-	  int increamentByReadnum(String ReviewNum) throws SQLException;
+	int increamentByReadnum(String ReviewNum) throws SQLException;
 		  
 	/** 
 	* 조회순,인기순(평점), 최신순
@@ -40,21 +37,18 @@ public interface ReviewDAO {
 	 * 레코드 삽입
 	 * @return : 1-삽입성공 , 0 - 삽입실패
 	 * */
-	  int insert( ReviewDTO reviewDTO ) throws SQLException;
+	int insert( ReviewDTO reviewDTO ) throws SQLException;
 	  
 	  /**
 	   * 게시글번호에 해당하는 레코드 삭제
 	   * @return : 1-삭제성공 , 0 - 삭제실패
 	   * */
-	  int delete(String reviewId, String password ) throws SQLException;
+	int delete(String reviewId, String password ) throws SQLException;
 	  
 	   /**
 	    * 게시글번호에 해당하는 레코드 수정 
 	    * @return : 1-수정성공 , 0 - 수정실패
 	    * */
-	  int update(ReviewDTO upReviewDTO, String password ) throws SQLException;
-	  
-	  
-	  
-	  
+	int update(ReviewDTO upReviewDTO, String password ) throws SQLException;
+	    	  
 }

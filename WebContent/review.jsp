@@ -82,7 +82,7 @@
     		function selectAll(){
     			$.ajax({ 
     				type: "post",
-    				url: "${path}/ReviewSelectAll",  
+    				url: "${path}/ReviewMovieTitle",  
     				dataType: "json",
     				data: "movieCode=MV_1" ,
     				success:  function( result ) {
