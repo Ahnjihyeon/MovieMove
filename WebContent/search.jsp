@@ -73,20 +73,22 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12 remove-padd-left" style="width:85%; margin-bottom:30px;">
-                            <div class="side-A">
+                            <c:forEach items="${list}" var="dto">
+                              <div class="side-A">
                                 <div class="product-thumb">
                                     <div class="image">
-                                        <a href="#"><img alt="image" class="img-responsive" src="images/category1.png"></a>
+                                        <a href="#"><img alt="image" class="img-responsive" src="${dto.movieImage}"></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="side-B">
                                 <div class="product-desc-side">
-                                    <h3><a href="#">영화 제목</a></h3>
-                                    <p>영화 내용영화 내용영화 내용영화 내용영화 내용 영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용.</p>
+                                    <h3><a href="#">${dto.movieTitle }</a></h3>
+                                    <p>${dto.movieSummary}</p>
                                     <div class="links"><a href="#">상세보기</a></div>
                                 </div>
                             </div>
+                            </c:forEach>
                         </div>
                         <div class="clear"></div>
                         <div class="col-md-6 col-sm-12 col-xs-12 remove-padd-left" style="width:85%; margin-bottom:30px;">

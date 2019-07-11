@@ -1,3 +1,5 @@
+header.jsp
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,6 +23,13 @@
     	$("#loginbtnHidden").click(function(){
     		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
     	});
+    	
+    	//영화 검색 결과 화면 이동하기
+    	$(".submit-btn").click(function(){    		
+    		var keyword = $(this).parent().prev().find("#inSearchKey").val() ;
+    		alert( keyword );
+    		location.href= 'movie?command=moviekeysearch&keyword='+keyword;    		
+    	});
 	});
 </script>
 </head>
@@ -41,8 +50,8 @@
                             <c:choose>
                            			<c:when test="${sessionScope.member.memberId!=null}">
                            				<div class="text-right">
-	                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" name="Search" placeholder="검색"></span>
-	                                         <span><input type="submit" class="submit-btn" value="검색"></span>
+	                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" name="Search"  id="inSearchKey" placeholder="검색"></span>
+	                                         <span><input type="submit" class="submit-btn"  id="inSearch" value="검색"></span>
 		                                	 <form action="movie?command=memberinfo" method="post" style="display:inline;">
 				                             <button type="submit" class="book-now-btn">마이페이지</button>
 				                             </form>
@@ -54,8 +63,8 @@
                             		</c:when>
                             		<c:otherwise>
                             			 <div class="text-right">
-                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" name="Search" placeholder="검색"></span>
-	                                     <span><input type="submit" class="submit-btn" value="검색"></span>
+                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" id="inSearchKey" name="Search" placeholder="검색"></span>
+	                                     <span><input type="submit" class="submit-btn"  id="inSearch" value="검색"></span>
                             			 <button type="button" class="book-now-btn" id="loginbtnVisible">로그인</button>
 	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
 	                                     </div>
@@ -89,8 +98,8 @@
                             <c:choose>
                            			<c:when test="${sessionScope.member.memberId!=null}">
                            				<div class="text-right">
-	                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" name="Search" placeholder="검색"></span>
-	                                         <span><input type="submit" class="submit-btn" value="검색"></span>
+	                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" id="inSearchKey" name="Search" placeholder="검색"></span>
+	                                         <span><input type="submit" class="submit-btn" id="inSearch" value="검색"></span>
 		                                	 <form action="movie?command=memberinfo" method="post" style="display:inline;">
 				                             <button type="submit" class="book-now-btn">마이페이지</button>
 				                             </form>
@@ -102,8 +111,8 @@
                             		</c:when>
                             		<c:otherwise>
                             			 <div class="text-right">
-                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" name="Search" placeholder="검색"></span>
-	                                     <span><input type="submit" class="submit-btn" value="검색"></span>
+                                         <span style="display:inline-block;width:30%;"><input type="text" class="form-control" id="inSearchKey" name="Search" placeholder="검색"></span>
+	                                     <span><input type="submit" class="submit-btn" id="inSearch" value="검색"></span>
                             			 <button type="button" class="book-now-btn" id="loginbtnHidden">로그인</button>
 	                               		 <button type="button" class="book-now-btn" onclick="location.href='memberForm.html'">회원가입</button>
 	                                     </div>
