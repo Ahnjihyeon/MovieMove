@@ -28,6 +28,7 @@ public class DeleteCommentServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		PrintWriter out = response.getWriter();
+		
 		out.println(result);		
 	}
 }
