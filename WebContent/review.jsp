@@ -84,7 +84,8 @@
     				dataType: "json",
     				data: "movieCode=${requestScope.movieDTO.movieCode}" ,
     				success:  function( result ) {
-    					$("#listTable tr").remove();  // #listTable tr:gt(0)
+    					$("#listTable p").remove();   
+    					$("#listTable li").remove();  
     					
     					var totalLength = "총 " + result.length + "건";
     					var str="" ;
@@ -95,7 +96,6 @@
     						str += "<div>"+ item.reviewContent +"</div>";
     						str += "</li>";
     					})	
-    					
     					$("span[class=review_left]").text( totalLength );
     					$("#listTable").append(str); 
     					$("a").css("textDecoration","none");
@@ -106,7 +106,7 @@
     			}) 
     		}////////////////////////////// 
     		selectAll();
-    		//setInterval("selectAll", 5000 ); // 글 업데이트 
+    		setInterval( selectAll , 5000 ); // 글 업데이트 
     		
     		// 3. 리뷰게시글 상세페이지 이동
     		$(document).on("click", "#listTable a", function() {
@@ -211,6 +211,7 @@
     							</div>
     							
 								<ul id= "listTable">
+								<p id="reviewAll">작성된 리뷰가 없습니다.</p>
 								<!-- 이곳에서 리뷰 리스트 전체 출력 -->
 								</ul>		
 							</div>					
