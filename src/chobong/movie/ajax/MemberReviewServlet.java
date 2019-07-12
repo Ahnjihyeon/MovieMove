@@ -30,7 +30,8 @@ public class MemberReviewServlet extends HttpServlet {
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			
-			list = MemberService.memberReview(memberId);
+			list = MemberService.memberReview(memberId);			  
+						
 			JSONArray json = JSONArray.fromObject(list);
 			PrintWriter out = response.getWriter();
 			out.println(json);

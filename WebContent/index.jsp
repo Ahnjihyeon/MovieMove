@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" scope="application"/>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,11 +49,21 @@
         		url:"bestmovie",
         		dataType:"json",
         		success: function(result){
-        			var str="";        			
-        			$.each(result, function(index, item){        				
-        				str+="<img src='"+item.movieImage+"'/>";
+        			var strFir="";
+        			var strSec="";
+        			var strThi="";
+        			$.each(result, function(index, item){
+        				if(index<=4){
+        					strFir+="<img src='"+item.movieImage+"'/>"; 
+        				} else if(index<=9) {
+        					strSec+="<img src='"+item.movieImage+"'/>";
+        				} else if(index<=14) {
+        					strThi+="<img src='"+item.movieImage+"'/>";
+        				}
         			})        			   			
-        			$("#Firstslide").append(str);
+        			$("#Firstslide").append(strFir);
+        			$("#Secondslide").append(strSec);
+        			$("#Thirdslide").append(strThi);
         		}
         	});        	
         	
@@ -98,21 +110,8 @@
                 
                 <div class="carousel-inner" style="width: 85%;">
                     <div class="item active" id="Firstslide"></div>
-                    <!-- <div class="item">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                </div>
-                    <div class="item">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                    </div>  -->
-
+					<div class="item" id="Secondslide"></div>
+					<div class="item" id="Thirdslide"></div>
                 </div>
                 <a class="left carousel-control" href="#myCarousel1" data-slide="prev" style="width:8%;"><img src="./images/icons/left-arrow.png" onmouseover="this.src = './images/icons/left-arrow-hover.png'" onmouseout="this.src = './images/icons/left-arrow.png'" alt="left"></a>
                 <a class="right carousel-control" href="#myCarousel1" data-slide="next" style="width:8%;"><img src="./images/icons/right-arrow.png" onmouseover="this.src = './images/icons/right-arrow-hover.png'" onmouseout="this.src = './images/icons/right-arrow.png'" alt="left"></a>
