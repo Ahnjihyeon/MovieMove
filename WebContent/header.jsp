@@ -21,17 +21,13 @@
     	$("#loginbtnHidden").click(function(){
     		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
     	});
-    	
     	//영화 검색 결과 화면 이동하기
     	$(".submit-btn").click(function(){    		
     		var keyword = $(this).parent().prev().find("#inSearchKey").val() ;
-    		alert( keyword );
     		location.href= 'movie?command=moviekeysearch&keyword='+keyword;    		
     	});
-    	
     	//영화리스트 화면 이동하기
-    	$("#headertolist").click(function(){    		
-    		
+    	$("#headertolist").click(function(){    		   		
     		location.href= 'movie?command=moviekeysearch&keyword='+"";    		
     	});
 	});

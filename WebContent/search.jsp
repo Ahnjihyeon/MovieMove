@@ -49,34 +49,33 @@
             </div>
             <!--header--->
             <c:import url="header.jsp"/>
-            
             <hr style="border:1px solid #eee; margin-top: 0;">
             <br>
             <section class="resort-overview-block" style="padding:0">
+            <c:forEach items="${list}" var="dto">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-sm-12 col-xs-12 remove-padd-left" style="width:85%; margin-bottom:30px;">
-                            <c:forEach items="${list}" var="dto">
-                              <div class="side-A" style="margin-bottom:30px;">
+                        <div class="col-md-6 col-sm-12 col-xs-12 remove-padd-left" style="width:100%">
+                              <div class="side-A">
                                 <div class="product-thumb">
                                     <div class="image">
-                                        <a href="#"><img alt="image" class="img-responsive" src="${dto.movieImage}" style="width:270px;height:300px;"></a>
+                                        <a href="#"><img alt="image" class="img-responsive" src="${dto.movieImage}" style="width:230px; height:330px;"></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="side-B" style="height:300px; margin-bottom:30px;">
-                                <div class="product-desc-side">                                
+                            <div class="side-B">
+                                <div class="product-desc-side" style="height:auto;">                                
                                     <h3>${dto.movieTitle}</h3>
                                     <p>${dto.movieSummary}</p>
                                     <div class="links"><a href="movie?command=readmovie&movieCode=${dto.movieCode}">상세보기</a></div>
                                 </div>
                             </div>
-                            </c:forEach>
                         </div>
                         <div class="clear"></div>
                         <div class="col-md-12 offspace-45"></div>
                     </div>
                 </div>
+                </c:forEach>
             </section>
             
             <!---footer--->
