@@ -21,26 +21,8 @@
         <link href="css/responsive.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
         <script src="js/jquery.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
         <script src="js/bootstrap.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
-        <%-- <script src="js/lightbox-plus-jquery.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script> --%>
         <script src="js/instafeed.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
         <script src="js/custom.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
-        
-        <style>
-        	.form-control{display:inline; width:90%;}
-        	.submit-btn{padding:8px; 15px;}
-        </style>
-        <script>
-	        $(function(){
-	        	$("#loginbtnVisible").click(function(){
-	        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-	        	});
-	        	
-	        	$("#loginbtnHidden").click(function(){
-	        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-	        	});
-	    	});
-        	
-        </script>
 	</head>
 	<body>
 		<div id="page">
@@ -75,14 +57,14 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12 col-xs-12 remove-padd-left" style="width:85%; margin-bottom:30px;">
                             <c:forEach items="${list}" var="dto">
-                              <div class="side-A">
+                              <div class="side-A" style="margin-bottom:30px;">
                                 <div class="product-thumb">
                                     <div class="image">
-                                        <a href="#"><img alt="image" class="img-responsive" src="${dto.movieImage}"></a>
+                                        <a href="#"><img alt="image" class="img-responsive" src="${dto.movieImage}" style="width:270px;height:300px;"></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="side-B">
+                            <div class="side-B" style="height:300px; margin-bottom:30px;">
                                 <div class="product-desc-side">                                
                                     <h3>${dto.movieTitle}</h3>
                                     <p>${dto.movieSummary}</p>
@@ -90,23 +72,6 @@
                                 </div>
                             </div>
                             </c:forEach>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="col-md-6 col-sm-12 col-xs-12 remove-padd-left" style="width:85%; margin-bottom:30px;">
-                            <div class="side-A">
-                                <div class="product-thumb">
-                                    <div class="image">
-                                        <a href="#"><img src="images/category2.png" class="img-responsive" alt="image"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="side-B">
-                                <div class="product-desc-side">
-                                    <h3><a href="#">영화 제목</a></h3>
-                                    <p>영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용영화 내용.</p>
-                                    <div class="links"><a href="#">상세보기</a></div>
-                                </div>
-                            </div>
                         </div>
                         <div class="clear"></div>
                         <div class="col-md-12 offspace-45"></div>
@@ -119,7 +84,7 @@
                 <div class="container">
 
                     <div class="copyright">
-                        &copy; 2019 All right reserved. Designed by <a href="#" target="_blank">KOSTA</a>
+                        &copy; 2019 All right reserved. Designed by <a href="#" target="_blank">CHOBONG</a>
                     </div>
 
                 </div>
