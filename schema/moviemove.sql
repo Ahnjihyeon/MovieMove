@@ -59,8 +59,8 @@ create table likeCheck (
     review_id NUMBER , -- 글번호
     likeCheck_count NUMBER,  -- 좋아요
     constraint mem_id_rev_id_PK primary key(member_id, review_id),
-    foreign key(member_id) references member(member_id),
-    foreign key(review_id) references review(review_id)
+    constraint like_member_id_fk foreign key(member_id) references member(member_id) on delete cascade,
+    constraint like_review_id_fk foreign key(review_id) references review(review_id) on delete cascade
 );
 insert into likeCheck values('11',1,2);
 insert into likeCheck values('11',null,2);

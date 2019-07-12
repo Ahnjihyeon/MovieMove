@@ -47,25 +47,13 @@
         		url:"bestmovie",
         		dataType:"json",
         		success: function(result){
-        			var strFir="";
-        			var strSec="";
-        			var strThi="";
-        			$.each(result, function(index, item){
-        				if(index<=4){
-        					strFir+="<img src='"+item.movieImage+"'/>"; 
-        				} else if(index<=9) {
-        					strSec+="<img src='"+item.movieImage+"'/>";
-        				} else if(index<=14) {
-        					strThi+="<img src='"+item.movieImage+"'/>";
-        				}
+        			var str="";        			
+        			$.each(result, function(index, item){        				
+        				str+="<img src='"+item.movieImage+"'/>";
         			})        			   			
-        			$("#Firstslide").append(strFir);
-        			$("#Secondslide").append(strSec);
-        			$("#Thirdslide").append(strThi);
+        			$("#Firstslide").append(str);
         		}
-        	});
-        	
-        	
+        	});        	
         	
     	});
         	
@@ -110,8 +98,20 @@
                 
                 <div class="carousel-inner" style="width: 85%;">
                     <div class="item active" id="Firstslide"></div>
-                    <div class="item" id="Secondslide"></div>
-                    <div class="item" id="Thirdslide"></div> 
+                    <!-- <div class="item">
+	                    	<img src="images/banner2.png" alt="Second slide">
+	                    	<img src="images/banner2.png" alt="Second slide">
+	                    	<img src="images/banner2.png" alt="Second slide">
+	                    	<img src="images/banner2.png" alt="Second slide">
+	                    	<img src="images/banner2.png" alt="Second slide">
+	                </div>
+                    <div class="item">
+                            <img src="images/banner3.png" alt="Third slide">
+                            <img src="images/banner3.png" alt="Third slide">
+                            <img src="images/banner3.png" alt="Third slide">
+                            <img src="images/banner3.png" alt="Third slide">
+                            <img src="images/banner3.png" alt="Third slide">
+                    </div>  -->
 
                 </div>
                 <a class="left carousel-control" href="#myCarousel1" data-slide="prev" style="width:8%;"><img src="./images/icons/left-arrow.png" onmouseover="this.src = './images/icons/left-arrow-hover.png'" onmouseout="this.src = './images/icons/left-arrow.png'" alt="left"></a>
@@ -124,16 +124,14 @@
             <!--gallery block--->
             <section class="gallery-block gallery-front">
                 <div class="container">
-                <h4 style="margin-bottom:8px; color:#333; font-weight:bold;">인기 예고편</h4>
+                <h4 style="margin-bottom:8px; color:#333; font-weight:bold;">최신 예고편</h4>
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="gallery-image">
                                 <img class="img-responsive" src="images/room1.png">
                                 <div class="overlay">
-                                    <a id="modal" class="info pop"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <p><a>영화 제목제목</a><br><br>
-                                    	 <a>영화 내용내용</a>
-                                    </p>
+                                    <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
+                                    <input type="hidden" value="parasite"/><p style="color: white">기생충</p>
                                 </div>
                             </div>
                         </div>
@@ -141,10 +139,8 @@
                             <div class="gallery-image">
                                 <img class="img-responsive" src="images/room2.png">
                                 <div class="overlay">
-                                    <a class="info pop example-image-link img-responsive" href="media/mitte.mp4" data-lightbox="example-1"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <p><a>영화 제목제목</a><br><br>
-                                    	 <a>영화 내용내용</a>
-                                    </p>
+                                    <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
+                                    <input type="hidden" value="spiderman"/><p style="color: white">스파이더맨 파 프롬 홈</p>
                                 </div>
                             </div>
                         </div>
@@ -152,10 +148,8 @@
                             <div class="gallery-image">
                                 <img class="img-responsive" src="images/room3.png">
                                 <div class="overlay">
-                                    <a class="info pop example-image-link img-responsive" href="media/avengers.mp4" data-lightbox="example-1"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <p><a>영화 제목제목</a><br><br>
-                                    	 <a>영화 내용내용</a>
-                                    </p>
+                                    <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
+                                    <input type="hidden" value="toystory4"/><p style="color: white">토이스토리4</p>
                                 </div>
                             </div>
                         </div>
@@ -163,10 +157,8 @@
                             <div class="gallery-image">
                                 <img class="img-responsive" src="images/room4.png">
                                 <div class="overlay">
-                                    <a class="info pop example-image-link img-responsive" href="images/KungFuPanda_Sample.mp4" data-lightbox="example-1"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <p><a>영화 제목제목</a><br><br>
-                                    	 <a>영화 내용내용</a>
-                                    </p>
+                                    <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
+                                    <input type="hidden" value="smellofghost"/><p style="color: white">귀신의향기</p>
                                 </div>
                             </div>
                         </div>
@@ -175,11 +167,7 @@
             </section>
 
 			<div id="fade" class="well" style="display:none">
-			<object width="450" height="300">
-			<param name="movie" value="media/avengers.mp4?autoplay=1&playlist=1&loop=1&vq=hd720&autohide=1&controls=0&showinfo=0&rel=0"></param>
-			<param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param>
-			<embed src="media/avengers.mp4?autoplay=1&playlist=1&loop=1&vq=hd720&autohide=1&controls=0&showinfo=0&rel=0" type="application/x-shockwave-flash" width="820" height="460" allowscriptaccess="always" allowfullscreen="true"></embed>
-			</object>
+				<video id="video" src="" width="720" height="400"></video>
 			</div>
             
             <!---footer--->
@@ -204,13 +192,16 @@
     
 <!-- fade -->
 <script>
-$("#modal").click(function () {
-    $('#fade').popup({
-      transition: 'all 0.3s',
-      scrolllock: true,
-      autoopen: true,
-	  background: true
-    });
-});
+  $(function(){
+	  $(".movie").click(function () {
+			$("#video").attr("src", "media/"+$(this).next(3).val()+".mp4").trigger("load").trigger("play");
+		    $('#fade').popup({ 
+		      transition: 'all 0.3s',
+		      scrolllock: true,
+		      autoopen: true,
+			  background: true
+		    });
+		});
+  })
 </script>
 </html>
