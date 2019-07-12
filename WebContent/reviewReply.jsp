@@ -18,12 +18,19 @@
         <link rel="stylesheet" href="css/lightbox.min.css">
         <link href="css/responsive.css" rel="stylesheet">
 <style>
+	#doubleCount {
+		float: right; 
+		margin-top: -18px;
+	}
 	input.like-btn{
 		background: url('images/icons/like.png') no-repeat;
-		border:none;
-		width:40px;
-		height:40px;
-		cursor:pointer;
+		border: none;
+   	 	width: 40px;
+    	height: 40px;
+   		margin-top: -13px;
+    	margin-left: 15px;
+    	margin-bottom: 24px;
+   		vertical-align: text-top;
 	}
 	.commentList{
 	 			font-size: 13px;
@@ -40,6 +47,7 @@
 border:1px solid; 
 padding:10px; 
 width: 800px;
+word-spacing: 5px;
 }
 </style>
 <title>Insert title here</title>
@@ -252,7 +260,7 @@ width: 800px;
 					"reviewId":${requestScope.reviewDTO.reviewId}				
 				},
 				success: function(count){
-					$(".like_count").html(count);
+					$("#likeCount").text(count);
 				}
 			})
 		};
@@ -295,11 +303,14 @@ width: 800px;
                 </div>
 <!-- 일반 페이지  -->
 <form name="reSelet" id="reSelet">
-<div class="reviewAvertissement" style=" margin: auto; height: 615px;">
-<h4 id="reSubject">${requestScope.reviewDTO.reviewSubject}</h4><br>
-<%-- <span id="reSubject" >${requestScope.reviewDTO.reviewSubject}</span> --%>
-<span id="reStarPoint" >평점 : ${requestScope.reviewDTO.reviewStarPoint}점</span>
-<span style="float: right;">등록일: ${requestScope.reviewDTO.reviewWriteday}</span><br><br>
+<div class="reviewAvertissement" style=" margin: auto; height: 615px; font-size: 17px;">
+<h3 id="reSubject" style="font-weight: 900px;">${requestScope.reviewDTO.reviewSubject}</h4>
+<div id="doubleCount">
+<span id="reviewCount"> 조회수 ${requestScope.reviewDTO.reviewCount}</span><br><br>
+좋아요 <span id="likeCount"></span><br>
+</div><br>
+<span id="reStarPoint" >평점 : ${requestScope.reviewDTO.reviewStarPoint}점</span><br><br>
+<span style="float: right;">등록일: ${requestScope.reviewDTO.reviewWriteday}</span><br>
 <hr>
 <div id="reContent" >${requestScope.reviewDTO.reviewContent}</div>
 
@@ -323,8 +334,8 @@ width: 800px;
 
  </div> 
  </form>
- <input type="button" class="update-btn" id="update-btn" value="수정하기">
-<input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
+ <input type="button" class="update-btn" id="update-btn" value="수정하기" style="margin-left: 850px; width: 80px; height: 40px; margin-top: 5px;">
+<input type="button" class="delete-btn" id="delete-btn" value="삭제하기" style="width: 80px; height: 40px;">
 <input type="button" class="like-btn" id="like-btn">
 
 
