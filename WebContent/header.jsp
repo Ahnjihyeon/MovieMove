@@ -25,7 +25,6 @@
     	//영화 검색 결과 화면 이동하기
     	$(".submit-btn").click(function(){    		
     		var keyword = $(this).parent().prev().find("#inSearchKey").val() ;
-    		alert( keyword );
     		location.href= 'movie?command=moviekeysearch&keyword='+keyword;    		
     	});
     	
