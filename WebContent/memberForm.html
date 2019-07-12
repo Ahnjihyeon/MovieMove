@@ -1,9 +1,27 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" href="images/icons/favicon.png"/>
 <title>Insert title here</title>
+<!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet" type="text/css" />
+        <!-- Custom styles for this template -->
+        <link href="css/style.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <link href="fonts/antonio-exotic/stylesheet.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <link rel="stylesheet" href="css/lightbox.min.css?v=<%=System.currentTimeMillis() %>">
+        <link href="css/responsive.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+        <script src="js/jquery-3.4.1.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <script src="js/instafeed.min.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+        <script src="js/custom.js?v=<%=System.currentTimeMillis() %>" type="text/javascript"></script>
+
 <style>
+  * {
+  	margin: auto;
+  }
   table {border: 5px groove pink; width:500px}
   td,th{border:1px black solid ;  padding:10px}
   input{border:solid 1px gray}  
@@ -76,10 +94,33 @@ function checkValid() {
 </script>
 
 <body>
-
+ <div id="page">
+            <!---header top---->
+            <div class="top-header" style="background-color:#000">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--                            <a href="#"> </a>
+                                                        <div class="info-block"><i class="fa fa-map"></i>701 Old York Drive Richmond USA.</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-grid">
+                                <ul class="list-unstyled text-right">
+                                    <li><a><i class="fa fa-facebook"></i></a></li>
+                                    <li><a><i class="fa fa-twitter"></i></a></li>
+                                    <li><a><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
 <form name="writeForm" method="post" action="movie?command=memberinsert" onSubmit='return checkValid()'>
 <table cellspacing="0" align="center">
-   <caption><h2> 회원가입 Form</h2></caption>
+   <caption><h2> 회원가입</h2></caption>
   <tr>
 	<td width="100px">아이디</td>
 	<td width="400px"><input type="text" name="memberId"/>    <input type="button" id="idCheck" value="중복확인"><span id="idcheckspan"></span></td>
@@ -115,8 +156,8 @@ function checkValid() {
   </tr>
   <tr>
 	<td colspan="2" style="text-align: center;background-color: pink">
-	<input type="submit" value="가입" />
-	<input type="reset" value="취소" onclick="history.back()"/>
+	<input type="submit" value="가입" style="width: 80px;"/>
+	<input type="reset" value="취소" onclick="history.back()" style="width: 80px;"/>
 	</td>	
   </tr>
   </table> 
