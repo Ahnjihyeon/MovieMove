@@ -19,20 +19,40 @@
 <link rel="stylesheet" href="css/lightbox.min.css">
 <link href="css/responsive.css" rel="stylesheet">
 <style>
+#updelButton {
+	margin-left: 895px;
+    width: 180px;
+    height: 40px;
+    margin-top: 5px;
+    position: absolute
+}
+
+#update-btn {
+	width: 80px;
+    height: 40px;
+}
+
 #doubleCount {
 	float: right;
 	margin-top: -18px;
 }
 
+#delete-btn {
+	position: absolute;
+    width: 80px;
+    height: 40px;
+    margin-left: 20px;
+}
 input.like-btn {
 	background: url('images/icons/like.png') no-repeat;
 	border: none;
-	width: 40px;
-	height: 40px;
-	margin-top: -13px;
-	margin-left: 15px;
-	margin-bottom: 24px;
-	vertical-align: text-top;
+    width: 40px;
+    height: 40px;
+    margin-top: -4px;
+    margin-left: 26px;
+    margin-bottom: 30px;
+    vertical-align: text-top;
+    float: right;
 }
 
 .commentList {
@@ -301,6 +321,7 @@ input.like-btn {
 		<div class="reviewAvertissement"
 			style="margin: auto; height: 615px; font-size: 17px;">
 			<h3 id="reSubject" style="font-weight: 900px;">${requestScope.reviewDTO.reviewSubject}</h4>
+			<input type="button" class="like-btn" id="like-btn">
 				<div id="doubleCount">
 					<span id="reviewCount"> 조회수
 						${requestScope.reviewDTO.reviewCount}</span><br>
@@ -340,11 +361,10 @@ input.like-btn {
 
 		</div>
 	</form>
-	<input type="button" class="update-btn" id="update-btn" value="수정하기"
-		style="margin-left: 850px; width: 80px; height: 40px; margin-top: 5px;">
-	<input type="button" class="delete-btn" id="delete-btn" value="삭제하기"
-		style="width: 80px; height: 40px;">
-	<input type="button" class="like-btn" id="like-btn">
+	<div id="updelButton">
+	<input type="button" class="update-btn" id="update-btn" value="수정하기">
+	<input type="button" class="delete-btn" id="delete-btn" value="삭제하기">
+	</div>
 
 
 	<div class="single-bottom comment-form" style="padding: 50px 0 0 0;">
