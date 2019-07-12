@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" scope="application"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,8 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css" />
+<link rel="stylesheet" href="dist/bs-pagination.min.css">
+	
 <!-- Custom styles for this template -->
 <link href="css/style.css" rel="stylesheet">
 <link href="fonts/antonio-exotic/stylesheet.css" rel="stylesheet">
@@ -25,6 +28,8 @@
 <script src="js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
 <script src="js/instafeed.min.js" type="text/javascript"></script>
 <script src="js/custom.js" type="text/javascript"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="dist/pagination.min.js"></script>
 
 <title>Insert title here</title>
 <style>
@@ -115,10 +120,11 @@ table.memberReview tbody td {
 			$.ajax({ 
 				type: "post",
 				url: "memberreview",  
-				dataType: "json",
+				dataType: "text",
 				data: "${sessionScope.memberId}",
-				success:  function( result ) {																		
-					var str="";					
+				success:  function( result ) {	
+					alert(result);
+					/* var str="";					
 					$.each(result, function(index, item){
 						var reviewId = item.reviewId;
 						str += "<li style='padding:15px 15px 0 0; border-bottom: 1px dashed #ddd;'><br>";
@@ -126,7 +132,7 @@ table.memberReview tbody td {
 						str += "<div style='margin-bottom: 30px;'>"+item.movieCode+"<a href='movie?command=read&reviewId='reviewId' style='font-size: 19px; font-weight: 900; color: #7f0e86;'>"+item.reviewSubject+"</a>별점 :"+item.reviewStarPoint+"개 조회수 : "+item.reviewCount+" 작성일 : "+ item.reviewWriteday+"</div>";
 						str += "</li>";
 					})						
-					$("#memberReview").append(str);  
+					$("#memberReview").append(str);  */ 
 					//$("a").css("textDecoration","none");
  				},
 				error: function( error ) {
