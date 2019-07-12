@@ -32,6 +32,9 @@ public class ReviewInsertServlet extends HttpServlet {
 					// 카운트
 		String reviewPwd = request.getParameter("reviewPwd");
 		
+		System.out.println("리뷰 등록 = " + memberId+" : " +movieCode+" : " + reviewSubject
+								+" : "+ reviewContent+" : " + reviewStarPoint + " : " + reviewPwd );
+		
 		int result=0;
 		if( memberId == null )	{
 			result=-1;

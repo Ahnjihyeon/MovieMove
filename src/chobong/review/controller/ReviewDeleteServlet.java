@@ -22,9 +22,10 @@ public class ReviewDeleteServlet extends HttpServlet {
 		// 삭제할 url ( 게시글 번호로 삭제 );
 		String reviewId = request.getParameter("reviewId"); 
 		String reviewPwd = request.getParameter("reviewPwd");
-		System.out.println( "삭제 컨트롤2러 = " +reviewId + " : " +  reviewPwd );
+		//System.out.println( "삭제 컨트롤2러 = " +reviewId + " : " +  reviewPwd );
 		
 		// 자바 스크립트 문구
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		try {
 			int result = ReviewService.delete(reviewId, reviewPwd);

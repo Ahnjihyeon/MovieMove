@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}" scope="application"/>
 
-<c:set var="path" value="${pageContext.request.contextPath}" scope="application"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +52,9 @@
         	//-----게시판---------------------------------------------
         	// 1.등록
     		$("#btn").click( function() {
-    			console.log( $("form[name=reInsert]").serialize()  );
+    			//console.log( $("form[name=reInsert]").serialize()  );
     			
-    			$.ajax({ 
+     			$.ajax({ 
     				type: "post",
     				url: "${path}/ReviewInsert", 
     				dataType: "text",
@@ -74,7 +73,7 @@
     					alert("삽입x");
     					console.log( error );
     				} 
-    			})
+    			}) 
     		}); /////////////////// 
     		
     		// 2. 전체 리스트 출력
@@ -88,7 +87,6 @@
     					$("#listTable tr").remove();  // #listTable tr:gt(0)
     					
     					var totalLength = "총 " + result.length + "건";
-    					console.log( "총 개수 = " + totalLength );
     					var str="" ;
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
@@ -112,8 +110,6 @@
     		
     		// 3. 리뷰게시글 상세페이지 이동
     		$(document).on("click", "#listTable a", function() {
-    			//alert(1);
-    			
     			// 클릭한 리뷰 제목을 토대로 상세페이지를 보여줘야함
     			console.log( "클릭한 a 게시글번호 =" + $(this).attr("value") );
     			var reId = $(this).attr("value");
@@ -236,7 +232,8 @@
                                     <input type="hidden" name='memberId'/><!-- 아이디 -->
  									<input type="hidden" name='movieCode' value='${movieDTO.movieCode}'  /><!-- 영화코드 -->
                                     
-                                    <input type="button" class="submit-btn" id="btn" value="작성">
+                                    <!-- class="submit-btn"자체가 전송기능을 가진거 같아서 뺍니다. -->
+                                    <input type="button" id="btn"  value="작성">
                                </form>
                              </div>
                              
