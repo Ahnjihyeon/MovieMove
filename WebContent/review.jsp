@@ -54,7 +54,7 @@
     		$("#btn").click( function() {
     			//console.log( $("form[name=reInsert]").serialize()  );
     			
-     			$.ajax({ 
+     			$.ajax({  
     				type: "post",
     				url: "${path}/ReviewInsert", 
     				dataType: "text",
