@@ -47,11 +47,21 @@
         		url:"bestmovie",
         		dataType:"json",
         		success: function(result){
-        			var str="";
+        			var strFir="";
+        			var strSec="";
+        			var strThi="";
         			$.each(result, function(index, item){
-        				str="<img src='"+item.movieImage+"'/>";
+        				if(index<=4){
+        					strFir+="<img src='"+item.movieImage+"'/>"; 
+        				} else if(index<=9) {
+        					strSec+="<img src='"+item.movieImage+"'/>";
+        				} else if(index<=14) {
+        					strThi+="<img src='"+item.movieImage+"'/>";
+        				}
         			})        			   			
-        			$("#firstSlide").append(str);
+        			$("#Firstslide").append(strFir);
+        			$("#Secondslide").append(strSec);
+        			$("#Thirdslide").append(strThi);
         		}
         	});
         	
@@ -99,22 +109,9 @@
                 </ol>
                 
                 <div class="carousel-inner" style="width: 85%;">
-                    <div class="item active" id="firstSlide">                           
-                    </div>
-                    <div class="item">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                    	<img src="images/banner2.png" alt="Second slide">
-	                </div>
-                    <div class="item">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                            <img src="images/banner3.png" alt="Third slide">
-                    </div>
+                    <div class="item active" id="Firstslide"></div>
+                    <div class="item" id="Secondslide"></div>
+                    <div class="item" id="Thirdslide"></div> 
 
                 </div>
                 <a class="left carousel-control" href="#myCarousel1" data-slide="prev" style="width:8%;"><img src="./images/icons/left-arrow.png" onmouseover="this.src = './images/icons/left-arrow-hover.png'" onmouseout="this.src = './images/icons/left-arrow.png'" alt="left"></a>
