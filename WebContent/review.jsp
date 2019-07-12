@@ -92,8 +92,8 @@
     					$.each(result, function(index, item){
     						// 영화제목 , 아이디, 가입일 , 좋아요 ,        제목
     						str += "<li style='padding:15px 15px 0 0;'>";
-    						str += "<div style='color:#b1afaf;'>"+ (index+1) +"&nbsp;&nbsp;&nbsp;<a href='#' id='listSubject' value='"+item.reviewId+"' style='display: contents; font-size:20px;'>"+ item.reviewSubject +"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+ item.memberId +" | "+ item.reviewWriteday +" | "+ item.reviewStarPoint +"점 | 조회수 : "+ item.reviewCount + "</div>";
-    						str += "<div>"+ item.reviewContent +"</div>";
+    						str += "<div style='color:#b1afaf;'><a href='#' id='listSubject' value='"+item.reviewId+"' style='display: contents; font-size:20px;'>"+ (index+1) +". "+ item.reviewSubject +"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+ item.memberId +" | "+ item.reviewWriteday +" | "+ item.reviewStarPoint +"점 | 조회수 : "+ item.reviewCount + "</div>";
+    						str += "<div style='padding:10px 10px 15px 20px;'>"+ item.reviewContent +"</div>";
     						str += "</li>";
     					})	
     					$("span[class=review_left]").text( totalLength );
