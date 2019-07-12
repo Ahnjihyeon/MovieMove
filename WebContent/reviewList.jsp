@@ -33,6 +33,7 @@
 				url: "${path}/ReviewSelectAll",  
 				dataType: "json",
 				success:  function( result ) {
+					console.log(result);
 					$("#listTable p").remove();  // #listTable tr:gt(0)
 					
 					var totalLength = "총 " + result.length + "건";
@@ -70,7 +71,7 @@
 		$(document).on("click", "#listTable a", function() {
 			console.log( "클릭한 a 게시글번호 =" + $(this).attr("value") );
 			var reId = $(this).attr("value");
-			location.href="${path}/movie?command=read&reviewId="+reId;
+			//location.href="${path}/movie?command=read&reviewId="+reId;
 		})
 		
 	})
