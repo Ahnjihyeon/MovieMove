@@ -29,7 +29,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 	
 		String reviewPwd = request.getParameter("reviewPwd");
 		System.out.println("update컨트롤러 = " + reviewId +" : "+ reviewSubject+" : "+reviewStarPoint+" : "+reviewContent);
-	
+		System.out.println("update컨트롤러2 = " + reviewPwd );
 	
 		ReviewDTO upReviewDTO = new ReviewDTO(reviewId, null, null, reviewSubject, reviewContent
 															, null, Integer.parseInt(reviewStarPoint), 0, null);
@@ -40,9 +40,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 			if( result>0 ) {
 				
 				ReviewDTO UpdateReviewDTO = ReviewService.selectByReviewId(reviewId);
-				
 				System.out.println("UpdateReviewDTO =" +UpdateReviewDTO.getReviewContent()  );
-				
 				
 				//request.setAttribute("UpdateReviewDTO", UpdateReviewDTO );
 				 jsonDTO = JSONArray.fromObject(UpdateReviewDTO);

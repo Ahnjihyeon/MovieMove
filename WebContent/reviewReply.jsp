@@ -58,10 +58,8 @@ input.like-btn {
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		// reviewStarPoint ${request.reviewSubject} 의 value  selectIndex
 		var rePoint = '${requestScope.reviewDTO.reviewStarPoint}';
 		
-		//$("input[type=radio]").attr("checked", true);
 		$('input[type=radio]').each( function( index, item ) {
   	   		if( this.value == rePoint ){ //값 비교
     	        	this.checked = true; //checked 처리
@@ -70,7 +68,6 @@ input.like-btn {
 		// 로그인해서 자기 등록글만 수정,삭제 버튼 나타나기
 		var loginId = '${sessionScope.memberId}';
 		var memberId = '${ requestScope.reviewDTO.memberId }';
-		//console.log( "로그인 = " + loginId + " 등록자 = " + memberId );
 		if( loginId == "" ) {
 			//console.log("세션없음");
 			$("#update-btn").hide();
@@ -112,8 +109,8 @@ input.like-btn {
 				$("#reUpdate").show();
 				$("#reSelet").hide();
 				
-				// 완료버튼 클릭하면 값 전송
-				$(this).click(function() {
+			} else if( $(this).val()=="수정완료" ) {	
+				
 					var result = prompt("등록했던 게시글 비빌번호를 입력해주세요.","1234");
 					var reviewId = '${requestScope.reviewDTO.reviewId}';
 					var rePwd = '${requestScope.reviewDTO.reviewPwd}';
@@ -150,7 +147,6 @@ input.like-btn {
 					} else {
 						alert('비밀번호가 틀렸습니다. 다시 입력해주세요.');
 					}
-				}) // 완료버튼 클릭 끝
 			}// 버튼이 수정하기 이냐 묻기 끝
 		})
 		//-------------------------------------------------------------------
@@ -322,7 +318,7 @@ input.like-btn {
 	<!-- 수정하기 페이지 -->
 	<form method="post" name="reUpdate" id="reUpdate">
 		<div class="reviewAvertissement" style="margin: auto; height: 615px;">
-			<h4 class="form-control" name="reviewSubject">${requestScope.reviewDTO.reviewSubject}</h4>
+			<h4 class="form-control" >${requestScope.reviewDTO.reviewSubject}</h4>
 			<br> <span style="margin-left: auto;">id:
 				${requestScope.reviewDTO.reviewId }</span> <span style="float: right;">좋아요
 				수</span> <br>
@@ -335,11 +331,12 @@ input.like-btn {
 			<br>
 			<textarea class="form-control" name="reviewContent"
 				style="height: 400px; width: 775px;">${requestScope.reviewDTO.reviewContent}</textarea>
-			<br> <input type="hidden" name='memberId' />
-			<!-- 아이디 -->
-			<input type="hidden" name='movieCode'
-				value='${requestScope.reviewDTO.movieCode}' />
-			<!-- 영화코드 -->
+			<br> 
+			
+			<input type="hidden" name='reviewSubject' value='${requestScope.reviewDTO.reviewSubject}'/><!-- 제목 -->
+			<input type="hidden" name='memberId'  value='${requestScope.reviewDTO.memberId}'/><!-- 아이디 -->
+			<input type="hidden" name='movieCode' value='${requestScope.reviewDTO.movieCode}' /><!-- 영화코드 -->
+			
 
 		</div>
 	</form>
