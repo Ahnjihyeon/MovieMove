@@ -36,13 +36,6 @@
         </style>
         <script>
         $(function(){
-           $("#loginbtnVisible").click(function(){
-              window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-           });
-           
-           $("#loginbtnHidden").click(function(){
-              window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-           });
            
            $.ajax({
               type:"post",
