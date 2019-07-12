@@ -49,7 +49,6 @@
             </div>
             <!--header--->
             <c:import url="header.jsp"/>
-            
             <hr style="border:1px solid #eee; margin-top: 0;">
             <br>
             <section class="resort-overview-block" style="padding:0">
