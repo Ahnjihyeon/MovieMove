@@ -28,8 +28,6 @@
 <script src="js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
 <script src="js/instafeed.min.js" type="text/javascript"></script>
 <script src="js/custom.js" type="text/javascript"></script>
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="dist/pagination.min.js"></script>
 
 <title>Insert title here</title>
 <style>
@@ -115,25 +113,34 @@ table.memberReview tbody td {
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <script>
-	$(function(){
+	$(function(){	
 		function selectAll(){
 			$.ajax({ 
 				type: "post",
 				url: "memberreview",  
-				dataType: "text",
+				dataType: "json",
 				data: "${sessionScope.memberId}",
 				success:  function( result ) {	
-					alert(result);
-					/* var str="";					
+					console.log(result);
+					var str="";					
 					$.each(result, function(index, item){
 						var reviewId = item.reviewId;
 						str += "<li style='padding:15px 15px 0 0; border-bottom: 1px dashed #ddd;'><br>";
 						str += "<div style='color:#b1afaf;'>"+(index+1)+"</div><br>"; //
-						str += "<div style='margin-bottom: 30px;'>"+item.movieCode+"<a href='movie?command=read&reviewId='reviewId' style='font-size: 19px; font-weight: 900; color: #7f0e86;'>"+item.reviewSubject+"</a>별점 :"+item.reviewStarPoint+"개 조회수 : "+item.reviewCount+" 작성일 : "+ item.reviewWriteday+"</div>";
+						str += "<div style='margin-bottom: 30px;'>영화코드 :&nbsp;&nbsp; "+item.movieCode+"&nbsp;&nbsp;영화 제목 :<a href='movie?command=read&reviewId='reviewId' style='font-size: 19px; font-weight: 900; color: #7f0e86;'>"+item.reviewSubject+"</a>&nbsp;&nbsp;별점 :&nbsp;"+item.reviewStarPoint+"개<br>&nbsp;&nbsp;&nbsp; 조회수 : "+item.reviewCount+" 작성일 : "+ item.reviewWriteday+"</div>";
 						str += "</li>";
 					})						
-					$("#memberReview").append(str);  */ 
+					$("#memberReview").append(str);
 					//$("a").css("textDecoration","none");
+					/* $("#memberReview").pagination({
+						total : 1,
+						current : 1,
+						length : 10,
+						size : 2,
+						click:function(e){
+							
+						}
+					}) */
  				},
 				error: function( error ) {
 					console.log( "검색오류" );
@@ -141,6 +148,7 @@ table.memberReview tbody td {
 			}) 
 		}
 		selectAll();
+		
 	})
 </script>
 <body>
@@ -171,14 +179,15 @@ table.memberReview tbody td {
             <c:import url="header.jsp"/>
             
             <hr style="border:1px solid #eee; margin-top: 0;">
-			
+            
+			<div style="float: left;" align="left">			
 				<ul class="vertical-menu">
+				<li><a href="memberMyFage.jsp">내정보</a></li>
+				<li><a href="memberInfo.jsp">정보 수정</a></li>
+				<li><a href="memberReview.jsp">내가 쓴 글</a></li>
+				</ul>
+			</div>
 
-<li><a href="memberMyFage.jsp">내정보</a></li>
-<li><a href="memberInfo.jsp">정보 수정</a></li>
-<li><a href="memberReview.jsp">내가 쓴 글</a></li>
-
-</ul>
 			<div align="center">
 				<ul id="memberReview" style="padding: 0 230px; font-size: 17px;"></ul>
 			</div>
