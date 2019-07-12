@@ -47,11 +47,11 @@
         		url:"bestmovie",
         		dataType:"json",
         		success: function(result){
-        			var str="";
-        			$.each(result, function(index, item){
-        				str="<img src='"+item.movieImage+"'/>";
+        			var str="";        			
+        			$.each(result, function(index, item){        				
+        				str+="<img src='"+item.movieImage+"'/>";       				
         			})        			   			
-        			$("#firstSlide").append(str);
+        			$("#Firstslide").append(str);
         		}
         	});
         	
@@ -99,9 +99,8 @@
                 </ol>
                 
                 <div class="carousel-inner" style="width: 85%;">
-                    <div class="item active" id="firstSlide">                           
-                    </div>
-                    <div class="item">
+                    <div class="item active" id="Firstslide"></div>
+                    <!-- <div class="item">
 	                    	<img src="images/banner2.png" alt="Second slide">
 	                    	<img src="images/banner2.png" alt="Second slide">
 	                    	<img src="images/banner2.png" alt="Second slide">
@@ -114,7 +113,7 @@
                             <img src="images/banner3.png" alt="Third slide">
                             <img src="images/banner3.png" alt="Third slide">
                             <img src="images/banner3.png" alt="Third slide">
-                    </div>
+                    </div>  -->
 
                 </div>
                 <a class="left carousel-control" href="#myCarousel1" data-slide="prev" style="width:8%;"><img src="./images/icons/left-arrow.png" onmouseover="this.src = './images/icons/left-arrow-hover.png'" onmouseout="this.src = './images/icons/left-arrow.png'" alt="left"></a>
