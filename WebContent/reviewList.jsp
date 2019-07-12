@@ -34,7 +34,7 @@
 				dataType: "json",
 				success:  function( result ) {
 					console.log(result);
-					$("#listTable p").remove();  // #listTable tr:gt(0)
+					$("#listTable p").remove();   
 					
 					var totalLength = "총 " + result.length + "건";
 					console.log( "총 개수 = " + totalLength );
@@ -55,6 +55,7 @@
 						
 						str += "<span>조회수: "+item.reviewCount+"</span></li></ul></div></div></div>"; // 조회수
 						
+						$("#listTable div").remove();   
 						$("#listTotal").text(totalLength);
 						$("#listTable").append(str);
 						})	
@@ -65,7 +66,7 @@
 			}) 
 		}////////////////////////////// 
 		selectAll();
-		//setInterval("selectAll", 5000 ); // 글 업데이트 
+		setInterval( selectAll , 5000 ); // 글 업데이트 
 		
 		// a태그 클릭하면 상세보기로 이동
 		$(document).on("click", "#listTable a", function() {
