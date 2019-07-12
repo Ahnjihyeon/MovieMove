@@ -29,46 +29,46 @@
         <script src="js/jquery.popupoverlay.js?v=<%=System.currentTimeMillis() %>"></script>
         
         <style>
-        	#myCarousel1 > div > div > img{padding:50px 10px 70px 10px; float:left; width:20%; height: 400px !important;}
-        	#myCarousel2 > div > div > img{padding:50px 10px 70px 10px; float:left; width:25%; height: 400px !important;}
-        	.form-control{display:inline; width:90%;}
-        	.submit-btn{padding:8px; 15px;}
+           #myCarousel1 > div > div > img{padding:50px 10px 70px 10px; float:left; width:20%; height: 400px !important;}
+           #myCarousel2 > div > div > img{padding:50px 10px 70px 10px; float:left; width:25%; height: 400px !important;}
+           .form-control{display:inline; width:90%;}
+           .submit-btn{padding:8px; 15px;}
         </style>
         <script>
         $(function(){
-        	$("#loginbtnVisible").click(function(){
-        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-        	});
-        	
-        	$("#loginbtnHidden").click(function(){
-        		window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
-        	});
-        	
-        	$.ajax({
-        		type:"post",
-        		url:"bestmovie",
-        		dataType:"json",
-        		success: function(result){
-        			var strFir="";
-        			var strSec="";
-        			var strThi="";
-        			$.each(result, function(index, item){
-        				if(index<=4){
-        					strFir+="<img src='"+item.movieImage+"'/>"; 
-        				} else if(index<=9) {
-        					strSec+="<img src='"+item.movieImage+"'/>";
-        				} else if(index<=14) {
-        					strThi+="<img src='"+item.movieImage+"'/>";
-        				}
-        			})        			   			
-        			$("#Firstslide").append(strFir);
-        			$("#Secondslide").append(strSec);
-        			$("#Thirdslide").append(strThi);
-        		}
-        	});        	
-        	
-    	});
-        	
+           $("#loginbtnVisible").click(function(){
+              window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+           });
+           
+           $("#loginbtnHidden").click(function(){
+              window.open("login.jsp", "로그인", "width=400, height=300, left=100, top=50");
+           });
+           
+           $.ajax({
+              type:"post",
+              url:"bestmovie",
+              dataType:"json",
+              success: function(result){
+                 var strFir="";
+                 var strSec="";
+                 var strThi="";
+                 $.each(result, function(index, item){
+                    if(index<=4){
+                       strFir+="<img src='"+item.movieImage+"'/>";
+                    } else if(index<=9) {
+                       strSec+="<img src='"+item.movieImage+"'/>";
+                    } else if(index<=14) {
+                       strThi+="<img src='"+item.movieImage+"'/>";
+                    }
+                 })                             
+                 $("#Firstslide").append(strFir);
+                 $("#Secondslide").append(strSec);
+                 $("#Thirdslide").append(strThi);
+              }
+           });           
+           
+       });
+           
         </script>
     </head>
     <body>
@@ -110,8 +110,8 @@
                 
                 <div class="carousel-inner" style="width: 85%;">
                     <div class="item active" id="Firstslide"></div>
-					<div class="item" id="Secondslide"></div>
-					<div class="item" id="Thirdslide"></div>
+               <div class="item" id="Secondslide"></div>
+               <div class="item" id="Thirdslide"></div>
                 </div>
                 <a class="left carousel-control" href="#myCarousel1" data-slide="prev" style="width:8%;"><img src="./images/icons/left-arrow.png" onmouseover="this.src = './images/icons/left-arrow-hover.png'" onmouseout="this.src = './images/icons/left-arrow.png'" alt="left"></a>
                 <a class="right carousel-control" href="#myCarousel1" data-slide="next" style="width:8%;"><img src="./images/icons/right-arrow.png" onmouseover="this.src = './images/icons/right-arrow-hover.png'" onmouseout="this.src = './images/icons/right-arrow.png'" alt="left"></a>
@@ -127,37 +127,37 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="gallery-image">
-                                <img class="img-responsive" src="images/room1.png">
+                                <img class="img-responsive" src="https://movie-phinf.pstatic.net/20190528_36/1559024198386YVTEw_JPEG/movie_image.jpg?type=m203_290_2">
                                 <div class="overlay">
                                     <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <input type="hidden" value="parasite"/><p style="color: white">기생충</p>
+                                    <input type="hidden" value="parasite"/><p style="color: white; width:100%; text-align:center; left:0">기생충</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="gallery-image">
-                                <img class="img-responsive" src="images/room2.png">
+                                <img class="img-responsive" src="https://movie-phinf.pstatic.net/20190527_181/1558933159657a210P_JPEG/movie_image.jpg?type=m203_290_2">
                                 <div class="overlay">
                                     <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <input type="hidden" value="spiderman"/><p style="color: white">스파이더맨 파 프롬 홈</p>
+                                    <input type="hidden" value="spiderman"/><p style="color: white; width:100%; text-align:center; left:0">스파이더맨 파 프롬 홈</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="gallery-image">
-                                <img class="img-responsive" src="images/room3.png">
+                                <img class="img-responsive" src="https://movie-phinf.pstatic.net/20190611_117/1560221190708y3bbv_JPEG/movie_image.jpg?type=m203_290_2">
                                 <div class="overlay">
                                     <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <input type="hidden" value="toystory4"/><p style="color: white">토이스토리4</p>
+                                    <input type="hidden" value="toystory4"/><p style="color: white; width:100%; text-align:center; left:0">토이스토리4</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="gallery-image">
-                                <img class="img-responsive" src="images/room4.png">
+                                <img class="img-responsive" src="https://movie-phinf.pstatic.net/20190618_61/1560822209917taNcN_JPEG/movie_image.jpg?type=m203_290_2">
                                 <div class="overlay">
                                     <a class="info pop movie"><img src="./images/icons/right-arrow.png" aria-hidden="true"></a>
-                                    <input type="hidden" value="smellofghost"/><p style="color: white">귀신의향기</p>
+                                    <input type="hidden" value="smellofghost"/><p style="color: white; width:100%; text-align:center; left:0">귀신의향기</p>
                                 </div>
                             </div>
                         </div>
@@ -165,9 +165,9 @@
                 </div>
             </section>
 
-			<div id="fade" class="well" style="display:none">
-				<video id="video" src="" width="720" height="400"></video>
-			</div>
+         <div id="fade" class="well" style="display:none">
+            <video id="video" src="" width="720" height="400"></video>
+         </div>
             
             <!---footer--->
             <footer>
@@ -192,15 +192,15 @@
 <!-- fade -->
 <script>
   $(function(){
-	  $(".movie").click(function () {
-			$("#video").attr("src", "media/"+$(this).next(3).val()+".mp4").trigger("load").trigger("play");
-		    $('#fade').popup({ 
-		      transition: 'all 0.3s',
-		      scrolllock: true,
-		      autoopen: true,
-			  background: true
-		    });
-		});
+     $(".movie").click(function () {
+         $("#video").attr("src", "media/"+$(this).next(3).val()+".mp4").trigger("load").trigger("play");
+          $('#fade').popup({ 
+            transition: 'all 0.3s',
+            scrolllock: true,
+            autoopen: true,
+           background: true
+          });
+      });
   })
 </script>
 </html>
