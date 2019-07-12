@@ -134,6 +134,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		PreparedStatement ps = null;
 		
 		String sql="delete from review where review_id=? and review_pwd=?";
+		System.out.println("삭제 DAO = "+reviewId +" :> " + password);
 		int result = 0;
 		try {
 			con = DbUtil.getConnection();
@@ -143,6 +144,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 			ps.setString(2, password );
 			
 			result = ps.executeUpdate();
+			System.out.println("삭제 DAO 결과= " + result );
 		} finally {
 			DbUtil.dbClose(ps, con);
 		}
