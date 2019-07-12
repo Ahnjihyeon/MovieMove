@@ -27,10 +27,8 @@
     		var keyword = $(this).parent().prev().find("#inSearchKey").val() ;
     		location.href= 'movie?command=moviekeysearch&keyword='+keyword;    		
     	});
-    	
     	//영화리스트 화면 이동하기
-    	$("#headertolist").click(function(){    		
-    		
+    	$("#headertolist").click(function(){    		   		
     		location.href= 'movie?command=moviekeysearch&keyword='+"";    		
     	});
 	});
