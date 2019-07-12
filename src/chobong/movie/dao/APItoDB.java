@@ -40,7 +40,7 @@ public class APItoDB {
         String result=null;
         
         try {
-            String keyword = URLEncoder.encode("신데렐라","UTF-8"); //브라우저를 위한 인코딩 ex)알라딘->%EC%95%8C%EB%9D%BC%EB%94%98
+            String keyword = URLEncoder.encode("칠드런","UTF-8"); //브라우저를 위한 인코딩 ex)알라딘->%EC%95%8C%EB%9D%BC%EB%94%98
            
             String apiURL = "https://openapi.naver.com/v1/search/movie.json?query="+keyword
             				+"&display="+display+"&start="+start+"&genre="+genre+"&yearfrom="+yearfrom+"&yearto="+yearto; // json 결과
@@ -111,22 +111,22 @@ public class APItoDB {
             year = (String)row.get("pubDate"); //MOVIE_YEAR
             starpoint = (String)row.get("userRating"); //MOVIE_STARPOINT
             img = (String)row.get("image"); // MOVIE_IMG
-            
+            int code = (int)(Math.random()*10000);;
             System.out.println(title +" | "+year+" | "+starpoint +" | "+img );
             
             System.out.println("-------------Movie table에 update-----------"); 
-            String sql = "insert into movie(movie_code, movie_title, movie_year, movie_starpoint, movie_img) values (?,?,?,?,?)";
+            String sql = "insert into movie(movie_code, movie_title, movie_year, movie_starpoint, movie_image) values (?,?,?,?,?)";
 			con = DbUtil2.getConnection();
 			ps = con.prepareStatement(sql);
             
-			ps.setString(1, "MV_"+i);
+			ps.setString(1, "MV_"+code);
 			ps.setString(2, title);
 			ps.setString(3, year);
 			ps.setString(4, starpoint);
 			ps.setString(5, img);
             
 			int result = ps.executeUpdate();
-			System.out.println("DB삽입 "+i+"번째: "+result);
+			System.out.println("DB삽입 "+i+"번째: "+result+", movie_code : MV_"+code);
                         
         	}//for문 끝
         
