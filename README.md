@@ -1,6 +1,8 @@
 # MovieMove
 영화 리뷰 사이트
 
+![무비무비](https://user-images.githubusercontent.com/52490515/126127610-66aa8307-8a46-4572-a349-73e99bb4529e.PNG)
+
 개발 기간 : 2019.07.16 ~ 2019.07.26
 
 프로젝트 목표
