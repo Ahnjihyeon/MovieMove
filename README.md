@@ -16,7 +16,7 @@
 - 리뷰 페이지 및 댓글 기능으로 원활한 의견 공유가 가능
 - '좋아요' 기능으로 서로의 공감 여부를 수치화하여 이끌어 냄
 
-사용 언어 : Java, JavaScript, HTML5, CSS, Oracle
+사용 언어 : Java, JavaScript, HTML5, CSS, Oracle, JSP, Jquery
 
 Tool : Eclipse, Sql developer
 
